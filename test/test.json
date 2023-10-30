@@ -1,0 +1,425 @@
+{
+  "detailInfo": {
+    "level": 69,
+    "worldLevel": 6,
+    "nickname": "qwerdvd",
+    "headIcon": 201102,
+    "avatarDetailList": [
+      {
+        "relicList": [
+          {
+            "mainAffixId": 1,
+            "tid": 61021,
+            "type": 1,
+            "subAffixList": [
+              { "affixId": 3, "cnt": 1 },
+              { "affixId": 5, "cnt": 3, "step": 5 },
+              { "affixId": 6, "cnt": 1, "step": 1 },
+              { "affixId": 8, "cnt": 3, "step": 4 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 1,
+            "tid": 61022,
+            "type": 2,
+            "subAffixList": [
+              { "affixId": 3, "cnt": 2, "step": 4 },
+              { "affixId": 5, "cnt": 2, "step": 4 },
+              { "affixId": 8, "cnt": 3, "step": 3 },
+              { "affixId": 10, "cnt": 1, "step": 1 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 5,
+            "tid": 61023,
+            "type": 3,
+            "subAffixList": [
+              { "affixId": 1, "cnt": 1, "step": 1 },
+              { "affixId": 5, "cnt": 3, "step": 4 },
+              { "affixId": 6, "cnt": 2, "step": 1 },
+              { "affixId": 8, "cnt": 2, "step": 2 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 2,
+            "tid": 61024,
+            "type": 4,
+            "subAffixList": [
+              { "affixId": 1, "cnt": 1, "step": 2 },
+              { "affixId": 4, "cnt": 3, "step": 3 },
+              { "affixId": 8, "cnt": 3, "step": 4 },
+              { "affixId": 12, "cnt": 1, "step": 2 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 10,
+            "tid": 63095,
+            "type": 5,
+            "subAffixList": [
+              { "affixId": 3, "cnt": 2, "step": 2 },
+              { "affixId": 9, "cnt": 2, "step": 3 },
+              { "affixId": 10, "cnt": 2, "step": 1 },
+              { "affixId": 12, "cnt": 2, "step": 2 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 4,
+            "tid": 63096,
+            "type": 6,
+            "subAffixList": [
+              { "affixId": 2, "cnt": 2, "step": 1 },
+              { "affixId": 8, "cnt": 2, "step": 1 },
+              { "affixId": 9, "cnt": 1, "step": 1 },
+              { "affixId": 12, "cnt": 3, "step": 3 }
+            ],
+            "level": 15
+          }
+        ],
+        "equipment": { "tid": 23015, "promotion": 6, "rank": 1, "level": 80 },
+        "level": 80,
+        "avatarId": 1213,
+        "promotion": 6,
+        "skillTreeList": [
+          { "pointId": 1213001, "level": 6 },
+          { "pointId": 1213002, "level": 10 },
+          { "pointId": 1213003, "level": 10 },
+          { "pointId": 1213004, "level": 10 },
+          { "pointId": 1213007, "level": 1 },
+          { "pointId": 1213101, "level": 1 },
+          { "pointId": 1213102, "level": 1 },
+          { "pointId": 1213103, "level": 1 },
+          { "pointId": 1213201, "level": 1 },
+          { "pointId": 1213202, "level": 1 },
+          { "pointId": 1213203, "level": 1 },
+          { "pointId": 1213204, "level": 1 },
+          { "pointId": 1213205, "level": 1 },
+          { "pointId": 1213206, "level": 1 },
+          { "pointId": 1213207, "level": 1 },
+          { "pointId": 1213208, "level": 1 },
+          { "pointId": 1213209, "level": 1 },
+          { "pointId": 1213210, "level": 1 }
+        ]
+      },
+      {
+        "relicList": [
+          {
+            "mainAffixId": 1,
+            "tid": 61081,
+            "type": 1,
+            "subAffixList": [
+              { "affixId": 8, "cnt": 1 },
+              { "affixId": 9, "cnt": 2, "step": 3 },
+              { "affixId": 11, "cnt": 2, "step": 3 },
+              { "affixId": 12, "cnt": 3, "step": 3 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 1,
+            "tid": 61082,
+            "type": 2,
+            "subAffixList": [
+              { "affixId": 1, "cnt": 3, "step": 4 },
+              { "affixId": 3, "cnt": 3, "step": 5 },
+              { "affixId": 5, "cnt": 1, "step": 2 },
+              { "affixId": 12, "cnt": 1, "step": 2 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 4,
+            "tid": 61083,
+            "type": 3,
+            "subAffixList": [
+              { "affixId": 3, "cnt": 2, "step": 1 },
+              { "affixId": 4, "cnt": 3, "step": 2 },
+              { "affixId": 5, "cnt": 1, "step": 2 },
+              { "affixId": 10, "cnt": 2, "step": 2 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 2,
+            "tid": 61084,
+            "type": 4,
+            "subAffixList": [
+              { "affixId": 3, "cnt": 4, "step": 6 },
+              { "affixId": 4, "cnt": 1, "step": 2 },
+              { "affixId": 7, "cnt": 1, "step": 1 },
+              { "affixId": 10, "cnt": 2, "step": 1 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 3,
+            "tid": 63035,
+            "type": 5,
+            "exp": 830,
+            "subAffixList": [
+              { "affixId": 5, "cnt": 2, "step": 3 },
+              { "affixId": 8, "cnt": 1 },
+              { "affixId": 9, "cnt": 2, "step": 1 },
+              { "affixId": 10, "cnt": 1, "step": 2 }
+            ],
+            "level": 11
+          },
+          {
+            "mainAffixId": 2,
+            "tid": 63036,
+            "type": 6,
+            "subAffixList": [
+              { "affixId": 2, "cnt": 3, "step": 5 },
+              { "affixId": 5, "cnt": 1, "step": 2 },
+              { "affixId": 8, "cnt": 2, "step": 2 },
+              { "affixId": 12, "cnt": 2, "step": 4 }
+            ],
+            "level": 15
+          }
+        ],
+        "equipment": { "tid": 22000, "promotion": 6, "rank": 5, "level": 80 },
+        "level": 80,
+        "avatarId": 1006,
+        "rank": 1,
+        "promotion": 6,
+        "pos": 1,
+        "skillTreeList": [
+          { "pointId": 1006001, "level": 6 },
+          { "pointId": 1006002, "level": 10 },
+          { "pointId": 1006003, "level": 10 },
+          { "pointId": 1006004, "level": 10 },
+          { "pointId": 1006007, "level": 1 },
+          { "pointId": 1006101, "level": 1 },
+          { "pointId": 1006102, "level": 1 },
+          { "pointId": 1006103, "level": 1 },
+          { "pointId": 1006201, "level": 1 },
+          { "pointId": 1006202, "level": 1 },
+          { "pointId": 1006203, "level": 1 },
+          { "pointId": 1006204, "level": 1 },
+          { "pointId": 1006205, "level": 1 },
+          { "pointId": 1006206, "level": 1 },
+          { "pointId": 1006207, "level": 1 },
+          { "pointId": 1006208, "level": 1 },
+          { "pointId": 1006209, "level": 1 },
+          { "pointId": 1006210, "level": 1 }
+        ]
+      },
+      {
+        "relicList": [
+          {
+            "mainAffixId": 1,
+            "tid": 61081,
+            "type": 1,
+            "subAffixList": [
+              { "affixId": 4, "cnt": 2, "step": 3 },
+              { "affixId": 8, "cnt": 2, "step": 2 },
+              { "affixId": 9, "cnt": 3, "step": 4 },
+              { "affixId": 12, "cnt": 1 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 1,
+            "tid": 61082,
+            "type": 2,
+            "subAffixList": [
+              { "affixId": 6, "cnt": 1, "step": 2 },
+              { "affixId": 8, "cnt": 2, "step": 2 },
+              { "affixId": 9, "cnt": 2, "step": 2 },
+              { "affixId": 10, "cnt": 3, "step": 1 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 5,
+            "tid": 61083,
+            "type": 3,
+            "subAffixList": [
+              { "affixId": 3, "cnt": 2, "step": 4 },
+              { "affixId": 5, "cnt": 3, "step": 1 },
+              { "affixId": 6, "cnt": 1 },
+              { "affixId": 8, "cnt": 2, "step": 3 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 2,
+            "tid": 61084,
+            "type": 4,
+            "subAffixList": [
+              { "affixId": 1, "cnt": 2, "step": 3 },
+              { "affixId": 7, "cnt": 3, "step": 3 },
+              { "affixId": 11, "cnt": 2, "step": 3 },
+              { "affixId": 12, "cnt": 1, "step": 2 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 9,
+            "tid": 63065,
+            "type": 5,
+            "subAffixList": [
+              { "affixId": 2, "cnt": 2, "step": 2 },
+              { "affixId": 3, "cnt": 1 },
+              { "affixId": 8, "cnt": 3, "step": 6 },
+              { "affixId": 12, "cnt": 2, "step": 1 }
+            ],
+            "level": 15
+          },
+          {
+            "mainAffixId": 4,
+            "tid": 63066,
+            "type": 6,
+            "subAffixList": [
+              { "affixId": 2, "cnt": 1, "step": 2 },
+              { "affixId": 3, "cnt": 2, "step": 4 },
+              { "affixId": 8, "cnt": 5, "step": 6 },
+              { "affixId": 11, "cnt": 1, "step": 2 }
+            ],
+            "level": 15
+          }
+        ],
+        "equipment": { "tid": 24001, "promotion": 6, "rank": 5, "level": 80 },
+        "level": 80,
+        "avatarId": 1102,
+        "promotion": 6,
+        "pos": 2,
+        "skillTreeList": [
+          { "pointId": 1102001, "level": 6 },
+          { "pointId": 1102002, "level": 10 },
+          { "pointId": 1102003, "level": 10 },
+          { "pointId": 1102004, "level": 10 },
+          { "pointId": 1102007, "level": 1 },
+          { "pointId": 1102101, "level": 1 },
+          { "pointId": 1102102, "level": 1 },
+          { "pointId": 1102103, "level": 1 },
+          { "pointId": 1102201, "level": 1 },
+          { "pointId": 1102202, "level": 1 },
+          { "pointId": 1102203, "level": 1 },
+          { "pointId": 1102204, "level": 1 },
+          { "pointId": 1102205, "level": 1 },
+          { "pointId": 1102206, "level": 1 },
+          { "pointId": 1102207, "level": 1 },
+          { "pointId": 1102208, "level": 1 },
+          { "pointId": 1102209, "level": 1 },
+          { "pointId": 1102210, "level": 1 }
+        ]
+      }
+    ],
+    "assistAvatarDetail": {
+      "relicList": [
+        {
+          "mainAffixId": 1,
+          "tid": 61021,
+          "type": 1,
+          "subAffixList": [
+            { "affixId": 3, "cnt": 1 },
+            { "affixId": 5, "cnt": 3, "step": 5 },
+            { "affixId": 6, "cnt": 1, "step": 1 },
+            { "affixId": 8, "cnt": 3, "step": 4 }
+          ],
+          "level": 15
+        },
+        {
+          "mainAffixId": 1,
+          "tid": 61022,
+          "type": 2,
+          "subAffixList": [
+            { "affixId": 3, "cnt": 2, "step": 4 },
+            { "affixId": 5, "cnt": 2, "step": 4 },
+            { "affixId": 8, "cnt": 3, "step": 3 },
+            { "affixId": 10, "cnt": 1, "step": 1 }
+          ],
+          "level": 15
+        },
+        {
+          "mainAffixId": 5,
+          "tid": 61023,
+          "type": 3,
+          "subAffixList": [
+            { "affixId": 1, "cnt": 1, "step": 1 },
+            { "affixId": 5, "cnt": 3, "step": 4 },
+            { "affixId": 6, "cnt": 2, "step": 1 },
+            { "affixId": 8, "cnt": 2, "step": 2 }
+          ],
+          "level": 15
+        },
+        {
+          "mainAffixId": 2,
+          "tid": 61024,
+          "type": 4,
+          "subAffixList": [
+            { "affixId": 1, "cnt": 1, "step": 2 },
+            { "affixId": 4, "cnt": 3, "step": 3 },
+            { "affixId": 8, "cnt": 3, "step": 4 },
+            { "affixId": 12, "cnt": 1, "step": 2 }
+          ],
+          "level": 15
+        },
+        {
+          "mainAffixId": 10,
+          "tid": 63095,
+          "type": 5,
+          "subAffixList": [
+            { "affixId": 3, "cnt": 2, "step": 2 },
+            { "affixId": 9, "cnt": 2, "step": 3 },
+            { "affixId": 10, "cnt": 2, "step": 1 },
+            { "affixId": 12, "cnt": 2, "step": 2 }
+          ],
+          "level": 15
+        },
+        {
+          "mainAffixId": 4,
+          "tid": 63096,
+          "type": 6,
+          "subAffixList": [
+            { "affixId": 2, "cnt": 2, "step": 1 },
+            { "affixId": 8, "cnt": 2, "step": 1 },
+            { "affixId": 9, "cnt": 1, "step": 1 },
+            { "affixId": 12, "cnt": 3, "step": 3 }
+          ],
+          "level": 15
+        }
+      ],
+      "equipment": { "tid": 23015, "promotion": 6, "rank": 1, "level": 80 },
+      "level": 80,
+      "avatarId": 1213,
+      "promotion": 6,
+      "skillTreeList": [
+        { "pointId": 1213001, "level": 6 },
+        { "pointId": 1213002, "level": 10 },
+        { "pointId": 1213003, "level": 10 },
+        { "pointId": 1213004, "level": 10 },
+        { "pointId": 1213007, "level": 1 },
+        { "pointId": 1213101, "level": 1 },
+        { "pointId": 1213102, "level": 1 },
+        { "pointId": 1213103, "level": 1 },
+        { "pointId": 1213201, "level": 1 },
+        { "pointId": 1213202, "level": 1 },
+        { "pointId": 1213203, "level": 1 },
+        { "pointId": 1213204, "level": 1 },
+        { "pointId": 1213205, "level": 1 },
+        { "pointId": 1213206, "level": 1 },
+        { "pointId": 1213207, "level": 1 },
+        { "pointId": 1213208, "level": 1 },
+        { "pointId": 1213209, "level": 1 },
+        { "pointId": 1213210, "level": 1 }
+      ]
+    },
+    "friendCount": 18,
+    "recordInfo": {
+      "achievementCount": 276,
+      "avatarCount": 24,
+      "maxRogueChallengeScore": 7,
+      "challengeInfo": { "noneScheduleMaxLevel": 16 },
+      "equipmentCount": 154
+    },
+    "uid": 100086290,
+    "platform": "PC",
+    "isDisplayAvatar": true
+  }
+}
