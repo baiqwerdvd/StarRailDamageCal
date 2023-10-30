@@ -1,4 +1,8 @@
+import json
+from pathlib import Path
 from typing import Any, Dict, List, Tuple, Union
+
+from msgspec import json as msgjson
 
 from starrail_damage_cal.damage.utils import cal_relic_main_affix, cal_relic_sub_affix
 from starrail_damage_cal.excel.model import (
@@ -34,6 +38,7 @@ from starrail_damage_cal.mihomo.requests import get_char_card_info
 async def api_to_dict(
     sr_uid: Union[str, None] = None,
     mihomo_raw: Union[MihomoData, None] = None,
+    save_path: Union[Path, None] = None,
 ) -> Tuple[List[str], Dict[str, Dict[str, Any]]]:
     if not mihomo_raw:
         if not sr_uid:
@@ -46,6 +51,15 @@ async def api_to_dict(
         sr_data = mihomo_raw
 
     PlayerDetailInfo = sr_data.detailInfo
+
+    if save_path:
+        path = save_path / str(sr_uid)
+        path.mkdir(parents=True, exist_ok=True)
+        with Path.open(path / f"{sr_uid!s}.json", "wb") as file:
+            file.write(msgjson.format(msgjson.encode(PlayerDetailInfo), indent=4))
+        with Path.open(path / "rawData.json", "wb") as file:
+            file.write(msgjson.format(msgjson.encode(sr_data), indent=4))
+
     uid = str(PlayerDetailInfo.uid)
 
     if sr_data.detailInfo is None:
@@ -85,7 +99,9 @@ async def api_to_dict(
     return (char_id_list, char_data_list)
 
 
-async def get_data(char: Avatar, nick_name: str, sr_uid: str):
+async def get_data(
+    char: Avatar, nick_name: str, sr_uid: str, save_path: Union[Path, None] = None
+):
     # 处理基本信息
     char_data = {
         "uid": str(sr_uid),
@@ -281,5 +297,10 @@ async def get_data(char: Avatar, nick_name: str, sr_uid: str):
         equipment_info["baseAttributes"] = equipment_base_attributes
 
     char_data["equipmentInfo"] = equipment_info
+
+    if save_path:
+        save_path.mkdir(parents=True, exist_ok=True)
+        with Path.open(save_path / f"{avatarName}.json", "w", encoding="UTF-8") as file:
+            json.dump(char_data, file, ensure_ascii=False)
 
     return char_data, avatarName
