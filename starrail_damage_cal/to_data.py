@@ -77,6 +77,7 @@ async def api_to_dict(
             PlayerDetailInfo.assistAvatarDetail,
             nickName,
             uid,
+            save_path,
         )
         char_name_list.append(avatarName)
         char_id_list.append(str(PlayerDetailInfo.assistAvatarDetail.avatarId))
@@ -88,7 +89,12 @@ async def api_to_dict(
         for char in PlayerDetailInfo.avatarDetailList:
             if str(char.avatarId) in char_id_list:
                 continue
-            char_data, avatarName = await get_data(char, nickName, uid, save_path)
+            char_data, avatarName = await get_data(
+                char,
+                nickName,
+                uid,
+                save_path,
+            )
             char_name_list.append(avatarName)
             char_id_list.append(str(char.avatarId))
             char_data_list[str(char.avatarId)] = char_data
