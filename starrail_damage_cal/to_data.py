@@ -36,15 +36,15 @@ from starrail_damage_cal.mihomo.requests import get_char_card_info
 
 
 async def api_to_dict(
-    sr_uid: Union[str, None] = None,
+    uid: Union[str, None] = None,
     mihomo_raw: Union[MihomoData, None] = None,
     save_path: Union[Path, None] = None,
 ) -> Tuple[List[str], Dict[str, Dict[str, Any]]]:
     if not mihomo_raw:
-        if not sr_uid:
+        if not uid:
             raise KeyError
         try:
-            sr_data = await get_char_card_info(sr_uid)
+            sr_data = await get_char_card_info(uid)
         except Exception as e:  # noqa: BLE001
             raise MihomoRequestError from e
     else:
@@ -52,18 +52,18 @@ async def api_to_dict(
 
     PlayerDetailInfo = sr_data.detailInfo
 
-    if save_path:
-        path = save_path / str(sr_uid)
+    if save_path and uid:
+        path = save_path / uid
         path.mkdir(parents=True, exist_ok=True)
-        with Path.open(path / f"{sr_uid!s}.json", "wb") as file:
+        with Path.open(path / f"{uid!s}.json", "wb") as file:
             file.write(msgjson.format(msgjson.encode(PlayerDetailInfo), indent=4))
         with Path.open(path / "rawData.json", "wb") as file:
             file.write(msgjson.format(msgjson.encode(sr_data), indent=4))
 
-    uid = str(PlayerDetailInfo.uid)
+    player_uid = str(PlayerDetailInfo.uid)
 
     if sr_data.detailInfo is None:
-        raise CharacterShowcaseNotOpenError(uid)
+        raise CharacterShowcaseNotOpenError(player_uid)
 
     char_name_list: List[str] = []
     char_id_list: List[str] = []
@@ -76,7 +76,7 @@ async def api_to_dict(
         char_data, avatarName = await get_data(
             PlayerDetailInfo.assistAvatarDetail,
             nickName,
-            uid,
+            player_uid,
             save_path,
         )
         char_name_list.append(avatarName)
@@ -92,7 +92,7 @@ async def api_to_dict(
             char_data, avatarName = await get_data(
                 char,
                 nickName,
-                uid,
+                player_uid,
                 save_path,
             )
             char_name_list.append(avatarName)
@@ -100,17 +100,17 @@ async def api_to_dict(
             char_data_list[str(char.avatarId)] = char_data
 
     if not char_name_list:
-        raise CharacterShowcaseNotOpenError(uid)
+        raise CharacterShowcaseNotOpenError(player_uid)
 
     return (char_id_list, char_data_list)
 
 
 async def get_data(
-    char: Avatar, nick_name: str, sr_uid: str, save_path: Union[Path, None] = None
+    char: Avatar, nick_name: str, uid: str, save_path: Union[Path, None] = None
 ):
     # 处理基本信息
     char_data = {
-        "uid": str(sr_uid),
+        "uid": uid,
         "nickName": nick_name,
         "avatarId": char.avatarId,
         "avatarName": avatarId2Name[str(char.avatarId)],
@@ -305,8 +305,10 @@ async def get_data(
     char_data["equipmentInfo"] = equipment_info
 
     if save_path:
-        save_path.mkdir(parents=True, exist_ok=True)
-        with Path.open(save_path / f"{avatarName}.json", "w", encoding="UTF-8") as file:
+        path = save_path / str(uid)
+        path.mkdir(parents=True, exist_ok=True)
+        path.mkdir(parents=True, exist_ok=True)
+        with Path.open(path / f"{avatarName}.json", "w", encoding="UTF-8") as file:
             json.dump(char_data, file, ensure_ascii=False)
 
     return char_data, avatarName
