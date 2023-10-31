@@ -86,7 +86,7 @@ async def api_to_dict(
         and PlayerDetailInfo.avatarDetailList is not None
     ):
         for char in PlayerDetailInfo.avatarDetailList:
-            if char.avatarId in char_id_list:
+            if str(char.avatarId) in char_id_list:
                 continue
             char_data, avatarName = await get_data(char, nickName, uid)
             char_name_list.append(avatarName)
