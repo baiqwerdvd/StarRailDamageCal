@@ -1,12 +1,12 @@
 import json
-from typing import List
+from typing import List, Union
 
 from starrail_damage_cal.cal_damage import DamageCal
 
 
 async def test_get_damage_data_by_uid() -> None:
-    data = await DamageCal.get_damage_data_by_uid(uid="100086290", avatar_name="希儿")
-    if isinstance(data, List):
+    data = await DamageCal.get_all_damage_data_by_uid(uid="102840119")
+    if isinstance(data, Union[List, dict]):
         print(json.dumps(data, ensure_ascii=False, indent=4))
 
 
