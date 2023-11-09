@@ -1880,12 +1880,12 @@ class PerfectTiming(BaseWeapon):
     ):
         if await self.check():
             StatusResistance = attribute_bonus.get("StatusResistance", 0)
-            HealRatioBase_maxadd = weapon_effect["21000"]["Param"]["HealRatioBase"][
+            HealRatioBase_maxadd = weapon_effect["21014"]["Param"]["HealRatioBase"][
                 self.weapon_rank - 1
             ]
             HealRatioBaseadd = (
                 StatusResistance
-                * weapon_effect["21000"]["Param"]["StatusResistance"][
+                * weapon_effect["21014"]["Param"]["StatusResistance"][
                     self.weapon_rank - 1
                 ]
             )
