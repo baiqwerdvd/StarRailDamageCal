@@ -129,7 +129,7 @@ async def break_damage(
     
     break_damage = merged_attr.get("BreakDamageAddedRatioBase", 0) + 1
     
-    damage_cd = break_atk * break_element[element] * 5 * break_damage * damage_ratio * damage_reduction * resistance_area * defence_multiplier
+    damage_cd = break_atk * break_element[element] * 2 * break_damage * damage_ratio * damage_reduction * resistance_area * defence_multiplier
 
     return [damage_cd]
 
