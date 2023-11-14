@@ -4557,7 +4557,7 @@ class RuanMei(BaseAvatar):
         # 计算终结技伤害
         skill_multiplier = self.Skill_num("Ultra", "Ultra")
         if self.avatar_rank >= 6:
-            break_damage_added_ratio_base = merged_attr.get("BreakDamageAddedRatioBase", 0)
+            break_damage_added_ratio_base = attribute_bonus.get("BreakDamageAddedRatioBase", 0)
             if break_damage_added_ratio_base >= 1.8:
                 break_damage_added_ratio = break_damage_added_ratio_base - 1.8
                 skill_multiplier_add = int((break_damage_added_ratio * 100) / 10) * 0.24
