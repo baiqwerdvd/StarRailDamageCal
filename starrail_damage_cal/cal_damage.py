@@ -55,7 +55,7 @@ class DamageCal:
             raise MihomoRequestError
 
         if char_id not in char_id_list:
-            raise NotInCharacterShowcaseError(char_id_list)
+            raise NotInCharacterShowcaseError
 
         char_data = char_data_dict[char_id]
         return await cls.cal_info(char_data)
@@ -78,7 +78,7 @@ class DamageCal:
             raise MihomoRequestError
 
         if char_id not in char_id_list:
-            raise NotInCharacterShowcaseError(char_id_list)
+            raise NotInCharacterShowcaseError
 
         char_data = char_data_dict[char_id]
         return await cls.cal_info(char_data)
@@ -104,7 +104,7 @@ class DamageCal:
 
     @classmethod
     async def get_all_damage_data_by_uid(cls, uid: str):
-        char_id_list, char_data_dict = await api_to_dict(uid)
+        char_id_list, char_data_dict = await api_to_dict(sr_uid=uid)
 
         if isinstance(char_id_list, str):
             raise MihomoRequestError

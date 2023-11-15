@@ -305,7 +305,8 @@ async def get_data(
     char_data["equipmentInfo"] = equipment_info
 
     if save_path:
-        path = save_path / uid
+        path = save_path / str(uid)
+        path.mkdir(parents=True, exist_ok=True)
         path.mkdir(parents=True, exist_ok=True)
         with Path.open(path / f"{avatarName}.json", "w", encoding="UTF-8") as file:
             json.dump(char_data, file, ensure_ascii=False)
