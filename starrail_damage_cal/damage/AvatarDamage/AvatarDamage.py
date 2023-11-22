@@ -7,11 +7,11 @@ from starrail_damage_cal.damage.Base.model import (
     DamageInstanceSkill,
 )
 from starrail_damage_cal.damage.Role import (
+    break_damage,
     calculate_damage,
     calculate_heal,
     calculate_shield,
     get_damage,
-    break_damage,
 )
 from starrail_damage_cal.logger import logger
 
@@ -4371,6 +4371,7 @@ class Hanya(BaseAvatar):
 
         return skill_info_list
 
+
 class DrRatio(BaseAvatar):
     Buff: BaseAvatarBuff
 
@@ -4401,16 +4402,23 @@ class DrRatio(BaseAvatar):
         CC_ADD = self.Skill_num("Talent", "Talent_CC")
         CD_ADD = self.Skill_num("Talent", "Talent_CD")
         SPD_ADD = self.Skill_num("Talent", "Talent_S")
-        
+
         buff_num = 3
         if self.avatar_rank >= 1:
             buff_num = 5
-        
-        attribute_bonus["AttackAddedRatio"] = attribute_bonus.get("AttackAddedRatio",0) + ATK_ADD * buff_num
-        attribute_bonus["CriticalChanceBase"] = attribute_bonus.get("CriticalChanceBase",0) + CC_ADD * buff_num
-        attribute_bonus["CriticalDamageBase"] = attribute_bonus.get("CriticalDamageBase",0) + CD_ADD * buff_num
-        attribute_bonus["SpeedAddedRatio"] = attribute_bonus.get("SpeedAddedRatio",0) + SPD_ADD * buff_num
-        
+
+        attribute_bonus["AttackAddedRatio"] = (
+            attribute_bonus.get("AttackAddedRatio", 0) + ATK_ADD * buff_num
+        )
+        attribute_bonus["CriticalChanceBase"] = (
+            attribute_bonus.get("CriticalChanceBase", 0) + CC_ADD * buff_num
+        )
+        attribute_bonus["CriticalDamageBase"] = (
+            attribute_bonus.get("CriticalDamageBase", 0) + CD_ADD * buff_num
+        )
+        attribute_bonus["SpeedAddedRatio"] = (
+            attribute_bonus.get("SpeedAddedRatio", 0) + SPD_ADD * buff_num
+        )
 
         damage1, damage2, damage3 = await calculate_damage(
             base_attr,
@@ -4464,7 +4472,7 @@ class DrRatio(BaseAvatar):
         )
         damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
-        
+
         # 计算天赋追伤伤害
         skill_multiplier = self.Skill_num("Talent", "Talent")
         damagelist4 = await calculate_damage(
@@ -4493,6 +4501,7 @@ class DrRatio(BaseAvatar):
         skill_info_list.append({"name": "协同攻击", "damagelist": damagelist4})
 
         return skill_info_list
+
 
 class RuanMei(BaseAvatar):
     Buff: BaseAvatarBuff
@@ -4524,10 +4533,15 @@ class RuanMei(BaseAvatar):
         attribute_bonus: Dict[str, float],
     ):
         # 计算属性加成
-        attribute_bonus["SpeedAddedRatio"] = attribute_bonus.get("SpeedAddedRatio",0) + self.Skill_num("BPSkill", "BPSkill")
-        attribute_bonus["ResistancePenetration"] = attribute_bonus.get("ResistancePenetration",0) + self.Skill_num("Ultra", "Ultra_P")
-        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio",0) + self.Skill_num("Talent", "Talent_A")
-        
+        attribute_bonus["SpeedAddedRatio"] = attribute_bonus.get(
+            "SpeedAddedRatio", 0
+        ) + self.Skill_num("BPSkill", "BPSkill")
+        attribute_bonus["ResistancePenetration"] = attribute_bonus.get(
+            "ResistancePenetration", 0
+        ) + self.Skill_num("Ultra", "Ultra_P")
+        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get(
+            "AllDamageAddedRatio", 0
+        ) + self.Skill_num("Talent", "Talent_A")
 
         damage1, damage2, damage3 = await calculate_damage(
             base_attr,
@@ -4557,7 +4571,9 @@ class RuanMei(BaseAvatar):
         # 计算终结技伤害
         skill_multiplier = self.Skill_num("Ultra", "Ultra")
         if self.avatar_rank >= 6:
-            break_damage_added_ratio_base = attribute_bonus.get("BreakDamageAddedRatioBase", 0)
+            break_damage_added_ratio_base = attribute_bonus.get(
+                "BreakDamageAddedRatioBase", 0
+            )
             if break_damage_added_ratio_base >= 1.8:
                 break_damage_added_ratio = break_damage_added_ratio_base - 1.8
                 skill_multiplier_add = int((break_damage_added_ratio * 100) / 10) * 0.24
@@ -4582,7 +4598,7 @@ class RuanMei(BaseAvatar):
         )
         damagelist3[2] += damage3
         skill_info_list.append({"name": "残梅绽附加伤害", "damagelist": damagelist3})
-        
+
         # 计算天赋追伤伤害
         skill_multiplier = self.Skill_num("Talent", "Talent")
         damagelist4 = await get_damage(
@@ -4598,6 +4614,7 @@ class RuanMei(BaseAvatar):
         skill_info_list.append({"name": "天赋附加伤害", "damagelist": damagelist4})
 
         return skill_info_list
+
 
 class AvatarDamage:
     @classmethod

@@ -52,6 +52,7 @@ async def calculate_shield(
 
     return [defence_num]
 
+
 async def get_damage(
     damege: int,
     base_attr: Dict[str, float],
@@ -66,7 +67,7 @@ async def get_damage(
     add_attr_bonus = apply_attribute_bonus(add_attr_bonus, skill_type, add_skill_type)
 
     merged_attr = await merge_attribute(base_attr, add_attr_bonus)
-    
+
     injury_area, element_area = calculate_injury_area(
         merged_attr,
         skill_type,
@@ -81,12 +82,19 @@ async def get_damage(
     expected_damage = calculate_expected_damage(critical_chance, critical_damage)
 
     damage_cd = damege * skill_multiplier * injury_area * critical_damage
-    
+
     damage_qw = damege * skill_multiplier * injury_area * expected_damage
-    
-    damage_tz = damege * skill_multiplier * (injury_area + 2.626) * (critical_damage + 1.794) * 10
+
+    damage_tz = (
+        damege
+        * skill_multiplier
+        * (injury_area + 2.626)
+        * (critical_damage + 1.794)
+        * 10
+    )
 
     return [damage_cd, damage_qw, damage_tz]
+
 
 async def break_damage(
     base_attr: Dict[str, float],
@@ -97,23 +105,23 @@ async def break_damage(
     level: int,
 ):
     break_element = {
-        'Ice': 1,
-        'Imaginary': 1,
-        'Quantum': 1,
-        'Thunder': 2,
-        'Wind': 3,
-        'Physical': 4,
-        'Fire': 5,
+        "Ice": 1,
+        "Imaginary": 1,
+        "Quantum": 1,
+        "Thunder": 2,
+        "Wind": 3,
+        "Physical": 4,
+        "Fire": 5,
     }
-    
+
     add_attr_bonus = copy.deepcopy(attribute_bonus)
 
     add_attr_bonus = apply_attribute_bonus(add_attr_bonus, skill_type, add_skill_type)
 
     merged_attr = await merge_attribute(base_attr, add_attr_bonus)
-    
-    break_atk = 3767.55 #80级敌人击破伤害基数，我也不知道为什么是这个，反正都说是这个
-    
+
+    break_atk = 3767.55  # 80级敌人击破伤害基数, 我也不知道为什么是这个, 反正都说是这个
+
     damage_reduction = calculate_damage_reduction(level)
 
     resistance_area = calculate_resistance_area(
@@ -124,14 +132,24 @@ async def break_damage(
     )
 
     defence_multiplier = calculate_defence_multiplier(level, merged_attr)
-    
+
     damage_ratio = calculate_damage_ratio(merged_attr, skill_type, add_skill_type)
-    
+
     break_damage = merged_attr.get("BreakDamageAddedRatioBase", 0) + 1
-    
-    damage_cd = break_atk * break_element[element] * 2 * break_damage * damage_ratio * damage_reduction * resistance_area * defence_multiplier
+
+    damage_cd = (
+        break_atk
+        * break_element[element]
+        * 2
+        * break_damage
+        * damage_ratio
+        * damage_reduction
+        * resistance_area
+        * defence_multiplier
+    )
 
     return [damage_cd]
+
 
 async def calculate_damage(
     base_attr: Dict[str, float],

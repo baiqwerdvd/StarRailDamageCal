@@ -371,6 +371,7 @@ class Relic114(BaseRelicSetSkill):
             attribute_bonus["SpeedAddedRatio"] = speed_added_ratio + 0.12000000011175871
         return attribute_bonus
 
+
 class Relic115(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
         super().__init__(set_id, count)
@@ -382,7 +383,7 @@ class Relic115(BaseRelicSetSkill):
         attribute_bonus: Dict[str, float],
     ):
         """追加攻击造成的伤害提高20%。"""
-        """每次造成伤害时使装备者的攻击力提高6%，最多叠加8次，持续3回合。该效果在装备者下一次施放追加攻击时移除。"""
+        """每次造成伤害时使装备者的攻击力提高6%, 最多叠加8次, 持续3回合。该效果在装备者下一次施放追加攻击时移除。"""
         logger.info("Relic114 check success")
         return True
 
@@ -392,11 +393,16 @@ class Relic115(BaseRelicSetSkill):
         attribute_bonus: Dict[str, float],
     ):
         if self.pieces2:
-            attribute_bonus["TalentDmgAdd"] = attribute_bonus.get("TalentDmgAdd", 0) + 0.20000000011175871
+            attribute_bonus["TalentDmgAdd"] = (
+                attribute_bonus.get("TalentDmgAdd", 0) + 0.20000000011175871
+            )
         if self.pieces4 and await self.check(base_attr, attribute_bonus):
             attack_added_ratio = attribute_bonus.get("AttackAddedRatio", 0)
-            attribute_bonus["AttackAddedRatio"] = attack_added_ratio + 0.06000000009313226 * 8
+            attribute_bonus["AttackAddedRatio"] = (
+                attack_added_ratio + 0.06000000009313226 * 8
+            )
         return attribute_bonus
+
 
 class Relic116(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
@@ -408,7 +414,7 @@ class Relic116(BaseRelicSetSkill):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        """敌方目标每承受1个持续伤害效果，装备者对其造成伤害时就无视其6%的防御力，最多计入3个持续伤害效果。"""
+        """敌方目标每承受1个持续伤害效果, 装备者对其造成伤害时就无视其6%的防御力, 最多计入3个持续伤害效果。"""
         logger.info("Relic114 check success")
         return True
 
@@ -421,6 +427,7 @@ class Relic116(BaseRelicSetSkill):
             ignore_defence = attribute_bonus.get("ignore_defence", 0)
             attribute_bonus["ignore_defence"] = ignore_defence + 0.06000000009313226 * 3
         return attribute_bonus
+
 
 class Relic301(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
@@ -711,6 +718,7 @@ class Relic310(BaseRelicSetSkill):
             )
         return attribute_bonus
 
+
 class Relic311(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
         super().__init__(set_id, count)
@@ -720,7 +728,7 @@ class Relic311(BaseRelicSetSkill):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        """当装备者的速度大于等于135/160时，使装备者造成的伤害提高12%/18%。"""
+        """当装备者的速度大于等于135/160时, 使装备者造成的伤害提高12%/18%。"""
         merged_attr = await merge_attribute(base_attr, attribute_bonus)
         if merged_attr["speed"] >= 135:
             logger.info("Relic306 check success")
@@ -734,13 +742,17 @@ class Relic311(BaseRelicSetSkill):
     ):
         if self.pieces2 and await self.check(base_attr, attribute_bonus):
             merged_attr = await merge_attribute(base_attr, attribute_bonus)
+            add_damage_base = 0
             if merged_attr["speed"] >= 135:
                 add_damage_base = 0.12000000018626451
             if merged_attr["speed"] >= 160:
                 add_damage_base = 0.18000000018626451
-            attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio", 0) + add_damage_base
-            
+            attribute_bonus["AllDamageAddedRatio"] = (
+                attribute_bonus.get("AllDamageAddedRatio", 0) + add_damage_base
+            )
+
         return attribute_bonus
+
 
 class Relic312(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
@@ -760,9 +772,12 @@ class Relic312(BaseRelicSetSkill):
         attribute_bonus: Dict[str, float],
     ):
         if self.pieces2 and await self.check(base_attr, attribute_bonus):
-            attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio", 0) + 0.10000000018626451
-            
+            attribute_bonus["AllDamageAddedRatio"] = (
+                attribute_bonus.get("AllDamageAddedRatio", 0) + 0.10000000018626451
+            )
+
         return attribute_bonus
+
 
 class RelicSet:
     HEAD: SingleRelic
