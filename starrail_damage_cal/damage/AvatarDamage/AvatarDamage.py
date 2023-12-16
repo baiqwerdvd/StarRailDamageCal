@@ -7,11 +7,10 @@ from starrail_damage_cal.damage.Base.model import (
     DamageInstanceSkill,
 )
 from starrail_damage_cal.damage.Role import (
+    break_damage,
     calculate_damage,
     calculate_heal,
     calculate_shield,
-    get_damage,
-    break_damage,
 )
 from starrail_damage_cal.logger import logger
 
@@ -4371,6 +4370,7 @@ class Hanya(BaseAvatar):
 
         return skill_info_list
 
+
 class DrRatio(BaseAvatar):
     Buff: BaseAvatarBuff
 
@@ -4401,8 +4401,6 @@ class DrRatio(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         damage1, damage2, damage3 = await calculate_damage(
             base_attr,
             attribute_bonus,
@@ -4455,7 +4453,7 @@ class DrRatio(BaseAvatar):
         )
         damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
-        
+
         # 计算天赋追伤伤害
         skill_multiplier = self.Skill_num("Talent", "Talent")
         damagelist4 = await calculate_damage(
@@ -4484,6 +4482,7 @@ class DrRatio(BaseAvatar):
         skill_info_list.append({"name": "协同攻击", "damagelist": damagelist4})
 
         return skill_info_list
+
 
 class RuanMei(BaseAvatar):
     Buff: BaseAvatarBuff
@@ -4515,17 +4514,28 @@ class RuanMei(BaseAvatar):
         attribute_bonus: Dict[str, float],
     ):
         # 计算属性加成
-        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio",0) + self.Skill_num("BPSkill", "BPSkill")
-        attribute_bonus["BreakDamageAddedRatioBase"] = attribute_bonus.get("BreakDamageAddedRatioBase",0) + 0.5
-        attribute_bonus["ResistancePenetration"] = attribute_bonus.get("ResistancePenetration",0) + self.Skill_num("Ultra", "Ultra_P")
-        attribute_bonus["SpeedAddedRatio"] = attribute_bonus.get("SpeedAddedRatio",0) + self.Skill_num("Talent", "Talent_S")
-        
-        #战斗中阮•梅的击破特攻大于120%时，每超过10%，则战技使我方全体伤害提高的效果额外提高6%，最高不超过36%。
-        Break_Damage_Added_Ratio = attribute_bonus.get("BreakDamageAddedRatioBase",0)
+        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get(
+            "AllDamageAddedRatio", 0
+        ) + self.Skill_num("BPSkill", "BPSkill")
+        attribute_bonus["BreakDamageAddedRatioBase"] = (
+            attribute_bonus.get("BreakDamageAddedRatioBase", 0) + 0.5
+        )
+        attribute_bonus["ResistancePenetration"] = attribute_bonus.get(
+            "ResistancePenetration", 0
+        ) + self.Skill_num("Ultra", "Ultra_P")
+        attribute_bonus["SpeedAddedRatio"] = attribute_bonus.get(
+            "SpeedAddedRatio", 0
+        ) + self.Skill_num("Talent", "Talent_S")
+
+        # 战斗中阮•梅的击破特攻大于120%时, 每超过10%, 则战技使我方全体伤害提高的效果额外提高6%, 最高不超过36%。
+        Break_Damage_Added_Ratio = attribute_bonus.get("BreakDamageAddedRatioBase", 0)
         if Break_Damage_Added_Ratio > 1.2:
             add_all_damage_added_ratio = ((Break_Damage_Added_Ratio - 1.2) / 0.1) * 0.06
-            add_all_damage_added_ratio = min(0.36,add_all_damage_added_ratio)
-            attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio",0) + add_all_damage_added_ratio
+            add_all_damage_added_ratio = min(0.36, add_all_damage_added_ratio)
+            attribute_bonus["AllDamageAddedRatio"] = (
+                attribute_bonus.get("AllDamageAddedRatio", 0)
+                + add_all_damage_added_ratio
+            )
 
         damage1, damage2, damage3 = await calculate_damage(
             base_attr,
@@ -4564,7 +4574,7 @@ class RuanMei(BaseAvatar):
         )
         jipodamage1[0] = jipodamage1[0] * skill_multiplier
         skill_info_list.append({"name": "残梅绽附加伤害", "damagelist": jipodamage1})
-        
+
         # 计算天赋追伤伤害
         skill_multiplier = self.Skill_num("Talent", "Talent")
         if self.avatar_rank >= 6:
@@ -4581,6 +4591,7 @@ class RuanMei(BaseAvatar):
         skill_info_list.append({"name": "天赋附加击破伤害", "damagelist": jipodamage2})
 
         return skill_info_list
+
 
 class XueYi(BaseAvatar):
     Buff: BaseAvatarBuff
@@ -4602,17 +4613,21 @@ class XueYi(BaseAvatar):
             self.eidolon_attribute["BreakDamageAddedRatioBase"] = 0.4
 
     def extra_ability(self):
-        self.extra_ability_attribute["UltraDmgAdd"] = 0.1 + self.Skill_num("Ultra", "Ultra_A")
+        self.extra_ability_attribute["UltraDmgAdd"] = 0.1 + self.Skill_num(
+            "Ultra", "Ultra_A"
+        )
 
     async def getdamage(
         self,
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        #使自身造成的伤害提高，提高数值等同于击破特攻的100%，最多使造成的伤害提高240%。
-        Break_Damage_Added_Ratio = attribute_bonus.get("BreakDamageAddedRatioBase",0)
-        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio",0) + min(2.4,Break_Damage_Added_Ratio)
-        
+        # 使自身造成的伤害提高, 提高数值等同于击破特攻的100%, 最多使造成的伤害提高240%。
+        Break_Damage_Added_Ratio = attribute_bonus.get("BreakDamageAddedRatioBase", 0)
+        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get(
+            "AllDamageAddedRatio", 0
+        ) + min(2.4, Break_Damage_Added_Ratio)
+
         damage1, damage2, damage3 = await calculate_damage(
             base_attr,
             attribute_bonus,
@@ -4665,7 +4680,7 @@ class XueYi(BaseAvatar):
         )
         damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
-        
+
         # 计算天赋追伤伤害
         skill_multiplier = self.Skill_num("Talent", "Talent")
         damagelist4 = await calculate_damage(
@@ -4683,6 +4698,7 @@ class XueYi(BaseAvatar):
         skill_info_list.append({"name": "天赋追加攻击", "damagelist": damagelist4})
 
         return skill_info_list
+
 
 class AvatarDamage:
     @classmethod
