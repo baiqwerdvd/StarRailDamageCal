@@ -2261,7 +2261,6 @@ class Mediation(BaseWeapon):
             )
         return attribute_bonus
 
-
 # 纯粹思维的洗礼
 class BaptismofPureThought(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2270,7 +2269,7 @@ class BaptismofPureThought(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 当装备者施放终结技后,使我方全体速度提高12点,持续1回合。
+        # 敌方目标每承受1个负面效果，装备者对其造成的暴击伤害额外提高8%，最多叠加3层。施放终结技攻击敌方目标时，使装备者获得【论辩】效果，造成的伤害提高36%，追加攻击无视目标24%的防御力，该效果持续2回合。
         return True
 
     async def weapon_ability(
@@ -2283,35 +2282,22 @@ class BaptismofPureThought(BaseWeapon):
             critical_damage_base = attribute_bonus.get("CriticalDamageBase", 0)
             attribute_bonus["CriticalDamageBase"] = (
                 critical_damage_base
-                + (
-                    weapon_effect["23020"]["Param"]["CriticalDamageBase"][
-                        self.weapon_rank - 1
-                    ]
-                )
+                + (weapon_effect["23020"]["Param"]["CriticalDamageBase"][self.weapon_rank - 1])
                 * 3
             )
-
+            
             all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
             attribute_bonus["AllDamageAddedRatio"] = (
                 all_damage_added_ratio
-                + (
-                    weapon_effect["23020"]["Param"]["AllDamageAddedRatio"][
-                        self.weapon_rank - 1
-                    ]
-                )
+                + (weapon_effect["23020"]["Param"]["AllDamageAddedRatio"][self.weapon_rank - 1])
             )
-
-            resistance_penetration = attribute_bonus.get("ignore_defence", 0)
-            attribute_bonus["ignore_defence"] = (
+            
+            resistance_penetration = attribute_bonus.get("Talentignore_defence", 0)
+            attribute_bonus["Talentignore_defence"] = (
                 resistance_penetration
-                + (
-                    weapon_effect["23020"]["Param"]["ignore_defence"][
-                        self.weapon_rank - 1
-                    ]
-                )
+                + (weapon_effect["23020"]["Param"]["ignore_defence"][self.weapon_rank - 1])
             )
         return attribute_bonus
-
 
 # 镜中故我
 class PastSelfinMirror(BaseWeapon):
@@ -2321,7 +2307,7 @@ class PastSelfinMirror(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 当装备者施放战技后, 使我方全体造成的伤害提高15%, 使处于加速状态的我方目标的全属性穿透提高6%, 持续3回合。
+        # 装备者施放终结技后，使我方全体造成的伤害提高40%，持续3回合
         return True
 
     async def weapon_ability(
@@ -2334,24 +2320,9 @@ class PastSelfinMirror(BaseWeapon):
             all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
             attribute_bonus["AllDamageAddedRatio"] = (
                 all_damage_added_ratio
-                + (
-                    weapon_effect["23019"]["Param"]["AllDamageAddedRatio"][
-                        self.weapon_rank - 1
-                    ]
-                )
-            )
-
-            resistance_penetration = attribute_bonus.get("ResistancePenetration", 0)
-            attribute_bonus["ResistancePenetration"] = (
-                resistance_penetration
-                + (
-                    weapon_effect["23019"]["Param"]["ResistancePenetration"][
-                        self.weapon_rank - 1
-                    ]
-                )
+                + (weapon_effect["23019"]["Param"]["AllDamageAddedRatio"][self.weapon_rank - 1])
             )
         return attribute_bonus
-
 
 class Weapon:
     @classmethod
