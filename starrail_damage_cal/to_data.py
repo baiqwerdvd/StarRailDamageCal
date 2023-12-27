@@ -43,10 +43,7 @@ async def api_to_dict(
     if not mihomo_raw:
         if not uid:
             raise KeyError
-        try:
-            sr_data = await get_char_card_info(uid)
-        except Exception as e:  # noqa: BLE001
-            raise MihomoRequestError from e
+        sr_data = await get_char_card_info(uid)
     else:
         sr_data = mihomo_raw
 

@@ -49,10 +49,12 @@ class DamageCal:
         char_id_list, char_data_dict = await api_to_dict(uid)
 
         if isinstance(char_id_list, str):
-            raise MihomoRequestError
+            msg = "char_id_list is str"
+            raise MihomoRequestError(msg)
 
         if char_data_dict is None:
-            raise MihomoRequestError
+            msg = "char_data_dict is None"
+            raise MihomoRequestError(msg)
 
         if char_id not in char_id_list:
             raise NotInCharacterShowcaseError
@@ -72,10 +74,12 @@ class DamageCal:
         char_id_list, char_data_dict = await api_to_dict(mihomo_raw=mihomo_data)
 
         if isinstance(char_id_list, str):
-            raise MihomoRequestError
+            msg = "char_id_list is str"
+            raise MihomoRequestError(msg)
 
         if char_data_dict is None:
-            raise MihomoRequestError
+            msg = "char_data_dict is None"
+            raise MihomoRequestError(msg)
 
         if char_id not in char_id_list:
             raise NotInCharacterShowcaseError
@@ -89,10 +93,12 @@ class DamageCal:
         char_id_list, char_data_dict = await api_to_dict(mihomo_raw=mihomo_data)
 
         if isinstance(char_id_list, str):
-            raise MihomoRequestError
+            msg = "char_id_list is str"
+            raise MihomoRequestError(msg)
 
         if char_data_dict is None:
-            raise MihomoRequestError
+            msg = "char_data_dict is None"
+            raise MihomoRequestError(msg)
 
         damage_dict = {}
 
@@ -107,10 +113,12 @@ class DamageCal:
         char_id_list, char_data_dict = await api_to_dict(uid=uid)
 
         if isinstance(char_id_list, str):
-            raise MihomoRequestError
+            msg = "char_id_list is str"
+            raise MihomoRequestError(msg)
 
         if char_data_dict is None:
-            raise MihomoRequestError
+            msg = "char_data_dict is None"
+            raise MihomoRequestError(msg)
 
         damage_dict = {}
 

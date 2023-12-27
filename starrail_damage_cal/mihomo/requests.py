@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
+import msgspec
 from httpx import AsyncClient
 from msgspec import convert
 
+from starrail_damage_cal.exception import MihomoModelError, MihomoQueueTimeoutError
 from starrail_damage_cal.mihomo.models import MihomoData
 
 _HEADER = {"User-Agent": "StarRailDamageCal/"}
@@ -25,4 +28,11 @@ async def get_char_card_info(
             path.mkdir(parents=True, exist_ok=True)
             with Path.open(path / f"{uid!s}.json", "w") as file:
                 file.write(req.text)
-        return convert(req.json(), type=MihomoData)
+        try:
+            return convert(req.json(), type=MihomoData)
+        except msgspec.ValidationError as e:
+            if req.text == '{"detail":"Queue timeout"}':
+                raise MihomoQueueTimeoutError from e
+            raise MihomoModelError(e) from e
+        except json.decoder.JSONDecodeError as e:
+            raise MihomoModelError(e) from e

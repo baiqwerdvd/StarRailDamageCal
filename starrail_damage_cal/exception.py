@@ -1,9 +1,12 @@
+from typing import Union
+
+
 class UidNotfoundError(Exception):
     def __init__(self, uid: str):
         self.uid = uid
 
     def __str__(self):
-        return repr(self.uid)
+        return self.uid
 
 
 class CharNameError(Exception):
@@ -11,11 +14,28 @@ class CharNameError(Exception):
         self.char_name = char_name
 
     def __str__(self):
-        return repr(self.char_name)
+        return self.char_name
+
+
+class MihomoModelError(Exception):
+    def __init__(self, exce: Union[Exception, str]):
+        self.exce = exce.args[0] if isinstance(exce, Exception) else exce
+
+    def __str__(self):
+        return self.exce
+
+
+class MihomoQueueTimeoutError(Exception):
+    def __str__(self):
+        return "Mihomo queue timeout, please try again later."
 
 
 class MihomoRequestError(Exception):
-    pass
+    def __init__(self, exce: Union[Exception, str]):
+        self.exce = exce.args[0] if isinstance(exce, Exception) else exce
+
+    def __str__(self):
+        return self.exce
 
 
 class NotInCharacterShowcaseError(Exception):
@@ -27,4 +47,4 @@ class CharacterShowcaseNotOpenError(Exception):
         self.uid = uid
 
     def __str__(self):
-        return repr(self.uid)
+        return self.uid
