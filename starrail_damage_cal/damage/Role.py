@@ -79,7 +79,7 @@ async def get_damage(
 
     critical_chance = calculate_critical_chance(merged_attr, skill_type, add_skill_type)
 
-    expected_damage = calculate_expected_damage(critical_chance, critical_damage)
+    _ = calculate_expected_damage(critical_chance, critical_damage)
 
     damage_cd = damege * skill_multiplier * injury_area
 

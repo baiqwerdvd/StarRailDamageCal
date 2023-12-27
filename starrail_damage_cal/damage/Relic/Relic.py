@@ -383,7 +383,7 @@ class Relic115(BaseRelicSetSkill):
         attribute_bonus: Dict[str, float],
     ):
         """追加攻击造成的伤害提高20%。"""
-        """每次造成伤害时使装备者的攻击力提高6%，最多叠加8次，持续3回合。该效果在装备者下一次施放追加攻击时移除。"""
+        """每次造成伤害时使装备者的攻击力提高6%, 最多叠加8次, 持续3回合。该效果在装备者下一次施放追加攻击时移除。"""
         logger.info("Relic114 check success")
         return True
 
@@ -414,7 +414,7 @@ class Relic116(BaseRelicSetSkill):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        """敌方目标每承受1个持续伤害效果，装备者对其造成伤害时就无视其6%的防御力，最多计入3个持续伤害效果。"""
+        """敌方目标每承受1个持续伤害效果, 装备者对其造成伤害时就无视其6%的防御力, 最多计入3个持续伤害效果。"""
         logger.info("Relic114 check success")
         return True
 

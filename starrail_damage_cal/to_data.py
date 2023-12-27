@@ -11,7 +11,6 @@ from starrail_damage_cal.excel.model import (
 )
 from starrail_damage_cal.exception import (
     CharacterShowcaseNotOpenError,
-    MihomoRequestError,
 )
 from starrail_damage_cal.map.SR_MAP_PATH import (
     AvatarRankSkillUp,
