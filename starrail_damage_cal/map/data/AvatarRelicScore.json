@@ -161,7 +161,7 @@
         "StatusResistanceBase": 0.0,
         "AttributeAddedRatio": 1
     },
-	{
+    {
         "role": "卡芙卡",
         "HPDelta": 0.0,
         "HPAddedRatio": 0.0,
@@ -197,7 +197,7 @@
         "StatusResistanceBase": 0.0,
         "AttributeAddedRatio": 1
     },
-	{
+    {
         "role": "镜流",
         "HPDelta": 0.0,
         "HPAddedRatio": 0.0,
@@ -233,7 +233,7 @@
         "StatusResistanceBase": 0.75,
         "AttributeAddedRatio": 0
     },
-	{
+    {
         "role": "玲可",
         "HPDelta": 1.0,
         "HPAddedRatio": 1.0,
@@ -251,7 +251,7 @@
         "StatusResistanceBase": 0.75,
         "AttributeAddedRatio": 0
     },
-	{
+    {
         "role": "藿藿",
         "HPDelta": 1.0,
         "HPAddedRatio": 1.0,
@@ -269,7 +269,7 @@
         "StatusResistanceBase": 0.75,
         "AttributeAddedRatio": 0
     },
-	{
+    {
         "role": "符玄",
         "HPDelta": 1.0,
         "HPAddedRatio": 1.0,
@@ -287,7 +287,7 @@
         "StatusResistanceBase": 1.0,
         "AttributeAddedRatio": 0
     },
-	{
+    {
         "role": "罗刹",
         "HPDelta": 0.75,
         "HPAddedRatio": 0.75,
@@ -305,7 +305,7 @@
         "StatusResistanceBase": 0.75,
         "AttributeAddedRatio": 0
     },
-	{
+    {
         "role": "桂乃芬",
         "HPDelta": 0.0,
         "HPAddedRatio": 0.0,
@@ -323,7 +323,7 @@
         "StatusResistanceBase": 0.0,
         "AttributeAddedRatio": 1
     },
-	{
+    {
         "role": "驭空",
         "HPDelta": 0.0,
         "HPAddedRatio": 0.0,
@@ -629,7 +629,7 @@
         "StatusResistanceBase": 0.0,
         "AttributeAddedRatio": 1
     },
-	{
+    {
         "role": "刃",
         "HPDelta": 0.75,
         "HPAddedRatio": 0.75,
@@ -683,7 +683,7 @@
         "StatusResistanceBase": 0.0,
         "AttributeAddedRatio": 1
     },
-	{
+    {
         "role": "托帕&账账",
         "HPDelta": 0.0,
         "HPAddedRatio": 0.0,
@@ -701,7 +701,7 @@
         "StatusResistanceBase": 0.0,
         "AttributeAddedRatio": 1
     },
-	{
+    {
         "role": "银枝",
         "HPDelta": 0.0,
         "HPAddedRatio": 0.0,

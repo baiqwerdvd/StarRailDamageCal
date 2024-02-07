@@ -65,35 +65,19 @@ async def api_to_dict(
     char_id_list: List[str] = []
     char_data_list: Dict[str, Dict] = {}
     nickName = PlayerDetailInfo.nickname
-    if (
-        PlayerDetailInfo.assistAvatarDetail
-        and PlayerDetailInfo.assistAvatarDetail.avatarId not in char_id_list
-    ):
+    avatarList = (PlayerDetailInfo.avatarDetailList if PlayerDetailInfo.avatarDetailList else []) + (PlayerDetailInfo.assistAvatarList if PlayerDetailInfo.assistAvatarList else [])
+    for char in avatarList:
+        if str(char.avatarId) in char_id_list:
+                continue
         char_data, avatarName = await get_data(
-            PlayerDetailInfo.assistAvatarDetail,
+            char,
             nickName,
             player_uid,
             save_path,
         )
         char_name_list.append(avatarName)
-        char_id_list.append(str(PlayerDetailInfo.assistAvatarDetail.avatarId))
-        char_data_list[str(PlayerDetailInfo.assistAvatarDetail.avatarId)] = char_data
-    if (
-        PlayerDetailInfo.avatarDetailList
-        and PlayerDetailInfo.avatarDetailList is not None
-    ):
-        for char in PlayerDetailInfo.avatarDetailList:
-            if str(char.avatarId) in char_id_list:
-                continue
-            char_data, avatarName = await get_data(
-                char,
-                nickName,
-                player_uid,
-                save_path,
-            )
-            char_name_list.append(avatarName)
-            char_id_list.append(str(char.avatarId))
-            char_data_list[str(char.avatarId)] = char_data
+        char_id_list.append(str(char.avatarId))
+        char_data_list[str(char.avatarId)] = char_data
 
     if not char_name_list:
         raise CharacterShowcaseNotOpenError(player_uid)
