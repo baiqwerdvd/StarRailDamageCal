@@ -46,17 +46,23 @@ class Challenge(Struct):
     PreMazeGroupIndex: Union[int, None] = None
 
 
+class ChallengeInfo(Struct):
+    scheduleGroupId: int
+    noneScheduleMaxLevel: int
+    scheduleMaxLevel: int
+
+
 class PlayerSpaceInfo(Struct):
     maxRogueChallengeScore: int
     equipmentCount: int
     avatarCount: int
     achievementCount: int
-    challengeInfo: Union[int, None] = None
+    challengeInfo: ChallengeInfo
 
 
 class PlayerDetailInfo(Struct):
-    assistAvatarDetail: Avatar
-    platform: str
+    assistAvatarList: Union[List[Avatar], None]
+    platform: Union[int, str]
     isDisplayAvatar: bool
     avatarDetailList: Union[List[Avatar], None]
     uid: int
