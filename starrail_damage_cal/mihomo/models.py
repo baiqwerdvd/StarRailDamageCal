@@ -47,31 +47,31 @@ class Challenge(Struct):
 
 
 class ChallengeInfo(Struct):
-    scheduleMaxLevel: int
+    scheduleMaxLevel: Union[int, None] = None
     scheduleGroupId: Union[int, None] = None
     noneScheduleMaxLevel: Union[int, None] = None
 
 
 class PlayerSpaceInfo(Struct):
-    maxRogueChallengeScore: int
-    equipmentCount: int
     avatarCount: int
-    achievementCount: int
     challengeInfo: ChallengeInfo
+    achievementCount: Union[int, None] = field(default=0)
+    equipmentCount: Union[int, None] = field(default=0)
+    maxRogueChallengeScore: Union[int, None] = field(default=0)
 
 
 class PlayerDetailInfo(Struct):
     assistAvatarList: Union[List[Avatar], None]
     platform: Union[int, str]
     isDisplayAvatar: bool
-    avatarDetailList: Union[List[Avatar], None]
     uid: int
-    friendCount: int
-    worldLevel: int
     nickname: str
     level: int
     recordInfo: Union[PlayerSpaceInfo, None]
     headIcon: int
+    friendCount: Union[int, None] = field(default=0)
+    worldLevel: Union[int, None] = field(default=0)
+    avatarDetailList: Union[List[Avatar], None] = None
     signature: Union[str, None] = None
     Birthday: Union[int, None] = None
 
