@@ -48,7 +48,7 @@ class Challenge(Struct):
 
 class ChallengeInfo(Struct):
     scheduleGroupId: int
-    noneScheduleMaxLevel: int
+    noneScheduleMaxLevel: Union[int, None] = None
     scheduleMaxLevel: int
 
 
