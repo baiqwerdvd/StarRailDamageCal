@@ -53,10 +53,10 @@ class ChallengeInfo(Struct):
 
 
 class PlayerSpaceInfo(Struct):
-    equipmentCount: int
     avatarCount: int
-    achievementCount: int
     challengeInfo: ChallengeInfo
+    achievementCount: Union[int, None] = field(default=0)
+    equipmentCount: Union[int, None] = field(default=0)
     maxRogueChallengeScore: Union[int, None] = field(default=0)
 
 
