@@ -2342,12 +2342,87 @@ class PastSelfinMirror(BaseWeapon):
             )
         return attribute_bonus
 
+# 游戏尘寰
+class EarthlyEscapade(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 战斗开始时，使装备者获得【假面】，持续3回合。当装备者持有【假面】时，装备者的队友暴击率提高10%，暴击伤害提高28%。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            critical_damage_base = attribute_bonus.get("CriticalDamageBase", 0)
+            attribute_bonus["CriticalDamageBase"] = (
+                critical_damage_base
+                + weapon_effect["23021"]["Param"]["CriticalDamageBase"][self.weapon_rank - 1]
+            )
+            
+            critical_chance_base = attribute_bonus.get("CriticalChanceBase", 0)
+            attribute_bonus["CriticalChanceBase"] = (
+                critical_chance_base
+                + weapon_effect["23021"]["Param"]["CriticalChance"][self.weapon_rank - 1]
+            )
+        return attribute_bonus
+
+# 重塑时光之忆
+class ReforgedRemembrance(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 装备者对陷入风化、灼烧、触电、裂伤状态的敌方目标造成伤害时，分别获得1层【先知】，最多叠加4层。单场战斗中，每种持续伤害状态类型仅可叠加1次【先知】效果。每层【先知】使装备者的攻击力提高5%，造成的持续伤害无视目标7.2%的防御力。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            AttackAddedRatio = attribute_bonus.get("AttackAddedRatio", 0)
+            attribute_bonus["AttackAddedRatio"] = (
+                AttackAddedRatio
+                + (
+                    weapon_effect["23022"]["Param"]["AttackAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                )
+                * 4
+            )
+            
+            resistance_penetration = attribute_bonus.get("DOTignore_defence", 0)
+            attribute_bonus["DOTignore_defence"] = (
+                resistance_penetration
+                + (
+                    weapon_effect["23022"]["Param"]["ignore_defence"][
+                        self.weapon_rank - 1
+                    ]
+                )
+                * 4
+            )
+        return attribute_bonus
 
 class Weapon:
     @classmethod
     def create(cls, weapon: DamageInstanceWeapon):
         if weapon.id_ == 23019:
             return PastSelfinMirror(weapon)
+        if weapon.id_ == 23021:
+            return EarthlyEscapade(weapon)
+        if weapon.id_ == 23022:
+            return ReforgedRemembrance(weapon)
         if weapon.id_ == 23020:
             return BaptismofPureThought(weapon)
         if weapon.id_ == 22001:

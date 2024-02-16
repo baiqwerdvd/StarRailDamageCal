@@ -1086,7 +1086,6 @@ class Kafka(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "单次持续伤害", "damagelist": damagelist4})
 
         # 计算追加攻击伤害
@@ -1971,7 +1970,6 @@ class Guinaifen(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "单次持续伤害", "damagelist": damagelist4})
 
         return skill_info_list
@@ -4699,6 +4697,129 @@ class XueYi(BaseAvatar):
 
         return skill_info_list
 
+class BlackSwan(BaseAvatar):
+    Buff: BaseAvatarBuff
+
+    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+        super().__init__(char=char, skills=skills)
+        self.eidolon_attribute: Dict[str, float] = {}
+        self.extra_ability_attribute: Dict[str, float] = {}
+        self.eidolons()
+        self.extra_ability()
+
+    def Technique(self):
+        pass
+
+    def eidolons(self):
+        if self.avatar_rank >= 1:
+            self.eidolon_attribute["WindResistancePenetration"] = 0.25
+            self.eidolon_attribute["PhysicalResistancePenetration"] = 0.25
+            self.eidolon_attribute["FireResistancePenetration"] = 0.25
+            self.eidolon_attribute["ThunderResistancePenetration"] = 0.25
+
+    def extra_ability(self):
+        #战技降防计算
+        bpskill_defence = self.Skill_num("BPSkill", "BPSkill_D")
+        self.extra_ability_attribute["ignore_defence"] = bpskill_defence
+        #终结技加伤害
+        self.extra_ability_attribute["AllDamageAddedRatio"] = self.Skill_num("Ultra", "Ultra_A")
+
+    async def getdamage(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        # 使自身造成的伤害提高，提高数值等同于效果命中的60%，最多使造成的伤害提高72%。
+        Break_Damage_Added_Ratio = attribute_bonus.get("StatusProbabilityBase", 0) * 0.6
+        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get(
+            "AllDamageAddedRatio", 0
+        ) + min(0.72, Break_Damage_Added_Ratio)
+        
+        damage1, damage2, damage3 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "fujia",
+            "fujia",
+            "Thunder",
+            0.44,
+            self.avatar_level,
+        )
+
+        skill_info_list = []
+        # 计算普攻伤害
+        skill_multiplier = self.Skill_num("Normal", "Normal")
+        damagelist1 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Normal",
+            "Normal",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist1[2] += damage3
+        skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
+
+        # 计算战技伤害
+        skill_multiplier = self.Skill_num("BPSkill", "BPSkill")
+        damagelist2 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "BPSkill",
+            "BPSkill",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist2[2] += damage3
+        skill_info_list.append({"name": "战技", "damagelist": damagelist2})
+
+        # 计算终结技伤害
+        skill_multiplier = self.Skill_num("Ultra", "Ultra")
+        damagelist3 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Ultra",
+            "Ultra",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist3[2] += damage3
+        skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
+
+        # 计算1层奥迹持续伤害
+        skill_multiplier = self.Skill_num("Talent", "Talent")
+        skill_multiplier += self.Skill_num("Talent", "Talent_UP")
+        damagelist4 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "DOT",
+            "DOT",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        skill_info_list.append({"name": "1层奥迹伤害", "damagelist": damagelist4})
+        
+        # 计算50层奥迹持续伤害
+        skill_multiplier = self.Skill_num("Talent", "Talent")
+        skill_multiplier += self.Skill_num("Talent", "Talent_UP") * 50
+        add_attr_bonus = copy.deepcopy(attribute_bonus)
+        add_attr_bonus["ignore_defence"] = (
+            add_attr_bonus.get("ignore_defence", 0) + 0.2
+        )
+        damagelist5 = await calculate_damage(
+            base_attr,
+            add_attr_bonus,
+            "DOT",
+            "DOT",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        skill_info_list.append({"name": "50层奥迹伤害", "damagelist": damagelist5})
+        return skill_info_list
 
 class AvatarDamage:
     @classmethod
@@ -4707,6 +4828,8 @@ class AvatarDamage:
             return XueYi(char, skills)
         if char.id_ == 1303:
             return RuanMei(char, skills)
+        if char.id_ == 1307:
+            return BlackSwan(char, skills)
         if char.id_ == 1305:
             return DrRatio(char, skills)
         if char.id_ == 1215:
