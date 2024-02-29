@@ -1,6 +1,6 @@
 [project]
 name = "starrail_damage_cal"
-version = "1.4.0"
+version = "1.4.1"
 description = "For StarRail Role Damage Cal"
 authors = [
     {name = "qwerdvd", email = "105906879+qwerdvd@users.noreply.github.com"},
@@ -9,6 +9,7 @@ dependencies = [
     "msgspec>=0.18.4",
     "httpx>=0.25.0",
 ]
+repository = "https://github.com/baiqwerdvd/StarRailDamageCal"
 requires-python = ">=3.8"
 readme = "README.md"
 license = {text = "MIT"}
