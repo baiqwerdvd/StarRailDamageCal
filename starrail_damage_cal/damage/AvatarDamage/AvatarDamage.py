@@ -4821,11 +4821,86 @@ class BlackSwan(BaseAvatar):
         skill_info_list.append({"name": "50层奥迹伤害", "damagelist": damagelist5})
         return skill_info_list
 
+class Sparkle(BaseAvatar):
+    Buff: BaseAvatarBuff
+
+    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+        super().__init__(char=char, skills=skills)
+        self.eidolon_attribute: Dict[str, float] = {}
+        self.extra_ability_attribute: Dict[str, float] = {}
+        self.eidolons()
+        self.extra_ability()
+
+    def Technique(self):
+        pass
+
+    def eidolons(self):
+        pass
+
+    def extra_ability(self):
+        self.extra_ability_attribute["AttackAddedRatio"] = 0.45
+
+    async def getdamage(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+       
+        # 终结技天赋增加伤害
+        All_Damage_Add = (self.Skill_num("Talent", "Talent") + self.Skill_num("Ultra", "Ultra")) * 3
+        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get(
+            "AllDamageAddedRatio", 0
+        ) + All_Damage_Add
+        
+        #战技增加暴击伤害
+        if self.avatar_rank >= 6:
+            add_critical_damage_base = attribute_bonus.get("CriticalDamageBase", 0) * (self.Skill_num("BPSkill", "BPSkill") + 0.3) + self.Skill_num("BPSkill", "BPSkill_G")
+        else:
+            add_critical_damage_base = attribute_bonus.get("CriticalDamageBase", 0) * self.Skill_num("BPSkill", "BPSkill") + self.Skill_num("BPSkill", "BPSkill_G")
+        attribute_bonus["CriticalDamageBase"] = (
+            attribute_bonus.get("CriticalDamageBase", 0) + add_critical_damage_base
+        )
+        
+        damage1, damage2, damage3 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "fujia",
+            "fujia",
+            "Thunder",
+            0.44,
+            self.avatar_level,
+        )
+
+        skill_info_list = []
+        # 计算普攻伤害
+        skill_multiplier = self.Skill_num("Normal", "Normal")
+        damagelist1 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Normal",
+            "Normal",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist1[2] += damage3
+        skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
+
+        # 计算终结技
+        critical_damage_base_str = add_critical_damage_base * 100
+        damagelist2 = []
+        damagelist2.append(critical_damage_base_str)
+        skill_info_list.append({"name": "战技提升爆伤(%)", "damagelist": damagelist2})
+
+        return skill_info_list
+
 class AvatarDamage:
     @classmethod
     def create(cls, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
         if char.id_ == 1214:
             return XueYi(char, skills)
+        if char.id_ == 1306:
+            return Sparkle(char, skills)
         if char.id_ == 1303:
             return RuanMei(char, skills)
         if char.id_ == 1307:

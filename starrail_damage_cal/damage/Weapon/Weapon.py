@@ -2414,6 +2414,267 @@ class ReforgedRemembrance(BaseWeapon):
             )
         return attribute_bonus
 
+# 何物为真
+class WhatIsReal(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 施放普攻后，装备者回复等同于2%生命上限+800点的生命值。
+        pass
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        return attribute_bonus
+
+# 美梦小镇大冒险
+class DreamvilleAdventure(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 装备者施放普攻、战技、终结技中某一类型的技能后，为我方全体附加【童心】，【童心】可以使我方目标对应类型的技能所造成的伤害提高12%
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = (
+                all_damage_added_ratio
+                + (
+                    weapon_effect["21036"]["Param"]["AllDamageAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+        return attribute_bonus
+
+# 最后的赢家
+class FinalVictor(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 当装备者对敌方目标造成暴击后获得一层【好运】，最多叠加4层。每层【好运】使装备者的暴击伤害提高8%
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
+            attribute_bonus["CriticalDamageBase"] = (
+                Critical_Damage_Base
+                + (
+                    weapon_effect["21037"]["Param"]["CriticalDamageBase"][
+                        self.weapon_rank - 1
+                    ]
+                    * 4
+                )
+            )
+        return attribute_bonus
+
+# 在火的远处
+class FlamesAfar(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 使装备者造成的伤害提高25%
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = (
+                all_damage_added_ratio
+                + (
+                    weapon_effect["21038"]["Param"]["AllDamageAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+        return attribute_bonus
+
+# 织造命运之线
+class DestinysThreadsForewoven(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 装备者每有100点防御力，使装备者造成的伤害提高0.8%，最多使造成的伤害提高32%。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            defence = base_attr["defence"] * (1 + attribute_bonus["DefenceAddedRatio"]) + attribute_bonus["DefenceDelta"]
+            damage_added = (defence/100) * weapon_effect["21039"]["Param"]["AllDamageAddedRatio"][self.weapon_rank - 1]
+            damage_added = min(damage_added, weapon_effect["21039"]["Param"]["AllDamageAddedRatio_max"][self.weapon_rank - 1])
+            all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = all_damage_added_ratio + damage_added
+        return attribute_bonus
+
+# 银河沦陷日
+class TheDayTheCosmosFell(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 装备者施放攻击后，若有不少于2个被攻击的敌方目标具有对应属性弱点，装备者的暴击伤害提高20%，持续2回合。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
+            attribute_bonus["CriticalDamageBase"] = (
+                Critical_Damage_Base
+                + (
+                    weapon_effect["21040"]["Param"]["CriticalDamageBase"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+        return attribute_bonus
+
+# 好戏开演
+class ItsShowtime(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 装备者对敌方目标施加负面状态后，获得一层【戏法】，每层【戏法】使装备者造成的伤害提高6%，最多叠加3层，持续1回合。当装备者的效果命中大于等于80%时，攻击力提高20%。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = (
+                all_damage_added_ratio
+                + (
+                    weapon_effect["21041"]["Param"]["AllDamageAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                    * 3
+                )
+            )
+            Status_Probability_Base = attribute_bonus.get("StatusProbabilityBase", 0)
+            if Status_Probability_Base >= 0.8:
+                Attack_Added_Ratio = attribute_bonus.get("AttackAddedRatio", 0)
+                attribute_bonus["AttackAddedRatio"] = (
+                    Attack_Added_Ratio
+                    + (
+                        weapon_effect["21041"]["Param"]["AttackAddedRatio"][
+                            self.weapon_rank - 1
+                        ]
+                    )
+                )
+        return attribute_bonus
+
+# 铭记于心的约定
+class IndeliblePromise(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 当装备者释放终结技时，暴击率提高15%，持续2回合。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            Critical_Chance_Base = attribute_bonus.get("CriticalChanceBase", 0)
+            attribute_bonus["CriticalChanceBase"] = (
+                Critical_Chance_Base
+                + (
+                    weapon_effect["21042"]["Param"]["CriticalChanceBase"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+        return attribute_bonus
+
+# 两个人的演唱会
+class ConcertforTwo(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 场上每有一名持有护盾的角色，装备者造成的伤害提高4%。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = (
+                all_damage_added_ratio
+                + (
+                    weapon_effect["21043"]["Param"]["AllDamageAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                    * 2
+                )
+            )
+        return attribute_bonus
+
 class Weapon:
     @classmethod
     def create(cls, weapon: DamageInstanceWeapon):
@@ -2421,6 +2682,24 @@ class Weapon:
             return PastSelfinMirror(weapon)
         if weapon.id_ == 23021:
             return EarthlyEscapade(weapon)
+        if weapon.id_ == 21035:
+            return WhatIsReal(weapon)
+        if weapon.id_ == 21036:
+            return DreamvilleAdventure(weapon)
+        if weapon.id_ == 21037:
+            return FinalVictor(weapon)
+        if weapon.id_ == 21038:
+            return FlamesAfar(weapon)
+        if weapon.id_ == 21039:
+            return DestinysThreadsForewoven(weapon)
+        if weapon.id_ == 21040:
+            return TheDayTheCosmosFell(weapon)
+        if weapon.id_ == 21041:
+            return ItsShowtime(weapon)
+        if weapon.id_ == 21042:
+            return IndeliblePromise(weapon)
+        if weapon.id_ == 21043:
+            return ConcertforTwo(weapon)
         if weapon.id_ == 23022:
             return ReforgedRemembrance(weapon)
         if weapon.id_ == 23020:

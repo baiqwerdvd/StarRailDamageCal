@@ -428,6 +428,57 @@ class Relic116(BaseRelicSetSkill):
             attribute_bonus["ignore_defence"] = ignore_defence + 0.06000000009313226 * 3
         return attribute_bonus
 
+class Relic117(BaseRelicSetSkill):
+    def __init__(self, set_id: int, count: int):
+        super().__init__(set_id, count)
+        self._count = count
+
+    async def check(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        """2件: 对受负面状态影响的敌人造成的伤害提高12%。"""
+        # 暴击率提高4%，装备者对陷入不少于2/3个负面效果的敌方目标造成的暴击伤害提高8%/12%。装备者对敌方目标施加负面效果后，上述效果提高100%，持续1回合
+        logger.info("Relic114 check success")
+        return True
+
+    async def set_skill_ability(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if self.pieces2 and await self.check(base_attr, attribute_bonus):
+            All_Damage_Added_Ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = All_Damage_Added_Ratio + 0.12000000011175871
+        if self.pieces4 and await self.check(base_attr, attribute_bonus):
+            Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
+            attribute_bonus["CriticalDamageBase"] = Critical_Damage_Base + 0.12000000011175871 * 2
+        return attribute_bonus
+
+class Relic118(BaseRelicSetSkill):
+    def __init__(self, set_id: int, count: int):
+        super().__init__(set_id, count)
+        self._count = count
+
+    async def check(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        """当装备者对我方目标施放终结技时，我方全体击破特攻提高30%，持续2回合，该效果无法叠加。"""
+        logger.info("Relic114 check success")
+        return True
+
+    async def set_skill_ability(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if self.pieces4 and await self.check(base_attr, attribute_bonus):
+            Break_Damage_Added_Ratio_Base = attribute_bonus.get("BreakDamageAddedRatioBase", 0)
+            attribute_bonus["BreakDamageAddedRatioBase"] = Break_Damage_Added_Ratio_Base + 0.3000000002793968
+        return attribute_bonus
 
 class Relic301(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
@@ -806,6 +857,8 @@ class RelicSet:
             Relic114,
             Relic115,
             Relic116,
+            Relic117,
+            Relic118,
             Relic301,
             Relic302,
             Relic303,
@@ -890,6 +943,10 @@ class RelicSet:
                 self.SetSkill.append(Relic115(set_id, count))
             elif set_id == 116:
                 self.SetSkill.append(Relic116(set_id, count))
+            elif set_id == 117:
+                self.SetSkill.append(Relic117(set_id, count))
+            elif set_id == 118:
+                self.SetSkill.append(Relic118(set_id, count))
             elif set_id == 301:
                 self.SetSkill.append(Relic301(set_id, count))
             elif set_id == 302:
