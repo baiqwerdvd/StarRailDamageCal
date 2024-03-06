@@ -7,7 +7,11 @@ import msgspec
 from httpx import AsyncClient
 from msgspec import convert
 
-from starrail_damage_cal.exception import MihomoModelError, MihomoQueueTimeoutError
+from starrail_damage_cal.exception import (
+    InvalidUidError,
+    MihomoModelError,
+    MihomoQueueTimeoutError,
+)
 from starrail_damage_cal.mihomo.models import MihomoData
 
 _HEADER = {"User-Agent": "StarRailDamageCal/"}
@@ -33,6 +37,8 @@ async def get_char_card_info(
         except msgspec.ValidationError as e:
             if req.text == '{"detail":"Queue timeout"}':
                 raise MihomoQueueTimeoutError from e
+            if req.text == '{"detail":"Invalid uid"}':
+                raise InvalidUidError(uid) from e
             raise MihomoModelError(e) from e
         except json.decoder.JSONDecodeError as e:
             raise MihomoModelError(e) from e

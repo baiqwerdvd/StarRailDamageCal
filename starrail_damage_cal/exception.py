@@ -8,6 +8,13 @@ class UidNotfoundError(Exception):
     def __str__(self):
         return self.uid
 
+class InvalidUidError(Exception):
+    def __init__(self, uid: str):
+        self.uid = uid
+
+    def __str__(self):
+        return self.uid
+
 
 class CharNameError(Exception):
     def __init__(self, char_name: str):
