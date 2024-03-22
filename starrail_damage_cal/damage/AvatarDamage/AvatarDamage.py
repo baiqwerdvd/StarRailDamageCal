@@ -4894,6 +4894,156 @@ class Sparkle(BaseAvatar):
 
         return skill_info_list
 
+class Acheron(BaseAvatar):
+    Buff: BaseAvatarBuff
+
+    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+        super().__init__(char=char, skills=skills)
+        self.eidolon_attribute: Dict[str, float] = {}
+        self.extra_ability_attribute: Dict[str, float] = {}
+        self.eidolons()
+        self.extra_ability()
+
+    def Technique(self):
+        pass
+
+    def eidolons(self):
+        if self.avatar_rank >= 1:
+            self.eidolon_attribute["CriticalChanceBase"] = 0.18
+        if self.avatar_rank >= 4:
+            self.eidolon_attribute["Ultra_DmgRatio"] = 0.08
+        if self.avatar_rank >= 6:
+            self.eidolon_attribute["Ultra_AllDamageResistancePenetration"] = 0.2
+
+    def extra_ability(self):
+        self.extra_ability_attribute["AttackAddedRatio"] = 0.45
+
+    async def getdamage(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        
+        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio", 0) + 0.9
+        
+        damage1, damage2, damage3 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "fujia",
+            "fujia",
+            "Thunder",
+            0.44,
+            self.avatar_level,
+        )
+
+        skill_info_list = []
+        # 计算普攻伤害
+        skill_multiplier = self.Skill_num("Normal", "Normal")
+        if self.avatar_rank >= 6:
+            damagelist1 = await calculate_damage(
+                base_attr,
+                attribute_bonus,
+                "Normal",
+                "Ultra",
+                self.avatar_element,
+                skill_multiplier,
+                self.avatar_level,
+            )
+        else:
+            damagelist1 = await calculate_damage(
+                base_attr,
+                attribute_bonus,
+                "Normal",
+                "Normal",
+                self.avatar_element,
+                skill_multiplier,
+                self.avatar_level,
+            )
+        damagelist1[0] = damagelist1[0] * 1.6
+        damagelist1[1] = damagelist1[1] * 1.6
+        damagelist1[2] = damagelist1[2] * 1.6 + damage3
+        skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
+        
+        # 计算战技伤害
+        skill_multiplier = self.Skill_num("BPSkill", "BPSkill")
+        if self.avatar_rank >= 6:
+            damagelist2 = await calculate_damage(
+                base_attr,
+                attribute_bonus,
+                "BPSkill",
+                "Ultra",
+                self.avatar_element,
+                skill_multiplier,
+                self.avatar_level,
+            )
+        else:
+            damagelist2 = await calculate_damage(
+                base_attr,
+                attribute_bonus,
+                "BPSkill",
+                "Normal",
+                self.avatar_element,
+                skill_multiplier,
+                self.avatar_level,
+            )
+        damagelist2[0] = damagelist2[0] * 1.6
+        damagelist2[1] = damagelist2[1] * 1.6
+        damagelist2[2] = damagelist2[2] * 1.6 + damage3
+        skill_info_list.append({"name": "战技", "damagelist": damagelist2})
+        
+        # 计算终结技
+        add_attr_bonus = copy.deepcopy(attribute_bonus)
+        add_attr_bonus["AllDamageResistancePenetration"] = (
+            add_attr_bonus.get("AllDamageResistancePenetration", 0) + 0.2
+        )
+        #啼泽雨斩
+        skill_multiplier = self.Skill_num("Ultra", "Ultra_1_d")
+        damagelist_u_1_d = await calculate_damage(
+            base_attr,
+            add_attr_bonus,
+            "Ultra",
+            "Ultra",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist_u_1_d[0] = damagelist_u_1_d[0] * 1.6
+        damagelist_u_1_d[1] = damagelist_u_1_d[1] * 1.6
+        damagelist_u_1_d[2] = damagelist_u_1_d[2] * 1.6 + damage3
+        skill_info_list.append({"name": "啼泽雨斩", "damagelist": damagelist_u_1_d})
+        #黄泉返渡
+        skill_multiplier = self.Skill_num("Ultra", "Ultra_1_a")
+        damagelist_u_1_a = await calculate_damage(
+            base_attr,
+            add_attr_bonus,
+            "Ultra",
+            "Ultra",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist_u_1_a_e = await calculate_damage(
+            base_attr,
+            add_attr_bonus,
+            "Ultra",
+            "Ultra",
+            self.avatar_element,
+            0.25,
+            self.avatar_level,
+        )
+        damagelist_u_1_a[0] = damagelist_u_1_a[0] * 1.6 + (damagelist_u_1_a_e[0] * 1.6) * 6
+        damagelist_u_1_a[1] = damagelist_u_1_a[1] * 1.6 + (damagelist_u_1_a_e[1] * 1.6) * 6
+        damagelist_u_1_a[2] = damagelist_u_1_a[2] * 1.6 + (damagelist_u_1_a_e[2] * 1.6) * 6 + damage3
+        skill_info_list.append({"name": "黄泉返渡", "damagelist": damagelist_u_1_a})
+        
+        #总伤害
+        damagelist_u = {}
+        damagelist_u[0] = damagelist_u_1_d[0] * 3 + damagelist_u_1_a[0]
+        damagelist_u[1] = damagelist_u_1_d[1] * 3 + damagelist_u_1_a[1]
+        damagelist_u[2] = damagelist_u_1_d[2] * 3 + damagelist_u_1_a[2]
+        skill_info_list.append({"name": "终结技总伤", "damagelist": damagelist_u})
+        return skill_info_list
+
 class AvatarDamage:
     @classmethod
     def create(cls, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
@@ -4901,6 +5051,8 @@ class AvatarDamage:
             return XueYi(char, skills)
         if char.id_ == 1306:
             return Sparkle(char, skills)
+        if char.id_ == 1308:
+            return Acheron(char, skills)
         if char.id_ == 1303:
             return RuanMei(char, skills)
         if char.id_ == 1307:

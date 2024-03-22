@@ -2670,7 +2670,83 @@ class ConcertforTwo(BaseWeapon):
                     weapon_effect["21043"]["Param"]["AllDamageAddedRatio"][
                         self.weapon_rank - 1
                     ]
-                    * 2
+                    * 4
+                )
+            )
+        return attribute_bonus
+
+# 行于流逝的岸
+class AlongthePassingShore(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 装备者对陷入【泡影】状态的目标造成的伤害提高24%，终结技造成的伤害额外提高24%
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = (
+                all_damage_added_ratio
+                + (
+                    weapon_effect["23024"]["Param"]["AllDamageAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+            Ultra_Dmg_Add = attribute_bonus.get("UltraDmgAdd", 0)
+            attribute_bonus["UltraDmgAdd"] = (
+                Ultra_Dmg_Add
+                + (
+                    weapon_effect["23024"]["Param"]["UltraDmgAdd"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+        return attribute_bonus
+
+# 命运从未公平
+class InherentlyUnjustDestiny(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 当装备者为我方目标提供护盾时，使装备者的暴击伤害提高40%，持续2回合。当装备者发动追加攻击击中敌方目标时，有100%的基础概率使受到攻击的敌方目标受到的伤害提高10%，持续2回合。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
+            attribute_bonus["CriticalDamageBase"] = (
+                Critical_Damage_Base
+                + (
+                    weapon_effect["23023"]["Param"]["CriticalDamageBase"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+            Dmg_Ratio = attribute_bonus.get("DmgRatio", 0)
+            attribute_bonus["DmgRatio"] = (
+                Dmg_Ratio
+                + (
+                    weapon_effect["23023"]["Param"]["DmgRatio"][
+                        self.weapon_rank - 1
+                    ]
                 )
             )
         return attribute_bonus
@@ -2680,8 +2756,12 @@ class Weapon:
     def create(cls, weapon: DamageInstanceWeapon):
         if weapon.id_ == 23019:
             return PastSelfinMirror(weapon)
+        if weapon.id_ == 23024:
+            return AlongthePassingShore(weapon)
         if weapon.id_ == 23021:
             return EarthlyEscapade(weapon)
+        if weapon.id_ == 23023:
+            return InherentlyUnjustDestiny(weapon)
         if weapon.id_ == 21035:
             return WhatIsReal(weapon)
         if weapon.id_ == 21036:
