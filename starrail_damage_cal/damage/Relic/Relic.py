@@ -829,6 +829,53 @@ class Relic312(BaseRelicSetSkill):
 
         return attribute_bonus
 
+class Relic313(BaseRelicSetSkill):
+    def __init__(self, set_id: int, count: int):
+        super().__init__(set_id, count)
+
+    async def check(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        """当敌方目标被消灭时，装备者暴击伤害提高4%，最多叠加10层。"""
+        return True
+
+    async def set_skill_ability(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if self.pieces2 and await self.check(base_attr, attribute_bonus):
+            attribute_bonus["CriticalDamageBase"] = (
+                attribute_bonus.get("CriticalDamageBase", 0) + (0.0400000000372529 * 10)
+            )
+
+        return attribute_bonus
+
+class Relic314(BaseRelicSetSkill):
+    def __init__(self, set_id: int, count: int):
+        super().__init__(set_id, count)
+
+    async def check(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        """若至少存在一名与装备者命途相同的队友，装备者的暴击率提高12%。"""
+        return True
+
+    async def set_skill_ability(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if self.pieces2 and await self.check(base_attr, attribute_bonus):
+            attribute_bonus["CriticalChanceBase"] = (
+                attribute_bonus.get("CriticalChanceBase", 0) + 0.12000000011175871
+            )
+
+        return attribute_bonus
 
 class RelicSet:
     HEAD: SingleRelic
@@ -871,6 +918,8 @@ class RelicSet:
             Relic310,
             Relic311,
             Relic312,
+            Relic313,
+            Relic314,
         ]
     ]
 
@@ -971,6 +1020,10 @@ class RelicSet:
                 self.SetSkill.append(Relic311(set_id, count))
             elif set_id == 312:
                 self.SetSkill.append(Relic312(set_id, count))
+            elif set_id == 313:
+                self.SetSkill.append(Relic313(set_id, count))
+            elif set_id == 314:
+                self.SetSkill.append(Relic314(set_id, count))
             else:
                 msg = f"Unknow SetId: {set_id}"
                 raise ValueError(msg)

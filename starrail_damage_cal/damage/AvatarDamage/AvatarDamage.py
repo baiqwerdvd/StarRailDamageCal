@@ -5044,6 +5044,235 @@ class Acheron(BaseAvatar):
         skill_info_list.append({"name": "终结技总伤", "damagelist": damagelist_u})
         return skill_info_list
 
+class Aventurine(BaseAvatar):
+    Buff: BaseAvatarBuff
+
+    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+        super().__init__(char=char, skills=skills)
+        self.eidolon_attribute: Dict[str, float] = {}
+        self.extra_ability_attribute: Dict[str, float] = {}
+        self.eidolons()
+        self.extra_ability()
+
+    def Technique(self):
+        pass
+
+    def eidolons(self):
+        if self.avatar_rank >= 1:
+            self.eidolon_attribute["CriticalDamageBase"] = 0.2
+        if self.avatar_rank >= 2:
+            self.eidolon_attribute["AllDamageResistancePenetration"] = 0.12
+        if self.avatar_rank >= 4:
+            self.eidolon_attribute["DefenceAddedRatio"] = 0.4
+        if self.avatar_rank >= 6:
+            self.eidolon_attribute["AllDamageAddedRatio"] = 1.5
+
+    def extra_ability(self):
+        pass
+
+    async def getdamage(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+       
+        # 天赋增加暴击
+        defence = base_attr["defence"] * (1 + attribute_bonus["DefenceAddedRatio"]) + attribute_bonus["DefenceDelta"]
+        if defence > 1600:
+            adddefrnce = defence - 1600
+            Critical_Chance_Base = (defence/100) * 0.02
+            Critical_Chance_Base = min(Critical_Chance_Base, 0.48)
+            attribute_bonus["CriticalChanceBase"] = attribute_bonus.get("CriticalChanceBase", 0) + Critical_Chance_Base
+        
+        #终结技增加暴击伤害
+        attribute_bonus["CriticalDamageBase"] = attribute_bonus.get("CriticalDamageBase", 0) + self.Skill_num("Ultra", "Ultra_CD")
+        
+        damage1, damage2, damage3 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "fujia",
+            "fujia",
+            "Thunder",
+            0.44,
+            self.avatar_level,
+        )
+
+        skill_info_list = []
+        # 计算普攻伤害
+        skill_multiplier = self.Skill_num("Normal", "Normal")
+        damagelist1 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Normal",
+            "Normal",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+            2,
+        )
+        damagelist1[2] += damage3
+        skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
+
+        # 计算战技护盾
+        skill_multiplier = self.Skill_num("BPSkill", "BPSkill")
+        skill_num = self.Skill_num("BPSkill", "BPSkill_G")
+        damagelist2 = await calculate_shield(
+            base_attr,
+            attribute_bonus,
+            skill_multiplier,
+            skill_num,
+        )
+        skill_info_list.append({"name": "战技(护盾)", "damagelist": damagelist2})
+        
+        # 计算终结技伤害
+        skill_multiplier = self.Skill_num("Ultra", "Ultra")
+        damagelist3 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Ultra",
+            "Ultra",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+            2,
+        )
+        damagelist3[2] += damage3
+        skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
+        
+        duanshu = 10
+        if self.avatar_rank >= 4:
+            duanshu = 13
+        damagelist5 = {}
+        # 计算天赋追加攻击伤害
+        skill_multiplier = self.Skill_num("Talent", "Talent")
+        damagelist4 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Talent",
+            "Talent",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+            2,
+        )
+        damagelist5[0] = damagelist4[0] * duanshu
+        damagelist5[1] = damagelist4[1] * duanshu
+        damagelist5[2] = damagelist4[2] * duanshu + damage3
+        damagelist4[2] += damage3
+        skill_info_list.append({"name": "单层【盲注】追击", "damagelist": damagelist4})
+        skill_info_list.append({"name": "满层【盲注】追击", "damagelist": damagelist5})
+        
+        return skill_info_list
+
+class Gallagher(BaseAvatar):
+    Buff: BaseAvatarBuff
+
+    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+        super().__init__(char=char, skills=skills)
+        self.eidolon_attribute: Dict[str, float] = {}
+        self.extra_ability_attribute: Dict[str, float] = {}
+        self.eidolons()
+        self.extra_ability()
+
+    def Technique(self):
+        pass
+
+    def eidolons(self):
+        if self.avatar_rank >= 6:
+            self.eidolon_attribute["BreakDamageAddedRatioBase"] = 0.2
+
+    def extra_ability(self):
+        pass
+
+    async def getdamage(
+        self,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+       
+        # 使自身提供的治疗量提高，提高数值等同于击破特攻的50%，最多使提供的治疗量提高75%
+        Break_Damage_Added_Ratio_Base = attribute_bonus.get("BreakDamageAddedRatioBase", 0)
+        Heal_Ratio_Base = Break_Damage_Added_Ratio_Base * 0.5
+        Heal_Ratio_Base = min(0.75, Heal_Ratio_Base)
+        attribute_bonus["HealRatioBase"] = attribute_bonus.get("HealRatioBase", 0) + Heal_Ratio_Base
+        
+        damage1, damage2, damage3 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "fujia",
+            "fujia",
+            "Thunder",
+            0.44,
+            self.avatar_level,
+        )
+
+        skill_info_list = []
+        # 计算普攻伤害
+        skill_multiplier = self.Skill_num("Normal", "Normal")
+        damagelist1 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Normal",
+            "Normal",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist1[2] += damage3
+        skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
+        
+        # 计算强化普攻伤害
+        skill_multiplier = self.Skill_num("Normal", "Normal1")
+        damagelist2 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Normal",
+            "Normal1",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist2[2] += damage3
+        skill_info_list.append({"name": "强化普攻", "damagelist": damagelist2})
+        
+        # 计算战技治疗量
+        skill_num = self.Skill_num("BPSkill", "BPSkill")
+        damagelist3 = await calculate_heal(
+            base_attr,
+            attribute_bonus,
+            "BPSkill",
+            0,
+            skill_num,
+        )
+        skill_info_list.append({"name": "战技治疗量", "damagelist": damagelist3})
+        
+        # 计算终结技伤害
+        skill_multiplier = self.Skill_num("Ultra", "Ultra")
+        damagelist4 = await calculate_damage(
+            base_attr,
+            attribute_bonus,
+            "Ultra",
+            "Ultra",
+            self.avatar_element,
+            skill_multiplier,
+            self.avatar_level,
+        )
+        damagelist4[2] += damage3
+        skill_info_list.append({"name": "结技", "damagelist": damagelist4})
+        
+        # 计算天赋治疗量
+        skill_num = self.Skill_num("Talent", "Talent")
+        damagelist5 = await calculate_heal(
+            base_attr,
+            attribute_bonus,
+            "Talent",
+            0,
+            skill_num,
+        )
+        skill_info_list.append({"name": "天赋治疗量", "damagelist": damagelist5})
+        
+        return skill_info_list
+
 class AvatarDamage:
     @classmethod
     def create(cls, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
@@ -5055,6 +5284,10 @@ class AvatarDamage:
             return Acheron(char, skills)
         if char.id_ == 1303:
             return RuanMei(char, skills)
+        if char.id_ == 1304:
+            return Aventurine(char, skills)
+        if char.id_ == 1301:
+            return Gallagher(char, skills)
         if char.id_ == 1307:
             return BlackSwan(char, skills)
         if char.id_ == 1305:
