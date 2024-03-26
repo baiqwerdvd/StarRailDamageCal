@@ -2751,6 +2751,141 @@ class InherentlyUnjustDestiny(BaseWeapon):
             )
         return attribute_bonus
 
+# 夜色流光溢彩
+class FlowingNightglow(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 【华彩】使装备者的攻击力提高48%，使我方全体造成的伤害提高24%，持续1回合。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            Attack_Added_Ratio = attribute_bonus.get("AttackAddedRatio", 0)
+            attribute_bonus["AttackAddedRatio"] = (
+                Attack_Added_Ratio
+                + (
+                    weapon_effect["23026"]["Param"]["AttackAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+            all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = (
+                all_damage_added_ratio
+                + (
+                    weapon_effect["23026"]["Param"]["AllDamageAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+        return attribute_bonus
+
+# 驶向第二次生命
+class SailingTowardsASecondLife(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 造成的击破伤害无视目标20%的防御力。当装备者击中敌方目标时，使目标受到的伤害提高1%，该状态最多叠加6层
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            resistance_penetration = attribute_bonus.get("ignore_defence", 0)
+            attribute_bonus["ignore_defence"] = (
+                resistance_penetration
+                + (
+                    weapon_effect["23027"]["Param"]["ignore_defence"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+            Dmg_Ratio = attribute_bonus.get("DmgRatio", 0)
+            attribute_bonus["DmgRatio"] = (
+                Dmg_Ratio
+                + (
+                    weapon_effect["23027"]["Param"]["DmgRatio"][
+                        self.weapon_rank - 1
+                    ]
+                    * 6
+                )
+            )
+        return attribute_bonus
+
+# 无边曼舞
+class BoundlessChoreo(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高24%。
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
+            attribute_bonus["CriticalDamageBase"] = (
+                Critical_Damage_Base
+                + (
+                    weapon_effect["21044"]["Param"]["CriticalDamageBase"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+        return attribute_bonus
+
+# 为了明日的旅途
+class ForTomorrowsJourney(BaseWeapon):
+    weapon_base_attributes: Dict
+
+    def __init__(self, weapon: DamageInstanceWeapon):
+        super().__init__(weapon)
+
+    async def check(self):
+        # 装备者施放终结技后，造成的伤害提高18%
+        return True
+
+    async def weapon_ability(
+        self,
+        Ultra_Use: float,
+        base_attr: Dict[str, float],
+        attribute_bonus: Dict[str, float],
+    ):
+        if await self.check():
+            all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
+            attribute_bonus["AllDamageAddedRatio"] = (
+                all_damage_added_ratio
+                + (
+                    weapon_effect["22002"]["Param"]["AllDamageAddedRatio"][
+                        self.weapon_rank - 1
+                    ]
+                )
+            )
+        return attribute_bonus
+
 class Weapon:
     @classmethod
     def create(cls, weapon: DamageInstanceWeapon):
@@ -2760,8 +2895,16 @@ class Weapon:
             return AlongthePassingShore(weapon)
         if weapon.id_ == 23021:
             return EarthlyEscapade(weapon)
+        if weapon.id_ == 22002:
+            return ForTomorrowsJourney(weapon)
         if weapon.id_ == 23023:
             return InherentlyUnjustDestiny(weapon)
+        if weapon.id_ == 21044:
+            return BoundlessChoreo(weapon)
+        if weapon.id_ == 23026:
+            return FlowingNightglow(weapon)
+        if weapon.id_ == 23027:
+            return SailingTowardsASecondLife(weapon)
         if weapon.id_ == 21035:
             return WhatIsReal(weapon)
         if weapon.id_ == 21036:
