@@ -5007,9 +5007,18 @@ class Acheron(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist_u_1_d[0] = damagelist_u_1_d[0] * 1.6
-        damagelist_u_1_d[1] = damagelist_u_1_d[1] * 1.6
-        damagelist_u_1_d[2] = damagelist_u_1_d[2] * 1.6 + damage3
+        damagelist_u_2_d = await calculate_damage(
+            base_attr,
+            add_attr_bonus,
+            "Ultra",
+            "Ultra",
+            self.avatar_element,
+            0.6,
+            self.avatar_level,
+        )
+        damagelist_u_1_d[0] = damagelist_u_1_d[0] * 1.6 + damagelist_u_2_d[0] * 1.6
+        damagelist_u_1_d[1] = damagelist_u_1_d[1] * 1.6 + damagelist_u_2_d[1] * 1.6
+        damagelist_u_1_d[2] = damagelist_u_1_d[2] * 1.6 + damagelist_u_2_d[2] * 1.6 + damage3
         skill_info_list.append({"name": "啼泽雨斩", "damagelist": damagelist_u_1_d})
         #黄泉返渡
         skill_multiplier = self.Skill_num("Ultra", "Ultra_1_a")
