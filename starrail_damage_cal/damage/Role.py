@@ -136,7 +136,7 @@ async def break_damage(
     damage_cd = (
         break_atk
         * break_element[element]
-        * 2
+        * 10
         * break_damage
         * damage_ratio
         * damage_reduction
@@ -183,7 +183,7 @@ async def calculate_damage(
         level, merged_attr, skill_type, add_skill_type
     )
     # print(f'防御区:{defence_multiplier}')
-    injury_area, element_area = calculate_injury_area(
+    injury_area = calculate_injury_area(
         merged_attr,
         skill_type,
         add_skill_type,
@@ -219,18 +219,16 @@ async def calculate_damage(
         expected_damage,
     )
 
-    damage_tz = calculate_damage_tz(
-        attack,
+    damage_tz = await calculate_damage_tz(
         skill_multiplier,
         damage_ratio,
-        injury_area,
-        defence_multiplier,
-        resistance_area,
         damage_reduction,
-        critical_damage,
-        element,
-        element_area,
         base_attr,
+        add_attr_bonus,
+        skill_type,
+        add_skill_type,
+        element,
+        is_hp,
     )
 
     return [damage_cd, damage_qw, damage_tz]
@@ -313,7 +311,6 @@ def calculate_injury_area(
     element: str,
 ):
     injury_area = 0.0
-    element_area = 0.0
     for attr in merged_attr:
         attr_name = attr.split("AddedRatio")[0]
         skill_name = attr.split("DmgAdd")[0]
@@ -329,10 +326,8 @@ def calculate_injury_area(
             "AllDamage",
         ):
             # print(f'{attr} 对 {element} 属性有 {merged_attr[attr]} 伤害加成')
-            if attr_name == element:
-                element_area += merged_attr[attr]
             injury_area += merged_attr[attr]
-    return injury_area + 1, element_area
+    return injury_area + 1
 
 
 def calculate_damage_ratio(
@@ -435,33 +430,60 @@ def calculate_damage_qw(
     )
 
 
-def calculate_damage_tz(
-    attack: float,
+async def calculate_damage_tz(
     skill_multiplier: float,
     damage_ratio: float,
-    injury_area: float,
-    defence_multiplier: float,
-    resistance_area: float,
     damage_reduction: float,
-    critical_damage: float,
-    element: str,
-    element_area: float,
     base_attr: Dict[str, float],
+    add_attr_bonus: Dict[str, float],
+    skill_type: str,
+    add_skill_type: str,
+    element: str,
+    is_hp=0,
 ):
-    injury_add_tz = 0.0
-
-    attack_tz = attack + 355 + base_attr["attack"] * 2.334
-    # # print(f'attack_tz: {attack_tz}')
-    if element == "Imaginary":
-        injury_add_tz = 0.12
+    add_attr_bonus_tz = copy.deepcopy(add_attr_bonus)
+    add_attr_bonus_tz['AttackAddedRatio'] = add_attr_bonus_tz.get('AttackAddedRatio',0) + 1.694
+    add_attr_bonus_tz['ignore_defence'] = add_attr_bonus_tz.get('ignore_defence',0) + 0.44
+    add_attr_bonus_tz['AllDamageResistancePenetration'] = add_attr_bonus_tz.get('AllDamageResistancePenetration',0) + 0.27
+    add_attr_bonus_tz['AllDamageAddedRatio'] = add_attr_bonus_tz.get('AllDamageAddedRatio',0) + 2.06
+    add_attr_bonus_tz['CriticalDamageBase'] = add_attr_bonus_tz.get('CriticalDamageBase',0) + 4.578
+    merged_attr_tz = await merge_attribute(base_attr, add_attr_bonus_tz)
+    if is_hp == 1:
+        attack_tz = merged_attr_tz.get("hp", 0)
+    elif is_hp == 2:
+        attack_tz = merged_attr_tz.get("defence", 0)
+    else:
+        attack_tz = merged_attr_tz.get("attack", 0)
+    
+    resistance_area_tz = calculate_resistance_area(
+        merged_attr_tz,
+        skill_type,
+        add_skill_type,
+        element,
+    )
+    # print(f'抗性区:{resistance_area_tz}')
+    defence_multiplier_tz = calculate_defence_multiplier(
+        80, merged_attr_tz, skill_type, add_skill_type
+    )
+    # print(f'防御区:{defence_multiplier_tz}')
+    injury_area_tz = calculate_injury_area(
+        merged_attr_tz,
+        skill_type,
+        add_skill_type,
+        element,
+    )
+    # print(f'增伤区:{injury_area_tz}')
+    critical_damage_tz = calculate_critical_damage(merged_attr_tz, skill_type, add_skill_type)
+    # print(f'爆伤区:{critical_damage_tz}')
+    
     return (
         attack_tz
         * skill_multiplier
         * damage_ratio
-        * (injury_area + injury_add_tz + 2.626)
-        * defence_multiplier
-        * resistance_area
+        * injury_area_tz
+        * defence_multiplier_tz
+        * resistance_area_tz
         * damage_reduction
-        * (critical_damage + 1.794)
+        * critical_damage_tz
         * 10
     )

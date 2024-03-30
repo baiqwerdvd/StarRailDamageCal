@@ -54,15 +54,7 @@ class Seele(BaseAvatar):
             "Talent",
         ) + attribute_bonus.get("AllDamageAddedRatio", 0)
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -76,7 +68,6 @@ class Seele(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -90,7 +81,6 @@ class Seele(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算大招伤害
@@ -104,7 +94,6 @@ class Seele(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 银狼降防终结技伤害
@@ -123,7 +112,6 @@ class Seele(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "银狼降防终结技", "damagelist": damagelist4})
 
         logger.info(skill_info_list)
@@ -165,15 +153,7 @@ class JingYuan(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -187,7 +167,6 @@ class JingYuan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -201,7 +180,6 @@ class JingYuan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算大招伤害
@@ -215,7 +193,6 @@ class JingYuan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 神君
@@ -229,7 +206,6 @@ class JingYuan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "10层神君伤害", "damagelist": damagelist4})
 
         logger.info(skill_info_list)
@@ -264,15 +240,7 @@ class Welt(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -286,7 +254,6 @@ class Welt(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -306,7 +273,6 @@ class Welt(BaseAvatar):
         damagelist2[0] = damagelist2[0] * attnum
         damagelist2[1] = damagelist2[1] * attnum
         damagelist2[2] = damagelist2[2] * attnum
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算大招伤害
@@ -320,7 +286,6 @@ class Welt(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         if self.avatar_rank >= 1:
@@ -337,7 +302,6 @@ class Welt(BaseAvatar):
             damagelist4[0] = damagelist1[0] + damagelist4[0]
             damagelist4[1] = damagelist1[1] + damagelist4[1]
             damagelist4[2] = damagelist1[2] + damagelist4[2]
-            damagelist4[2] += damage3
             skill_info_list.append({"name": "强化普攻", "damagelist": damagelist4})
 
             skill_multiplier = (self.Skill_num("BPSkill", "BPSkill") / 3) * 0.8
@@ -353,7 +317,6 @@ class Welt(BaseAvatar):
             damagelist5[0] = damagelist2[0] + damagelist5[0]
             damagelist5[1] = damagelist2[1] + damagelist5[1]
             damagelist5[2] = damagelist2[2] + damagelist5[2]
-            damagelist5[2] += damage3
             skill_info_list.append({"name": "强化战技", "damagelist": damagelist5})
 
         logger.info(skill_info_list)
@@ -430,16 +393,6 @@ class Danhengil(BaseAvatar):
             damage_c += damage1
             damage_e += damage2
             damage_a += damage3
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            add_attr_bonus,
-            "Normal",
-            "Normal",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
-        damage_a += damage3
         skill_info_list.append(
             {"name": "普攻", "damagelist": [damage_c, damage_e, damage_a]},
         )
@@ -472,16 +425,6 @@ class Danhengil(BaseAvatar):
             damage_c += damage1
             damage_e += damage2
             damage_a += damage3
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            add_attr_bonus,
-            "Normal",
-            "Normal",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
-        damage_a += damage3
         skill_info_list.append(
             {"name": "瞬华", "damagelist": [damage_c, damage_e, damage_a]},
         )
@@ -519,16 +462,6 @@ class Danhengil(BaseAvatar):
             damage_c += damage1
             damage_e += damage2
             damage_a += damage3
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            add_attr_bonus,
-            "Normal",
-            "Normal",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
-        damage_a += damage3
         skill_info_list.append(
             {"name": "天矢阴", "damagelist": [damage_c, damage_e, damage_a]},
         )
@@ -566,16 +499,6 @@ class Danhengil(BaseAvatar):
             damage_c += damage1
             damage_e += damage2
             damage_a += damage3
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            add_attr_bonus,
-            "Normal",
-            "Normal",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
-        damage_a += damage3
         skill_info_list.append(
             {"name": "盘拏耀跃", "damagelist": [damage_c, damage_e, damage_a]},
         )
@@ -609,16 +532,6 @@ class Danhengil(BaseAvatar):
             damage_c += damage1
             damage_e += damage2
             damage_a += damage3
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            add_attr_bonus,
-            "Normal",
-            "Normal",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
-        damage_a += damage3
         skill_info_list.append(
             {"name": "终结技", "damagelist": [damage_c, damage_e, damage_a]},
         )
@@ -668,15 +581,7 @@ class Argenti(BaseAvatar):
                 talent_cc_add * 2 + attribute_bonus.get("CriticalChanceBase", 0)
             )
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -690,7 +595,6 @@ class Argenti(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -704,7 +608,6 @@ class Argenti(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算大招1伤害
@@ -718,7 +621,6 @@ class Argenti(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技(90耗能)", "damagelist": damagelist3})
 
         # 计算大招2伤害
@@ -732,7 +634,6 @@ class Argenti(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         # 计算大招2额外伤害
         skill_multiplier = self.Skill_num("Ultra", "Ultra_add")
         damagelist5 = await calculate_damage(
@@ -780,15 +681,7 @@ class Clara(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -802,7 +695,6 @@ class Clara(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -816,7 +708,6 @@ class Clara(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算反击伤害
@@ -830,7 +721,6 @@ class Clara(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "反击", "damagelist": damagelist3})
 
         # 计算强化反击伤害
@@ -847,7 +737,6 @@ class Clara(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "强化反击", "damagelist": damagelist4})
 
         # 计算1+1托帕反击伤害
@@ -868,7 +757,6 @@ class Clara(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist5[2] += damage3
         skill_info_list.append({"name": "(1+1托帕)反击", "damagelist": damagelist5})
 
         # 计算反击伤害
@@ -892,7 +780,6 @@ class Clara(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist6[2] += damage3
         skill_info_list.append({"name": "(1+1托帕)强化反击", "damagelist": damagelist6})
 
         return skill_info_list
@@ -935,15 +822,7 @@ class Silverwolf(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -957,7 +836,6 @@ class Silverwolf(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -971,7 +849,6 @@ class Silverwolf(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -987,7 +864,6 @@ class Silverwolf(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         return skill_info_list
@@ -1020,15 +896,7 @@ class Kafka(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1042,7 +910,6 @@ class Kafka(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -1056,7 +923,6 @@ class Kafka(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -1070,7 +936,6 @@ class Kafka(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算持续伤害
@@ -1099,7 +964,6 @@ class Kafka(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist5[2] += damage3
         skill_info_list.append({"name": "追加攻击", "damagelist": damagelist5})
 
         return skill_info_list
@@ -1139,15 +1003,7 @@ class Blade(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1161,7 +1017,6 @@ class Blade(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算强化普攻伤害
@@ -1175,7 +1030,6 @@ class Blade(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
 
         skill_multiplier = self.Skill_num("Normal", "Normal1_HP")
         damagelist3 = await calculate_damage(
@@ -1204,7 +1058,6 @@ class Blade(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
 
         skill_multiplier = self.Skill_num("Ultra", "Ultra_HP")
         if self.avatar_rank >= 1:
@@ -1235,7 +1088,6 @@ class Blade(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist6[2] += damage3
 
         skill_multiplier = self.Skill_num("Talent", "Talent_HP")
         damagelist7 = await calculate_damage(
@@ -1298,15 +1150,7 @@ class Fuxuan(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1321,7 +1165,6 @@ class Fuxuan(BaseAvatar):
             self.avatar_level,
             1,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算终结技伤害
@@ -1389,15 +1232,7 @@ class Yanqing(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1411,7 +1246,6 @@ class Yanqing(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -1425,7 +1259,6 @@ class Yanqing(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -1439,7 +1272,6 @@ class Yanqing(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算附加伤害
@@ -1457,7 +1289,6 @@ class Yanqing(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "附加伤害", "damagelist": damagelist4})
 
         return skill_info_list
@@ -1494,15 +1325,7 @@ class Himeko(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1516,7 +1339,6 @@ class Himeko(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -1530,7 +1352,6 @@ class Himeko(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -1544,7 +1365,6 @@ class Himeko(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算追加攻击伤害
@@ -1558,7 +1378,6 @@ class Himeko(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "追加攻击", "damagelist": damagelist4})
 
         return skill_info_list
@@ -1599,15 +1418,7 @@ class Qingque(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1621,7 +1432,6 @@ class Qingque(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算杠上开花伤害
@@ -1635,7 +1445,6 @@ class Qingque(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "杠上开花！", "damagelist": damagelist2})  # noqa: RUF001
 
         # 计算终结技伤害
@@ -1649,7 +1458,6 @@ class Qingque(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         return skill_info_list
@@ -1700,15 +1508,7 @@ class Jingliu(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1722,7 +1522,6 @@ class Jingliu(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -1736,7 +1535,6 @@ class Jingliu(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算寒川映月伤害
@@ -1752,7 +1550,6 @@ class Jingliu(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "寒川映月", "damagelist": damagelist3})
 
         # 计算终结技伤害
@@ -1768,7 +1565,6 @@ class Jingliu(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist4})
 
         return skill_info_list
@@ -1813,15 +1609,7 @@ class Topaz(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1835,7 +1623,6 @@ class Topaz(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算账账伤害
@@ -1849,7 +1636,6 @@ class Topaz(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "账账", "damagelist": damagelist2})
 
         # 计算强化账账伤害
@@ -1866,7 +1652,6 @@ class Topaz(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "强化账账", "damagelist": damagelist3})
 
         return skill_info_list
@@ -1904,15 +1689,7 @@ class Guinaifen(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -1926,7 +1703,6 @@ class Guinaifen(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -1940,7 +1716,6 @@ class Guinaifen(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -1954,7 +1729,6 @@ class Guinaifen(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算持续伤害
@@ -1999,15 +1773,7 @@ class Gepard(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -2021,7 +1787,6 @@ class Gepard(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -2035,7 +1800,6 @@ class Gepard(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技护盾
@@ -2079,15 +1843,7 @@ class Luocha(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -2101,7 +1857,6 @@ class Luocha(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算终结技伤害
@@ -2115,7 +1870,6 @@ class Luocha(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist2})
 
         # 计算战技治疗
@@ -2218,15 +1972,7 @@ class Bailu(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -2240,7 +1986,6 @@ class Bailu(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技治疗
@@ -2323,15 +2068,7 @@ class Lynx(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         # 计算战技生命上限
         skill_multiplier = self.Skill_num("BPSkill", "BPSkill_HP")
@@ -2358,7 +2095,6 @@ class Lynx(BaseAvatar):
             self.avatar_level,
             1,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技治疗
@@ -2452,15 +2188,7 @@ class Natasha(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -2474,7 +2202,6 @@ class Natasha(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         if self.avatar_rank >= 6:
             damagelist_add = await calculate_damage(
                 base_attr,
@@ -2554,15 +2281,7 @@ class Mar7th(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -2576,7 +2295,6 @@ class Mar7th(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技护盾
@@ -2601,7 +2319,6 @@ class Mar7th(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算追加攻击
@@ -2615,7 +2332,6 @@ class Mar7th(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         if self.avatar_rank >= 4:
             defence = (
                 base_attr["defence"] * (1 + attribute_bonus["DefenceAddedRatio"])
@@ -2667,15 +2383,7 @@ class Bronya(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         # 终结技增加伤害
         attribute_bonus["AttackAddedRatio"] = attribute_bonus.get(
@@ -2702,7 +2410,6 @@ class Bronya(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算终结技
@@ -2741,15 +2448,7 @@ class Yukong(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         # 终结技增加伤害
         attribute_bonus["AttackAddedRatio"] = attribute_bonus.get(
@@ -2777,7 +2476,6 @@ class Yukong(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_multiplier = self.Skill_num("Talent", "Normal_add")
         damagelist2 = await calculate_damage(
             base_attr,
@@ -2804,7 +2502,6 @@ class Yukong(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         return skill_info_list
@@ -2838,15 +2535,7 @@ class Sushang(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -2860,7 +2549,6 @@ class Sushang(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算剑势附加伤害
@@ -2888,7 +2576,7 @@ class Sushang(BaseAvatar):
         )
         damagelist3[0] += damagelist2[0]
         damagelist3[1] += damagelist2[1]
-        damagelist3[2] += damage3 + damagelist2[2]
+        damagelist3[2] += damagelist2[2]
         skill_info_list.append({"name": "战技", "damagelist": damagelist3})
 
         # 计算强化战技伤害
@@ -2904,7 +2592,7 @@ class Sushang(BaseAvatar):
         )
         damagelist4[0] += damagelist2[0] * 3
         damagelist4[1] += damagelist2[1] * 3
-        damagelist4[2] += damage3 + damagelist2[2] * 3
+        damagelist4[2] += damagelist2[2] * 3
         skill_info_list.append({"name": "强化战技", "damagelist": damagelist4})
 
         skill_info_list.append({"name": "剑势附加伤害", "damagelist": damagelist2})
@@ -2920,7 +2608,6 @@ class Sushang(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist5[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist5})
 
         return skill_info_list
@@ -2957,15 +2644,7 @@ class Luka(BaseAvatar):
             0,
         ) + self.Skill_num("Ultra", "Ultra_d")
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -2979,7 +2658,6 @@ class Luka(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算强化普攻伤害
@@ -2995,7 +2673,7 @@ class Luka(BaseAvatar):
         )
         damagelist2[0] += damagelist2[0] * 5
         damagelist2[1] += damagelist2[1] * 5
-        damagelist2[2] += damage3 + damagelist2[2] * 5
+        damagelist2[2] += damagelist2[2] * 5
         skill_multiplier = self.Skill_num("Normal", "Normal2")
         damagelist3 = await calculate_damage(
             base_attr,
@@ -3022,7 +2700,6 @@ class Luka(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist4})
 
         # 计算DOT伤害
@@ -3049,7 +2726,6 @@ class Luka(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist6[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist6})
 
         return skill_info_list
@@ -3087,15 +2763,7 @@ class DanHeng(BaseAvatar):
             0,
         ) + self.Skill_num("Talent", "Talent")
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3109,7 +2777,6 @@ class DanHeng(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3123,7 +2790,6 @@ class DanHeng(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -3140,7 +2806,6 @@ class DanHeng(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         return skill_info_list
@@ -3179,15 +2844,7 @@ class Arlan(BaseAvatar):
             0,
         ) + self.Skill_num("Talent", "Talent")
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3201,7 +2858,6 @@ class Arlan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3215,7 +2871,6 @@ class Arlan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -3229,7 +2884,6 @@ class Arlan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         return skill_info_list
@@ -3269,15 +2923,7 @@ class Asta(BaseAvatar):
             0,
         ) + self.Skill_num("Ultra", "Ultra")
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3291,7 +2937,6 @@ class Asta(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3310,7 +2955,7 @@ class Asta(BaseAvatar):
             skill_num += 1
         damagelist2[0] = damagelist2[0] * skill_num
         damagelist2[1] = damagelist2[1] * skill_num
-        damagelist2[2] = damage3 + damagelist2[2] * skill_num
+        damagelist2[2] = damagelist2[2] * skill_num
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         return skill_info_list
@@ -3346,15 +2991,7 @@ class Herta(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3370,7 +3007,6 @@ class Herta(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3385,7 +3021,6 @@ class Herta(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -3399,7 +3034,6 @@ class Herta(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算追加攻击伤害
@@ -3413,7 +3047,6 @@ class Herta(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "追加攻击", "damagelist": damagelist4})
 
         return skill_info_list
@@ -3444,15 +3077,7 @@ class Serval(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3466,7 +3091,6 @@ class Serval(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3480,7 +3104,6 @@ class Serval(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算DOT伤害
@@ -3507,7 +3130,6 @@ class Serval(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算追加攻击伤害
@@ -3521,7 +3143,6 @@ class Serval(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "追加攻击", "damagelist": damagelist4})
 
         return skill_info_list
@@ -3561,15 +3182,7 @@ class Pela(BaseAvatar):
             0,
         ) + self.Skill_num("Ultra", "Ultra_d")
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3583,7 +3196,6 @@ class Pela(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3597,7 +3209,6 @@ class Pela(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -3611,7 +3222,6 @@ class Pela(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         if self.avatar_rank >= 6:
@@ -3625,7 +3235,6 @@ class Pela(BaseAvatar):
                 0.4,
                 self.avatar_level,
             )
-            damagelist4[2] += damage3
             skill_info_list.append({"name": "6命追加伤害", "damagelist": damagelist4})
 
         return skill_info_list
@@ -3661,15 +3270,7 @@ class Sampo(BaseAvatar):
             0,
         ) + self.Skill_num("Ultra", "Ultra_d")
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3683,7 +3284,6 @@ class Sampo(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3699,7 +3299,7 @@ class Sampo(BaseAvatar):
         )
         damagelist2[0] = damagelist2[0] * 5
         damagelist2[1] = damagelist2[1] * 5
-        damagelist2[2] = damage3 + damagelist2[2] * 5
+        damagelist2[2] = damagelist2[2] * 5
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -3713,7 +3313,6 @@ class Sampo(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算持续伤害
@@ -3761,15 +3360,7 @@ class Hook(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3783,7 +3374,6 @@ class Hook(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3797,7 +3387,6 @@ class Hook(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算强化战技伤害
@@ -3811,7 +3400,6 @@ class Hook(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "强化战技", "damagelist": damagelist3})
 
         # 计算持续伤害
@@ -3838,7 +3426,6 @@ class Hook(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist4})
 
         # 计算终结技伤害
@@ -3852,7 +3439,6 @@ class Hook(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist6[2] += damage3
         skill_info_list.append({"name": "附加伤害", "damagelist": damagelist6})
 
         return skill_info_list
@@ -3884,15 +3470,7 @@ class Tingyun(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3906,7 +3484,6 @@ class Tingyun(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3955,15 +3532,7 @@ class Trailblazer(BaseAvatar):
             + self.Skill_num("Talent", "Talent") * 2
         )
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3977,7 +3546,6 @@ class Trailblazer(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -3991,7 +3559,6 @@ class Trailblazer(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技1伤害
@@ -4005,7 +3572,6 @@ class Trailblazer(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "全胜•再见安打", "damagelist": damagelist3})
 
         # 计算终结技2伤害
@@ -4019,7 +3585,6 @@ class Trailblazer(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "全胜•安息全垒打", "damagelist": damagelist4})
 
         return skill_info_list
@@ -4050,15 +3615,7 @@ class Trailblazer_K(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4072,7 +3629,6 @@ class Trailblazer_K(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         if self.avatar_rank >= 1:
             damagelist1_f = await calculate_damage(
                 base_attr,
@@ -4100,7 +3656,6 @@ class Trailblazer_K(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         if self.avatar_rank >= 1:
             damagelist2_f = await calculate_damage(
                 base_attr,
@@ -4128,7 +3683,6 @@ class Trailblazer_K(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
 
         skill_multiplier = self.Skill_num("Ultra", "Ultra1")
         damagelist3_f = await calculate_damage(
@@ -4190,15 +3744,7 @@ class Huohuo(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4213,7 +3759,6 @@ class Huohuo(BaseAvatar):
             self.avatar_level,
             1,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技治疗
@@ -4316,15 +3861,7 @@ class Hanya(BaseAvatar):
             0,
         ) + self.Skill_num("Ultra", "Ultra_A")
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4338,7 +3875,6 @@ class Hanya(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -4352,7 +3888,6 @@ class Hanya(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技提升速度
@@ -4399,15 +3934,7 @@ class DrRatio(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4421,7 +3948,6 @@ class DrRatio(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -4435,7 +3961,6 @@ class DrRatio(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技1伤害
@@ -4449,7 +3974,6 @@ class DrRatio(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算天赋追伤伤害
@@ -4463,7 +3987,6 @@ class DrRatio(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         if self.avatar_rank >= 2:
             damagelist5 = await calculate_damage(
                 base_attr,
@@ -4535,15 +4058,7 @@ class RuanMei(BaseAvatar):
                 + add_all_damage_added_ratio
             )
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4557,7 +4072,6 @@ class RuanMei(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算终结技伤害
@@ -4626,15 +4140,7 @@ class XueYi(BaseAvatar):
             "AllDamageAddedRatio", 0
         ) + min(2.4, Break_Damage_Added_Ratio)
 
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4648,7 +4154,6 @@ class XueYi(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -4662,7 +4167,6 @@ class XueYi(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -4676,7 +4180,6 @@ class XueYi(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算天赋追伤伤害
@@ -4692,7 +4195,7 @@ class XueYi(BaseAvatar):
         )
         damagelist4[0] += damagelist4[0] * 3
         damagelist4[1] += damagelist4[1] * 3
-        damagelist4[2] += damagelist4[2] * 3 + damage3
+        damagelist4[2] += damagelist4[2] * 3
         skill_info_list.append({"name": "天赋追加攻击", "damagelist": damagelist4})
 
         return skill_info_list
@@ -4735,15 +4238,7 @@ class BlackSwan(BaseAvatar):
             "AllDamageAddedRatio", 0
         ) + min(0.72, Break_Damage_Added_Ratio)
         
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4757,7 +4252,6 @@ class BlackSwan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技伤害
@@ -4771,7 +4265,6 @@ class BlackSwan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
 
         # 计算终结技伤害
@@ -4785,7 +4278,6 @@ class BlackSwan(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
 
         # 计算1层奥迹持续伤害
@@ -4861,15 +4353,7 @@ class Sparkle(BaseAvatar):
             attribute_bonus.get("CriticalDamageBase", 0) + add_critical_damage_base
         )
         
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4883,7 +4367,6 @@ class Sparkle(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算终结技
@@ -4926,15 +4409,7 @@ class Acheron(BaseAvatar):
         
         attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio", 0) + 0.9
         
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4961,7 +4436,7 @@ class Acheron(BaseAvatar):
             )
         damagelist1[0] = damagelist1[0] * 1.6
         damagelist1[1] = damagelist1[1] * 1.6
-        damagelist1[2] = damagelist1[2] * 1.6 + damage3
+        damagelist1[2] = damagelist1[2] * 1.6
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
         
         # 计算战技伤害
@@ -4988,7 +4463,7 @@ class Acheron(BaseAvatar):
             )
         damagelist2[0] = damagelist2[0] * 1.6
         damagelist2[1] = damagelist2[1] * 1.6
-        damagelist2[2] = damagelist2[2] * 1.6 + damage3
+        damagelist2[2] = damagelist2[2] * 1.6
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
         
         # 计算终结技
@@ -5018,7 +4493,7 @@ class Acheron(BaseAvatar):
         )
         damagelist_u_1_d[0] = damagelist_u_1_d[0] * 1.6 + damagelist_u_2_d[0] * 1.6
         damagelist_u_1_d[1] = damagelist_u_1_d[1] * 1.6 + damagelist_u_2_d[1] * 1.6
-        damagelist_u_1_d[2] = damagelist_u_1_d[2] * 1.6 + damagelist_u_2_d[2] * 1.6 + damage3
+        damagelist_u_1_d[2] = damagelist_u_1_d[2] * 1.6 + damagelist_u_2_d[2] * 1.6
         skill_info_list.append({"name": "啼泽雨斩", "damagelist": damagelist_u_1_d})
         #黄泉返渡
         skill_multiplier = self.Skill_num("Ultra", "Ultra_1_a")
@@ -5042,7 +4517,7 @@ class Acheron(BaseAvatar):
         )
         damagelist_u_1_a[0] = damagelist_u_1_a[0] * 1.6 + (damagelist_u_1_a_e[0] * 1.6) * 6
         damagelist_u_1_a[1] = damagelist_u_1_a[1] * 1.6 + (damagelist_u_1_a_e[1] * 1.6) * 6
-        damagelist_u_1_a[2] = damagelist_u_1_a[2] * 1.6 + (damagelist_u_1_a_e[2] * 1.6) * 6 + damage3
+        damagelist_u_1_a[2] = damagelist_u_1_a[2] * 1.6 + (damagelist_u_1_a_e[2] * 1.6) * 6
         skill_info_list.append({"name": "黄泉返渡", "damagelist": damagelist_u_1_a})
         
         #总伤害
@@ -5096,15 +4571,7 @@ class Aventurine(BaseAvatar):
         #终结技增加暴击伤害
         attribute_bonus["CriticalDamageBase"] = attribute_bonus.get("CriticalDamageBase", 0) + self.Skill_num("Ultra", "Ultra_CD")
         
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -5119,7 +4586,6 @@ class Aventurine(BaseAvatar):
             self.avatar_level,
             2,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
 
         # 计算战技护盾
@@ -5145,7 +4611,6 @@ class Aventurine(BaseAvatar):
             self.avatar_level,
             2,
         )
-        damagelist3[2] += damage3
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
         
         duanshu = 10
@@ -5166,8 +4631,7 @@ class Aventurine(BaseAvatar):
         )
         damagelist5[0] = damagelist4[0] * duanshu
         damagelist5[1] = damagelist4[1] * duanshu
-        damagelist5[2] = damagelist4[2] * duanshu + damage3
-        damagelist4[2] += damage3
+        damagelist5[2] = damagelist4[2] * duanshu
         skill_info_list.append({"name": "单层【盲注】追击", "damagelist": damagelist4})
         skill_info_list.append({"name": "满层【盲注】追击", "damagelist": damagelist5})
         
@@ -5205,15 +4669,7 @@ class Gallagher(BaseAvatar):
         Heal_Ratio_Base = min(0.75, Heal_Ratio_Base)
         attribute_bonus["HealRatioBase"] = attribute_bonus.get("HealRatioBase", 0) + Heal_Ratio_Base
         
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -5227,7 +4683,6 @@ class Gallagher(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
         
         # 计算强化普攻伤害
@@ -5241,7 +4696,6 @@ class Gallagher(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist2[2] += damage3
         skill_info_list.append({"name": "强化普攻", "damagelist": damagelist2})
         
         # 计算战技治疗量
@@ -5266,7 +4720,6 @@ class Gallagher(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "结技", "damagelist": damagelist4})
         
         # 计算天赋治疗量
@@ -5326,15 +4779,7 @@ class Robin(BaseAvatar):
         Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
         attribute_bonus["CriticalDamageBase"] =  Critical_Damage_Base + self.Skill_num("Talent", "Talent")
         
-        damage1, damage2, damage3 = await calculate_damage(
-            base_attr,
-            attribute_bonus,
-            "fujia",
-            "fujia",
-            "Thunder",
-            0.44,
-            self.avatar_level,
-        )
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -5348,7 +4793,6 @@ class Robin(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist1[2] += damage3
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
         
         # 计算战技治疗量
@@ -5375,7 +4819,6 @@ class Robin(BaseAvatar):
             skill_multiplier,
             self.avatar_level,
         )
-        damagelist4[2] += damage3
         skill_info_list.append({"name": "【协奏】追加伤害", "damagelist": damagelist4})
         
         return skill_info_list
