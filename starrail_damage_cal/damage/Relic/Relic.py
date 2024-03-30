@@ -452,6 +452,8 @@ class Relic117(BaseRelicSetSkill):
             All_Damage_Added_Ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
             attribute_bonus["AllDamageAddedRatio"] = All_Damage_Added_Ratio + 0.12000000011175871
         if self.pieces4 and await self.check(base_attr, attribute_bonus):
+            Critical_Chance_Base = attribute_bonus.get("CriticalChanceBase", 0)
+            attribute_bonus["CriticalChanceBase"] = Critical_Chance_Base + 0.0400000000372529
             Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
             attribute_bonus["CriticalDamageBase"] = Critical_Damage_Base + 0.12000000011175871 * 2
         return attribute_bonus
