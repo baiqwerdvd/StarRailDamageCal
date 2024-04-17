@@ -4613,9 +4613,9 @@ class Aventurine(BaseAvatar):
         )
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
         
-        duanshu = 10
+        duanshu = 7
         if self.avatar_rank >= 4:
-            duanshu = 13
+            duanshu = 10
         damagelist5 = {}
         # 计算天赋追加攻击伤害
         skill_multiplier = self.Skill_num("Talent", "Talent")
