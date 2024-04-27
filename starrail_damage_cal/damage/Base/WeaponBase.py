@@ -33,7 +33,9 @@ class BaseWeapon:
         self.weapon_property_ability()
 
     @abstractmethod
-    async def weapon_ability(self, base_attr: Dict, attribute_bonus: Dict):
+    async def weapon_ability(
+        self, Ultra_Use: float, base_attr: Dict[str, float], attribute_bonus: Dict
+    ) -> Dict[str, float]:
         """战斗加成属性, 与 weapon_property_ability() 互斥"""
         ...
 
@@ -50,8 +52,7 @@ class BaseWeapon:
                 self.weapon_attribute[property_type] = value
 
     @abstractmethod
-    async def check(self):
-        ...
+    async def check(self) -> bool: ...
 
     def get_attribute(self):
         promotion = EquipmentPromotionConfig.Equipment[str(self.weapon_id)][

@@ -68,7 +68,7 @@ async def get_damage(
 
     merged_attr = await merge_attribute(base_attr, add_attr_bonus)
 
-    injury_area, element_area = calculate_injury_area(
+    injury_area = calculate_injury_area(
         merged_attr,
         skill_type,
         add_skill_type,
@@ -442,11 +442,21 @@ async def calculate_damage_tz(
     is_hp=0,
 ):
     add_attr_bonus_tz = copy.deepcopy(add_attr_bonus)
-    add_attr_bonus_tz['AttackAddedRatio'] = add_attr_bonus_tz.get('AttackAddedRatio',0) + 1.694
-    add_attr_bonus_tz['ignore_defence'] = add_attr_bonus_tz.get('ignore_defence',0) + 0.44
-    add_attr_bonus_tz['AllDamageResistancePenetration'] = add_attr_bonus_tz.get('AllDamageResistancePenetration',0) + 0.27
-    add_attr_bonus_tz['AllDamageAddedRatio'] = add_attr_bonus_tz.get('AllDamageAddedRatio',0) + 2.06
-    add_attr_bonus_tz['CriticalDamageBase'] = add_attr_bonus_tz.get('CriticalDamageBase',0) + 4.578
+    add_attr_bonus_tz["AttackAddedRatio"] = (
+        add_attr_bonus_tz.get("AttackAddedRatio", 0) + 1.694
+    )
+    add_attr_bonus_tz["ignore_defence"] = (
+        add_attr_bonus_tz.get("ignore_defence", 0) + 0.44
+    )
+    add_attr_bonus_tz["AllDamageResistancePenetration"] = (
+        add_attr_bonus_tz.get("AllDamageResistancePenetration", 0) + 0.27
+    )
+    add_attr_bonus_tz["AllDamageAddedRatio"] = (
+        add_attr_bonus_tz.get("AllDamageAddedRatio", 0) + 2.06
+    )
+    add_attr_bonus_tz["CriticalDamageBase"] = (
+        add_attr_bonus_tz.get("CriticalDamageBase", 0) + 4.578
+    )
     merged_attr_tz = await merge_attribute(base_attr, add_attr_bonus_tz)
     if is_hp == 1:
         attack_tz = merged_attr_tz.get("hp", 0)
@@ -454,7 +464,7 @@ async def calculate_damage_tz(
         attack_tz = merged_attr_tz.get("defence", 0)
     else:
         attack_tz = merged_attr_tz.get("attack", 0)
-    
+
     resistance_area_tz = calculate_resistance_area(
         merged_attr_tz,
         skill_type,
@@ -473,9 +483,11 @@ async def calculate_damage_tz(
         element,
     )
     # print(f'增伤区:{injury_area_tz}')
-    critical_damage_tz = calculate_critical_damage(merged_attr_tz, skill_type, add_skill_type)
+    critical_damage_tz = calculate_critical_damage(
+        merged_attr_tz, skill_type, add_skill_type
+    )
     # print(f'爆伤区:{critical_damage_tz}')
-    
+
     return (
         attack_tz
         * skill_multiplier

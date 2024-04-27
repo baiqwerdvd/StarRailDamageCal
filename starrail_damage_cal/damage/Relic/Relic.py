@@ -428,6 +428,7 @@ class Relic116(BaseRelicSetSkill):
             attribute_bonus["ignore_defence"] = ignore_defence + 0.06000000009313226 * 3
         return attribute_bonus
 
+
 class Relic117(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
         super().__init__(set_id, count)
@@ -439,7 +440,7 @@ class Relic117(BaseRelicSetSkill):
         attribute_bonus: Dict[str, float],
     ):
         """2件: 对受负面状态影响的敌人造成的伤害提高12%。"""
-        # 暴击率提高4%，装备者对陷入不少于2/3个负面效果的敌方目标造成的暴击伤害提高8%/12%。装备者对敌方目标施加负面效果后，上述效果提高100%，持续1回合
+        # 暴击率提高4%, 装备者对陷入不少于2/3个负面效果的敌方目标造成的暴击伤害提高8%/12%。装备者对敌方目标施加负面效果后, 上述效果提高100%, 持续1回合
         logger.info("Relic114 check success")
         return True
 
@@ -450,13 +451,20 @@ class Relic117(BaseRelicSetSkill):
     ):
         if self.pieces2 and await self.check(base_attr, attribute_bonus):
             All_Damage_Added_Ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
-            attribute_bonus["AllDamageAddedRatio"] = All_Damage_Added_Ratio + 0.12000000011175871
+            attribute_bonus["AllDamageAddedRatio"] = (
+                All_Damage_Added_Ratio + 0.12000000011175871
+            )
         if self.pieces4 and await self.check(base_attr, attribute_bonus):
             Critical_Chance_Base = attribute_bonus.get("CriticalChanceBase", 0)
-            attribute_bonus["CriticalChanceBase"] = Critical_Chance_Base + 0.0400000000372529
+            attribute_bonus["CriticalChanceBase"] = (
+                Critical_Chance_Base + 0.0400000000372529
+            )
             Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
-            attribute_bonus["CriticalDamageBase"] = Critical_Damage_Base + 0.12000000011175871 * 2
+            attribute_bonus["CriticalDamageBase"] = (
+                Critical_Damage_Base + 0.12000000011175871 * 2
+            )
         return attribute_bonus
+
 
 class Relic118(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
@@ -468,7 +476,7 @@ class Relic118(BaseRelicSetSkill):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        """当装备者对我方目标施放终结技时，我方全体击破特攻提高30%，持续2回合，该效果无法叠加。"""
+        """当装备者对我方目标施放终结技时, 我方全体击破特攻提高30%, 持续2回合, 该效果无法叠加。"""
         logger.info("Relic114 check success")
         return True
 
@@ -478,9 +486,14 @@ class Relic118(BaseRelicSetSkill):
         attribute_bonus: Dict[str, float],
     ):
         if self.pieces4 and await self.check(base_attr, attribute_bonus):
-            Break_Damage_Added_Ratio_Base = attribute_bonus.get("BreakDamageAddedRatioBase", 0)
-            attribute_bonus["BreakDamageAddedRatioBase"] = Break_Damage_Added_Ratio_Base + 0.3000000002793968
+            Break_Damage_Added_Ratio_Base = attribute_bonus.get(
+                "BreakDamageAddedRatioBase", 0
+            )
+            attribute_bonus["BreakDamageAddedRatioBase"] = (
+                Break_Damage_Added_Ratio_Base + 0.3000000002793968
+            )
         return attribute_bonus
+
 
 class Relic301(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
@@ -831,6 +844,7 @@ class Relic312(BaseRelicSetSkill):
 
         return attribute_bonus
 
+
 class Relic313(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
         super().__init__(set_id, count)
@@ -840,7 +854,7 @@ class Relic313(BaseRelicSetSkill):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        """当敌方目标被消灭时，装备者暴击伤害提高4%，最多叠加10层。"""
+        """当敌方目标被消灭时, 装备者暴击伤害提高4%, 最多叠加10层。"""
         return True
 
     async def set_skill_ability(
@@ -849,11 +863,12 @@ class Relic313(BaseRelicSetSkill):
         attribute_bonus: Dict[str, float],
     ):
         if self.pieces2 and await self.check(base_attr, attribute_bonus):
-            attribute_bonus["CriticalDamageBase"] = (
-                attribute_bonus.get("CriticalDamageBase", 0) + (0.0400000000372529 * 10)
-            )
+            attribute_bonus["CriticalDamageBase"] = attribute_bonus.get(
+                "CriticalDamageBase", 0
+            ) + (0.0400000000372529 * 10)
 
         return attribute_bonus
+
 
 class Relic314(BaseRelicSetSkill):
     def __init__(self, set_id: int, count: int):
@@ -864,7 +879,7 @@ class Relic314(BaseRelicSetSkill):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        """若至少存在一名与装备者命途相同的队友，装备者的暴击率提高12%。"""
+        """若至少存在一名与装备者命途相同的队友, 装备者的暴击率提高12%。"""
         return True
 
     async def set_skill_ability(
@@ -878,6 +893,7 @@ class Relic314(BaseRelicSetSkill):
             )
 
         return attribute_bonus
+
 
 class RelicSet:
     HEAD: SingleRelic

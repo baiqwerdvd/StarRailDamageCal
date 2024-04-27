@@ -10,7 +10,7 @@ from starrail_damage_cal.map.SR_MAP_PATH import (
 class Character:
     def __init__(self, card_prop: Dict):
         self.char_level: int = int(card_prop["avatarLevel"])
-        self.char_id: str = card_prop["avatarId"]
+        self.char_id: int = card_prop["avatarId"]
         self.char_name: str = card_prop["avatarName"]
         self.char_rank = card_prop["rank"] if card_prop.get("rank") else 0
         self.char_rarity = card_prop["avatarRarity"]
@@ -28,7 +28,7 @@ class Character:
 
     async def get_equipment_info(self):
         if self.equipment == {}:
-            return
+            return None
         base_attr = self.base_attributes
         equip = self.equipment
         ability_property = EquipmentID2AbilityProperty[str(equip["equipmentID"])]
@@ -43,9 +43,10 @@ class Character:
         self.base_attributes = base_attr
 
         for equip_ability in equip_ability_property:
-            property_type = equip_ability["PropertyType"]
-            value = equip_ability["Value"]["Value"]
+            property_type: str = equip_ability["PropertyType"]
+            value: float = equip_ability["Value"]["Value"]
             self.add_attr[property_type] = value + self.add_attr.get(property_type, 0)
+        return self.add_attr
 
     async def get_char_attribute_bonus(self):
         attribute_bonus = self.attribute_bonus

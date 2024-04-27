@@ -65,10 +65,12 @@ async def api_to_dict(
     char_id_list: List[str] = []
     char_data_list: Dict[str, Dict] = {}
     nickName = PlayerDetailInfo.nickname
-    avatarList = (PlayerDetailInfo.avatarDetailList if PlayerDetailInfo.avatarDetailList else []) + (PlayerDetailInfo.assistAvatarList if PlayerDetailInfo.assistAvatarList else [])
+    avatarList = (
+        PlayerDetailInfo.avatarDetailList if PlayerDetailInfo.avatarDetailList else []
+    ) + (PlayerDetailInfo.assistAvatarList if PlayerDetailInfo.assistAvatarList else [])
     for char in avatarList:
         if str(char.avatarId) in char_id_list:
-                continue
+            continue
         char_data, avatarName = await get_data(
             char,
             nickName,
@@ -211,9 +213,9 @@ async def get_data(
                     # 查找skill_id在不在avatarSkill中
                     for index, skill_item in enumerate(char_data["avatarSkill"]):
                         if str(skill_id) == str(skill_item["skillId"]):
-                            char_data["avatarSkill"][index][
-                                "skillLevel"
-                            ] += skill_up_num
+                            char_data["avatarSkill"][index]["skillLevel"] += (
+                                skill_up_num
+                            )
                             break
 
     # 处理基础属性

@@ -54,8 +54,6 @@ class Seele(BaseAvatar):
             "Talent",
         ) + attribute_bonus.get("AllDamageAddedRatio", 0)
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -153,8 +151,6 @@ class JingYuan(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -240,8 +236,6 @@ class Welt(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -581,8 +575,6 @@ class Argenti(BaseAvatar):
                 talent_cc_add * 2 + attribute_bonus.get("CriticalChanceBase", 0)
             )
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -681,8 +673,6 @@ class Clara(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -807,9 +797,9 @@ class Silverwolf(BaseAvatar):
         logger.info("战技降抗")
         logger.info("战技使目标全属性抗性降低的效果额外降低3%")
         enemy_status_resistance = self.Skill_num("BPSkill", "BPSkill_D") + 0.03
-        self.extra_ability_attribute[
-            "QuantumResistancePenetration"
-        ] = enemy_status_resistance
+        self.extra_ability_attribute["QuantumResistancePenetration"] = (
+            enemy_status_resistance
+        )
         logger.info("终结技降防")
         ultra_defence = self.Skill_num("Ultra", "Ultra_D")
         logger.info("天赋降防")
@@ -822,8 +812,6 @@ class Silverwolf(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -896,8 +884,6 @@ class Kafka(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1003,8 +989,6 @@ class Blade(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1150,8 +1134,6 @@ class Fuxuan(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal_HP")
@@ -1232,8 +1214,6 @@ class Yanqing(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1325,8 +1305,6 @@ class Himeko(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1418,8 +1396,6 @@ class Qingque(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1496,9 +1472,9 @@ class Jingliu(BaseAvatar):
         self.extra_ability_attribute["UltraDmgAdd"] = 0.2
         critical_chance_base = self.Skill_num("Talent", "Talent_CC")
         self.extra_ability_attribute["Ultra_CriticalChanceBase"] = critical_chance_base
-        self.extra_ability_attribute[
-            "BPSkill1_CriticalChanceBase"
-        ] = critical_chance_base
+        self.extra_ability_attribute["BPSkill1_CriticalChanceBase"] = (
+            critical_chance_base
+        )
         attack_added_ratio = self.Skill_num("Talent", "Talent_atk")
         self.extra_ability_attribute["BPSkill1AttackAddedRatio"] = attack_added_ratio
         self.extra_ability_attribute["UltraAttackAddedRatio"] = attack_added_ratio
@@ -1508,8 +1484,6 @@ class Jingliu(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1609,8 +1583,6 @@ class Topaz(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1689,8 +1661,6 @@ class Guinaifen(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1773,8 +1743,6 @@ class Gepard(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1843,8 +1811,6 @@ class Luocha(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -1972,8 +1938,6 @@ class Bailu(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -2068,8 +2032,6 @@ class Lynx(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         # 计算战技生命上限
         skill_multiplier = self.Skill_num("BPSkill", "BPSkill_HP")
         skill_num = self.Skill_num("BPSkill", "BPSkill_HP_G")
@@ -2188,8 +2150,6 @@ class Natasha(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -2281,8 +2241,6 @@ class Mar7th(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -2383,8 +2341,6 @@ class Bronya(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         # 终结技增加伤害
         attribute_bonus["AttackAddedRatio"] = attribute_bonus.get(
             "AttackAddedRatio",
@@ -2448,8 +2404,6 @@ class Yukong(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         # 终结技增加伤害
         attribute_bonus["AttackAddedRatio"] = attribute_bonus.get(
             "AttackAddedRatio",
@@ -2535,8 +2489,6 @@ class Sushang(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -2643,8 +2595,6 @@ class Luka(BaseAvatar):
             "DmgRatio",
             0,
         ) + self.Skill_num("Ultra", "Ultra_d")
-
-        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -2763,8 +2713,6 @@ class DanHeng(BaseAvatar):
             0,
         ) + self.Skill_num("Talent", "Talent")
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -2844,8 +2792,6 @@ class Arlan(BaseAvatar):
             0,
         ) + self.Skill_num("Talent", "Talent")
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -2923,8 +2869,6 @@ class Asta(BaseAvatar):
             0,
         ) + self.Skill_num("Ultra", "Ultra")
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -2991,8 +2935,6 @@ class Herta(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -3077,8 +3019,6 @@ class Serval(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -3182,8 +3122,6 @@ class Pela(BaseAvatar):
             0,
         ) + self.Skill_num("Ultra", "Ultra_d")
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -3269,8 +3207,6 @@ class Sampo(BaseAvatar):
             "DOTDmgAdd",
             0,
         ) + self.Skill_num("Ultra", "Ultra_d")
-
-        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3360,8 +3296,6 @@ class Hook(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -3470,8 +3404,6 @@ class Tingyun(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -3531,8 +3463,6 @@ class Trailblazer(BaseAvatar):
             attribute_bonus.get("AttackAddedRatio", 0)
             + self.Skill_num("Talent", "Talent") * 2
         )
-
-        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -3615,8 +3545,6 @@ class Trailblazer_K(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -3744,8 +3672,6 @@ class Huohuo(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -3861,8 +3787,6 @@ class Hanya(BaseAvatar):
             0,
         ) + self.Skill_num("Ultra", "Ultra_A")
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -3934,8 +3858,6 @@ class DrRatio(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -4058,8 +3980,6 @@ class RuanMei(BaseAvatar):
                 + add_all_damage_added_ratio
             )
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -4140,8 +4060,6 @@ class XueYi(BaseAvatar):
             "AllDamageAddedRatio", 0
         ) + min(2.4, Break_Damage_Added_Ratio)
 
-        
-
         skill_info_list = []
         # 计算普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal")
@@ -4200,6 +4118,7 @@ class XueYi(BaseAvatar):
 
         return skill_info_list
 
+
 class BlackSwan(BaseAvatar):
     Buff: BaseAvatarBuff
 
@@ -4221,24 +4140,24 @@ class BlackSwan(BaseAvatar):
             self.eidolon_attribute["ThunderResistancePenetration"] = 0.25
 
     def extra_ability(self):
-        #战技降防计算
+        # 战技降防计算
         bpskill_defence = self.Skill_num("BPSkill", "BPSkill_D")
         self.extra_ability_attribute["ignore_defence"] = bpskill_defence
-        #终结技加伤害
-        self.extra_ability_attribute["AllDamageAddedRatio"] = self.Skill_num("Ultra", "Ultra_A")
+        # 终结技加伤害
+        self.extra_ability_attribute["AllDamageAddedRatio"] = self.Skill_num(
+            "Ultra", "Ultra_A"
+        )
 
     async def getdamage(
         self,
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        # 使自身造成的伤害提高，提高数值等同于效果命中的60%，最多使造成的伤害提高72%。
+        # 使自身造成的伤害提高, 提高数值等同于效果命中的60%, 最多使造成的伤害提高72%。
         Break_Damage_Added_Ratio = attribute_bonus.get("StatusProbabilityBase", 0) * 0.6
         attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get(
             "AllDamageAddedRatio", 0
         ) + min(0.72, Break_Damage_Added_Ratio)
-        
-        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4293,14 +4212,12 @@ class BlackSwan(BaseAvatar):
             self.avatar_level,
         )
         skill_info_list.append({"name": "1层奥迹伤害", "damagelist": damagelist4})
-        
+
         # 计算50层奥迹持续伤害
         skill_multiplier = self.Skill_num("Talent", "Talent")
         skill_multiplier += self.Skill_num("Talent", "Talent_UP") * 50
         add_attr_bonus = copy.deepcopy(attribute_bonus)
-        add_attr_bonus["ignore_defence"] = (
-            add_attr_bonus.get("ignore_defence", 0) + 0.2
-        )
+        add_attr_bonus["ignore_defence"] = add_attr_bonus.get("ignore_defence", 0) + 0.2
         damagelist5 = await calculate_damage(
             base_attr,
             add_attr_bonus,
@@ -4312,6 +4229,7 @@ class BlackSwan(BaseAvatar):
         )
         skill_info_list.append({"name": "50层奥迹伤害", "damagelist": damagelist5})
         return skill_info_list
+
 
 class Sparkle(BaseAvatar):
     Buff: BaseAvatarBuff
@@ -4337,23 +4255,28 @@ class Sparkle(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-       
         # 终结技天赋增加伤害
-        All_Damage_Add = (self.Skill_num("Talent", "Talent") + self.Skill_num("Ultra", "Ultra")) * 3
-        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get(
-            "AllDamageAddedRatio", 0
-        ) + All_Damage_Add
-        
-        #战技增加暴击伤害
+        All_Damage_Add = (
+            self.Skill_num("Talent", "Talent") + self.Skill_num("Ultra", "Ultra")
+        ) * 3
+        attribute_bonus["AllDamageAddedRatio"] = (
+            attribute_bonus.get("AllDamageAddedRatio", 0) + All_Damage_Add
+        )
+
+        # 战技增加暴击伤害
         if self.avatar_rank >= 6:
-            add_critical_damage_base = attribute_bonus.get("CriticalDamageBase", 0) * (self.Skill_num("BPSkill", "BPSkill") + 0.3) + self.Skill_num("BPSkill", "BPSkill_G")
+            add_critical_damage_base = attribute_bonus.get("CriticalDamageBase", 0) * (
+                self.Skill_num("BPSkill", "BPSkill") + 0.3
+            ) + self.Skill_num("BPSkill", "BPSkill_G")
         else:
-            add_critical_damage_base = attribute_bonus.get("CriticalDamageBase", 0) * self.Skill_num("BPSkill", "BPSkill") + self.Skill_num("BPSkill", "BPSkill_G")
+            add_critical_damage_base = attribute_bonus.get(
+                "CriticalDamageBase", 0
+            ) * self.Skill_num("BPSkill", "BPSkill") + self.Skill_num(
+                "BPSkill", "BPSkill_G"
+            )
         attribute_bonus["CriticalDamageBase"] = (
             attribute_bonus.get("CriticalDamageBase", 0) + add_critical_damage_base
         )
-        
-        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4376,6 +4299,7 @@ class Sparkle(BaseAvatar):
         skill_info_list.append({"name": "战技提升爆伤(%)", "damagelist": damagelist2})
 
         return skill_info_list
+
 
 class Acheron(BaseAvatar):
     Buff: BaseAvatarBuff
@@ -4406,10 +4330,9 @@ class Acheron(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-        
-        attribute_bonus["AllDamageAddedRatio"] = attribute_bonus.get("AllDamageAddedRatio", 0) + 0.9
-        
-        
+        attribute_bonus["AllDamageAddedRatio"] = (
+            attribute_bonus.get("AllDamageAddedRatio", 0) + 0.9
+        )
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4438,7 +4361,7 @@ class Acheron(BaseAvatar):
         damagelist1[1] = damagelist1[1] * 1.6
         damagelist1[2] = damagelist1[2] * 1.6
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
-        
+
         # 计算战技伤害
         skill_multiplier = self.Skill_num("BPSkill", "BPSkill")
         if self.avatar_rank >= 6:
@@ -4465,13 +4388,13 @@ class Acheron(BaseAvatar):
         damagelist2[1] = damagelist2[1] * 1.6
         damagelist2[2] = damagelist2[2] * 1.6
         skill_info_list.append({"name": "战技", "damagelist": damagelist2})
-        
+
         # 计算终结技
         add_attr_bonus = copy.deepcopy(attribute_bonus)
         add_attr_bonus["AllDamageResistancePenetration"] = (
             add_attr_bonus.get("AllDamageResistancePenetration", 0) + 0.2
         )
-        #啼泽雨斩
+        # 啼泽雨斩
         skill_multiplier = self.Skill_num("Ultra", "Ultra_1_d")
         damagelist_u_1_d = await calculate_damage(
             base_attr,
@@ -4495,7 +4418,7 @@ class Acheron(BaseAvatar):
         damagelist_u_1_d[1] = damagelist_u_1_d[1] * 1.6 + damagelist_u_2_d[1] * 1.6
         damagelist_u_1_d[2] = damagelist_u_1_d[2] * 1.6 + damagelist_u_2_d[2] * 1.6
         skill_info_list.append({"name": "啼泽雨斩", "damagelist": damagelist_u_1_d})
-        #黄泉返渡
+        # 黄泉返渡
         skill_multiplier = self.Skill_num("Ultra", "Ultra_1_a")
         damagelist_u_1_a = await calculate_damage(
             base_attr,
@@ -4515,18 +4438,25 @@ class Acheron(BaseAvatar):
             0.25,
             self.avatar_level,
         )
-        damagelist_u_1_a[0] = damagelist_u_1_a[0] * 1.6 + (damagelist_u_1_a_e[0] * 1.6) * 6
-        damagelist_u_1_a[1] = damagelist_u_1_a[1] * 1.6 + (damagelist_u_1_a_e[1] * 1.6) * 6
-        damagelist_u_1_a[2] = damagelist_u_1_a[2] * 1.6 + (damagelist_u_1_a_e[2] * 1.6) * 6
+        damagelist_u_1_a[0] = (
+            damagelist_u_1_a[0] * 1.6 + (damagelist_u_1_a_e[0] * 1.6) * 6
+        )
+        damagelist_u_1_a[1] = (
+            damagelist_u_1_a[1] * 1.6 + (damagelist_u_1_a_e[1] * 1.6) * 6
+        )
+        damagelist_u_1_a[2] = (
+            damagelist_u_1_a[2] * 1.6 + (damagelist_u_1_a_e[2] * 1.6) * 6
+        )
         skill_info_list.append({"name": "黄泉返渡", "damagelist": damagelist_u_1_a})
-        
-        #总伤害
+
+        # 总伤害
         damagelist_u = {}
         damagelist_u[0] = damagelist_u_1_d[0] * 3 + damagelist_u_1_a[0]
         damagelist_u[1] = damagelist_u_1_d[1] * 3 + damagelist_u_1_a[1]
         damagelist_u[2] = damagelist_u_1_d[2] * 3 + damagelist_u_1_a[2]
         skill_info_list.append({"name": "终结技总伤", "damagelist": damagelist_u})
         return skill_info_list
+
 
 class Aventurine(BaseAvatar):
     Buff: BaseAvatarBuff
@@ -4559,19 +4489,23 @@ class Aventurine(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-       
         # 天赋增加暴击
-        defence = base_attr["defence"] * (1 + attribute_bonus["DefenceAddedRatio"]) + attribute_bonus["DefenceDelta"]
+        defence = (
+            base_attr["defence"] * (1 + attribute_bonus["DefenceAddedRatio"])
+            + attribute_bonus["DefenceDelta"]
+        )
         if defence > 1600:
             adddefrnce = defence - 1600
-            Critical_Chance_Base = (defence/100) * 0.02
+            Critical_Chance_Base = (defence / 100) * 0.02
             Critical_Chance_Base = min(Critical_Chance_Base, 0.48)
-            attribute_bonus["CriticalChanceBase"] = attribute_bonus.get("CriticalChanceBase", 0) + Critical_Chance_Base
-        
-        #终结技增加暴击伤害
-        attribute_bonus["CriticalDamageBase"] = attribute_bonus.get("CriticalDamageBase", 0) + self.Skill_num("Ultra", "Ultra_CD")
-        
-        
+            attribute_bonus["CriticalChanceBase"] = (
+                attribute_bonus.get("CriticalChanceBase", 0) + Critical_Chance_Base
+            )
+
+        # 终结技增加暴击伤害
+        attribute_bonus["CriticalDamageBase"] = attribute_bonus.get(
+            "CriticalDamageBase", 0
+        ) + self.Skill_num("Ultra", "Ultra_CD")
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4598,7 +4532,7 @@ class Aventurine(BaseAvatar):
             skill_num,
         )
         skill_info_list.append({"name": "战技(护盾)", "damagelist": damagelist2})
-        
+
         # 计算终结技伤害
         skill_multiplier = self.Skill_num("Ultra", "Ultra")
         damagelist3 = await calculate_damage(
@@ -4612,7 +4546,7 @@ class Aventurine(BaseAvatar):
             2,
         )
         skill_info_list.append({"name": "终结技", "damagelist": damagelist3})
-        
+
         duanshu = 7
         if self.avatar_rank >= 4:
             duanshu = 10
@@ -4634,8 +4568,9 @@ class Aventurine(BaseAvatar):
         damagelist5[2] = damagelist4[2] * duanshu
         skill_info_list.append({"name": "单层【盲注】追击", "damagelist": damagelist4})
         skill_info_list.append({"name": "满层【盲注】追击", "damagelist": damagelist5})
-        
+
         return skill_info_list
+
 
 class Gallagher(BaseAvatar):
     Buff: BaseAvatarBuff
@@ -4662,14 +4597,15 @@ class Gallagher(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-       
-        # 使自身提供的治疗量提高，提高数值等同于击破特攻的50%，最多使提供的治疗量提高75%
-        Break_Damage_Added_Ratio_Base = attribute_bonus.get("BreakDamageAddedRatioBase", 0)
+        # 使自身提供的治疗量提高, 提高数值等同于击破特攻的50%, 最多使提供的治疗量提高75%
+        Break_Damage_Added_Ratio_Base = attribute_bonus.get(
+            "BreakDamageAddedRatioBase", 0
+        )
         Heal_Ratio_Base = Break_Damage_Added_Ratio_Base * 0.5
         Heal_Ratio_Base = min(0.75, Heal_Ratio_Base)
-        attribute_bonus["HealRatioBase"] = attribute_bonus.get("HealRatioBase", 0) + Heal_Ratio_Base
-        
-        
+        attribute_bonus["HealRatioBase"] = (
+            attribute_bonus.get("HealRatioBase", 0) + Heal_Ratio_Base
+        )
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4684,7 +4620,7 @@ class Gallagher(BaseAvatar):
             self.avatar_level,
         )
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
-        
+
         # 计算强化普攻伤害
         skill_multiplier = self.Skill_num("Normal", "Normal1")
         damagelist2 = await calculate_damage(
@@ -4697,7 +4633,7 @@ class Gallagher(BaseAvatar):
             self.avatar_level,
         )
         skill_info_list.append({"name": "强化普攻", "damagelist": damagelist2})
-        
+
         # 计算战技治疗量
         skill_num = self.Skill_num("BPSkill", "BPSkill")
         damagelist3 = await calculate_heal(
@@ -4708,7 +4644,7 @@ class Gallagher(BaseAvatar):
             skill_num,
         )
         skill_info_list.append({"name": "战技治疗量", "damagelist": damagelist3})
-        
+
         # 计算终结技伤害
         skill_multiplier = self.Skill_num("Ultra", "Ultra")
         damagelist4 = await calculate_damage(
@@ -4721,7 +4657,7 @@ class Gallagher(BaseAvatar):
             self.avatar_level,
         )
         skill_info_list.append({"name": "结技", "damagelist": damagelist4})
-        
+
         # 计算天赋治疗量
         skill_num = self.Skill_num("Talent", "Talent")
         damagelist5 = await calculate_heal(
@@ -4732,8 +4668,9 @@ class Gallagher(BaseAvatar):
             skill_num,
         )
         skill_info_list.append({"name": "天赋治疗量", "damagelist": damagelist5})
-        
+
         return skill_info_list
+
 
 class Robin(BaseAvatar):
     Buff: BaseAvatarBuff
@@ -4753,7 +4690,7 @@ class Robin(BaseAvatar):
             self.eidolon_attribute["CriticalDamageBase"] = 0.2
         if self.avatar_rank >= 6:
             self.eidolon_attribute["AllDamageResistancePenetration"] = 0.2
-        
+
     def extra_ability(self):
         pass
 
@@ -4762,24 +4699,29 @@ class Robin(BaseAvatar):
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
-       
         # 战技伤害加成
         all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
-        attribute_bonus["AllDamageAddedRatio"] = all_damage_added_ratio + self.Skill_num("BPSkill", "BPSkill")
-        
+        attribute_bonus["AllDamageAddedRatio"] = (
+            all_damage_added_ratio + self.Skill_num("BPSkill", "BPSkill")
+        )
+
         # 终结技攻击加成计算
         attack = (
             base_attr["attack"] * (1 + attribute_bonus["AttackAddedRatio"])
             + attribute_bonus["AttackDelta"]
         )
-        add_attack = (attack * self.Skill_num("Ultra", "Ultra_A")) + self.Skill_num("Ultra", "Ultra_G")
-        attribute_bonus["AttackDelta"] = attribute_bonus.get("AttackDelta", 0) + add_attack
-        
+        add_attack = (attack * self.Skill_num("Ultra", "Ultra_A")) + self.Skill_num(
+            "Ultra", "Ultra_G"
+        )
+        attribute_bonus["AttackDelta"] = (
+            attribute_bonus.get("AttackDelta", 0) + add_attack
+        )
+
         # 天赋爆伤加成
         Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
-        attribute_bonus["CriticalDamageBase"] =  Critical_Damage_Base + self.Skill_num("Talent", "Talent")
-        
-        
+        attribute_bonus["CriticalDamageBase"] = Critical_Damage_Base + self.Skill_num(
+            "Talent", "Talent"
+        )
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4794,22 +4736,22 @@ class Robin(BaseAvatar):
             self.avatar_level,
         )
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
-        
+
         # 计算战技治疗量
         skill_num = self.Skill_num("BPSkill", "BPSkill")
         damagelist2 = {}
         damagelist2[0] = add_attack
         skill_info_list.append({"name": "终结技攻击提高", "damagelist": damagelist2})
-        
+
         # 计算追击伤害
         skill_multiplier = self.Skill_num("Ultra", "Ultra")
         add_attr_bonus = copy.deepcopy(attribute_bonus)
-        add_attr_bonus['CriticalDamageBase'] = 1
-        add_attr_bonus['CriticalChanceBase'] = 0.95
+        add_attr_bonus["CriticalDamageBase"] = 1
+        add_attr_bonus["CriticalChanceBase"] = 0.95
         if self.avatar_rank >= 1:
             skill_multiplier = skill_multiplier + 0.72
         if self.avatar_rank >= 6:
-            add_attr_bonus['CriticalDamageBase'] = 3
+            add_attr_bonus["CriticalDamageBase"] = 3
         damagelist4 = await calculate_damage(
             base_attr,
             add_attr_bonus,
@@ -4820,8 +4762,9 @@ class Robin(BaseAvatar):
             self.avatar_level,
         )
         skill_info_list.append({"name": "【协奏】追加伤害", "damagelist": damagelist4})
-        
+
         return skill_info_list
+
 
 class AvatarDamage:
     @classmethod

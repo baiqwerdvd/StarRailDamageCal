@@ -19,13 +19,13 @@ class SingleRelic:
     def get_attribute_(self):
         # MainAffix
         if self.raw_relic.MainAffix.Property in self.relic_attribute_bonus:
-            self.relic_attribute_bonus[
-                self.raw_relic.MainAffix.Property
-            ] += self.raw_relic.MainAffix.Value
+            self.relic_attribute_bonus[self.raw_relic.MainAffix.Property] += (
+                self.raw_relic.MainAffix.Value
+            )
         else:
-            self.relic_attribute_bonus[
-                self.raw_relic.MainAffix.Property
-            ] = self.raw_relic.MainAffix.Value
+            self.relic_attribute_bonus[self.raw_relic.MainAffix.Property] = (
+                self.raw_relic.MainAffix.Value
+            )
 
         # SubAffix
         if self.raw_relic.SubAffixList:
@@ -58,15 +58,14 @@ class BaseRelicSetSkill:
         self,
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
-    ):
-        ...
+    ) -> bool: ...
 
     @abstractmethod
     async def set_skill_ability(
         self,
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
-    ):
+    ) -> Dict[str, float]:
         """战斗加成属性, 与 set_skill_property() 互斥"""
         ...
 

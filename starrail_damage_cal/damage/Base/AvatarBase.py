@@ -49,16 +49,13 @@ class BaseAvatarBuff:
         return cls
 
     @abstractmethod
-    async def Technique(self):
-        ...
+    async def Technique(self): ...
 
     @abstractmethod
-    async def eidolons(self):
-        ...
+    async def eidolons(self): ...
 
     @abstractmethod
-    async def extra_ability(self):
-        ...
+    async def extra_ability(self): ...
 
 
 class BaseAvatarinfo:

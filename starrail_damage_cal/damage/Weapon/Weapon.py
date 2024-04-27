@@ -246,7 +246,7 @@ class BeforeDawn(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -279,7 +279,7 @@ class IntheNight(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -430,7 +430,7 @@ class TodayIsAnotherPeacefulDay(BaseWeapon):
 
     async def check(self):
         # 根据装备者的能量上限, 提高装备者造成的伤害: 每点能量提高0.2%, 最多计入160点
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -491,7 +491,7 @@ class MaketheWorldClamor(BaseWeapon):
 
     async def check(self):
         # 终结技造成的伤害提高32%。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -705,7 +705,7 @@ class NowheretoRun(BaseWeapon):
 
     async def check(self):
         # 使装备者的攻击力提高24%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -951,7 +951,7 @@ class SolitaryHealing(BaseWeapon):
     async def check(self):
         # 使装备者的击破特攻提高20%
         # 装备者施放终结技时, 使装备者造成的持续伤害提高24%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -971,7 +971,7 @@ class BeforetheTutorialMissionStarts(BaseWeapon):
 
     async def check(self):
         # 当装备者攻击防御力被降低的敌方目标后, 恢复4点能量。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -992,7 +992,7 @@ class WeWillMeetAgain(BaseWeapon):
     async def check(self):
         # 装备者施放普攻或战技后,
         # 对随机1个受到攻击的敌方目标造成等同于自身48%攻击力的附加伤害。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1068,7 +1068,7 @@ class EyesofthePrey(BaseWeapon):
 
     async def check(self):
         # 造成的持续伤害提高24%。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1183,7 +1183,7 @@ class TextureofMemories(BaseWeapon):
 
     async def check(self):
         # ...
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1203,7 +1203,7 @@ class ThisIsMe(BaseWeapon):
 
     async def check(self):
         # 装备者施放终结技时造成的伤害值提高, 提高数值等同于装备者防御力的60%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1223,7 +1223,7 @@ class WeAreWildfire(BaseWeapon):
 
     async def check(self):
         # 战斗开始时, 使我方全体受到的伤害降低8%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1244,7 +1244,7 @@ class TrendoftheUniversalMarket(BaseWeapon):
     async def check(self):
         # 当装备者受到攻击后, 有100%的基础概率使敌方目标陷入灼烧状态,
         # 每回合造成等同于装备者40%防御力的持续伤害
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1264,7 +1264,7 @@ class LandausChoice(BaseWeapon):
 
     async def check(self):
         # 装备者受到攻击的概率提高, 同时受到的伤害降低16%。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1284,7 +1284,7 @@ class DayOneofMyNewLife(BaseWeapon):
 
     async def check(self):
         # 进入战斗后, 使我方全体的全属性抗性提高8%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1304,7 +1304,7 @@ class Pioneering(BaseWeapon):
 
     async def check(self):
         # 进入战斗后, 使我方全体的全属性抗性提高8%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1324,7 +1324,7 @@ class Defense(BaseWeapon):
 
     async def check(self):
         # 进入战斗后, 使我方全体的全属性抗性提高8%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1428,7 +1428,7 @@ class CollapsingSky(BaseWeapon):
 
     async def check(self):
         # 使装备者普攻和战技造成的伤害提高20%。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1458,7 +1458,7 @@ class HiddenShadow(BaseWeapon):
 
     async def check(self):
         # 施放战技后, 使装备者的下一次普攻对敌方目标造成等同于自身60%攻击力的附加伤害。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1562,7 +1562,7 @@ class Passkey(BaseWeapon):
 
     async def check(self):
         # 使装备者施放战技后额外恢复8点能量
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1582,7 +1582,7 @@ class DataBank(BaseWeapon):
 
     async def check(self):
         # 使装备者终结技造成的伤害提高28%。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1609,7 +1609,7 @@ class Thisbodyisasword(BaseWeapon):
         # 当队友受到攻击或消耗生命值后, 装备者获得1层【月蚀】,
         # 最多叠加3层。每层【月蚀】使装备者下一次攻击造成的伤害提高14%。
         # 叠满3层时, 额外使该次攻击无视目标12%的防御力。该效果在装备者施放攻击后解除。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1743,7 +1743,7 @@ class TimeWaitsforNoOne(BaseWeapon):
 
     async def check(self):
         # 当装备者对我方目标提供治疗时,记录治疗量。当任意我方目标施放攻击后,根据记录治疗量的36%,对随机1个受到攻击的敌方目标造成基于装备者属性的附加伤害
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1850,7 +1850,7 @@ class SharedFeeling(BaseWeapon):
 
     async def check(self):
         # 在施放战技时为我方全体恢复2点能量。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1906,7 +1906,7 @@ class QuidProQuo(BaseWeapon):
 
     async def check(self):
         # 随机为1个当前能量百分比小于50%的我方其他目标恢复8点能量。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -1926,7 +1926,7 @@ class WarmthShortensColdNights(BaseWeapon):
 
     async def check(self):
         # 施放普攻或战技后, 为我方全体回复等同于各自生命上限2%的生命值。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2015,7 +2015,7 @@ class FineFruit(BaseWeapon):
 
     async def check(self):
         # 战斗开始时, 立即为我方全体恢复6点能量。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2035,7 +2035,7 @@ class Multiplication(BaseWeapon):
 
     async def check(self):
         # 战斗开始时, 立即为我方全体恢复6点能量。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2055,7 +2055,7 @@ class ButtheBattleIsnotOver(BaseWeapon):
 
     async def check(self):
         # 当装备者施放战技后, 使下一个行动的我方【其他目标】造成的伤害提高30%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2075,7 +2075,7 @@ class MemoriesofthePast(BaseWeapon):
 
     async def check(self):
         # 装备者施放攻击后, 额外恢复4点能量
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2095,7 +2095,7 @@ class PlanetaryRendezvous(BaseWeapon):
 
     async def check(self):
         # 当我方目标造成与装备者相同属性的伤害时, 造成的伤害提高12%。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2124,7 +2124,7 @@ class DanceDanceDance(BaseWeapon):
 
     async def check(self):
         # 当装备者施放终结技后, 我方全体行动提前16%。
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2144,7 +2144,7 @@ class PastandFuture(BaseWeapon):
 
     async def check(self):
         # 使下一个行动的我方【其他目标】造成的伤害提高16%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2167,7 +2167,7 @@ class CarvetheMoonWeavetheClouds(BaseWeapon):
         # 使我方全体攻击力提高10%
         # 使我方全体暴击伤害提高12%
         # 暂时固定只算攻击
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2196,7 +2196,7 @@ class Chorus(BaseWeapon):
 
     async def check(self):
         # 进入战斗后,使我方全体的攻击力提高8%
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2225,7 +2225,7 @@ class MeshingCogs(BaseWeapon):
 
     async def check(self):
         # 使装备者施放攻击或受到攻击后,额外恢复4点能量
-        pass
+        return True
 
     async def weapon_ability(
         self,
@@ -2342,6 +2342,7 @@ class PastSelfinMirror(BaseWeapon):
             )
         return attribute_bonus
 
+
 # 游戏尘寰
 class EarthlyEscapade(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2350,7 +2351,7 @@ class EarthlyEscapade(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 战斗开始时，使装备者获得【假面】，持续3回合。当装备者持有【假面】时，装备者的队友暴击率提高10%，暴击伤害提高28%。
+        # 战斗开始时, 使装备者获得【假面】, 持续3回合。当装备者持有【假面】时, 装备者的队友暴击率提高10%, 暴击伤害提高28%。
         return True
 
     async def weapon_ability(
@@ -2363,15 +2364,20 @@ class EarthlyEscapade(BaseWeapon):
             critical_damage_base = attribute_bonus.get("CriticalDamageBase", 0)
             attribute_bonus["CriticalDamageBase"] = (
                 critical_damage_base
-                + weapon_effect["23021"]["Param"]["CriticalDamageBase"][self.weapon_rank - 1]
+                + weapon_effect["23021"]["Param"]["CriticalDamageBase"][
+                    self.weapon_rank - 1
+                ]
             )
-            
+
             critical_chance_base = attribute_bonus.get("CriticalChanceBase", 0)
             attribute_bonus["CriticalChanceBase"] = (
                 critical_chance_base
-                + weapon_effect["23021"]["Param"]["CriticalChance"][self.weapon_rank - 1]
+                + weapon_effect["23021"]["Param"]["CriticalChance"][
+                    self.weapon_rank - 1
+                ]
             )
         return attribute_bonus
+
 
 # 重塑时光之忆
 class ReforgedRemembrance(BaseWeapon):
@@ -2381,7 +2387,7 @@ class ReforgedRemembrance(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 装备者对陷入风化、灼烧、触电、裂伤状态的敌方目标造成伤害时，分别获得1层【先知】，最多叠加4层。单场战斗中，每种持续伤害状态类型仅可叠加1次【先知】效果。每层【先知】使装备者的攻击力提高5%，造成的持续伤害无视目标7.2%的防御力。
+        # 装备者对陷入风化、灼烧、触电、裂伤状态的敌方目标造成伤害时, 分别获得1层【先知】, 最多叠加4层。单场战斗中, 每种持续伤害状态类型仅可叠加1次【先知】效果。每层【先知】使装备者的攻击力提高5%, 造成的持续伤害无视目标7.2%的防御力。
         return True
 
     async def weapon_ability(
@@ -2401,7 +2407,7 @@ class ReforgedRemembrance(BaseWeapon):
                 )
                 * 4
             )
-            
+
             resistance_penetration = attribute_bonus.get("DOTignore_defence", 0)
             attribute_bonus["DOTignore_defence"] = (
                 resistance_penetration
@@ -2414,6 +2420,7 @@ class ReforgedRemembrance(BaseWeapon):
             )
         return attribute_bonus
 
+
 # 何物为真
 class WhatIsReal(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2422,8 +2429,8 @@ class WhatIsReal(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 施放普攻后，装备者回复等同于2%生命上限+800点的生命值。
-        pass
+        # 施放普攻后, 装备者回复等同于2%生命上限+800点的生命值。
+        return True
 
     async def weapon_ability(
         self,
@@ -2433,6 +2440,7 @@ class WhatIsReal(BaseWeapon):
     ):
         return attribute_bonus
 
+
 # 美梦小镇大冒险
 class DreamvilleAdventure(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2441,7 +2449,7 @@ class DreamvilleAdventure(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 装备者施放普攻、战技、终结技中某一类型的技能后，为我方全体附加【童心】，【童心】可以使我方目标对应类型的技能所造成的伤害提高12%
+        # 装备者施放普攻、战技、终结技中某一类型的技能后, 为我方全体附加【童心】, 【童心】可以使我方目标对应类型的技能所造成的伤害提高12%
         return True
 
     async def weapon_ability(
@@ -2462,6 +2470,7 @@ class DreamvilleAdventure(BaseWeapon):
             )
         return attribute_bonus
 
+
 # 最后的赢家
 class FinalVictor(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2470,7 +2479,7 @@ class FinalVictor(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 当装备者对敌方目标造成暴击后获得一层【好运】，最多叠加4层。每层【好运】使装备者的暴击伤害提高8%
+        # 当装备者对敌方目标造成暴击后获得一层【好运】, 最多叠加4层。每层【好运】使装备者的暴击伤害提高8%
         return True
 
     async def weapon_ability(
@@ -2481,16 +2490,14 @@ class FinalVictor(BaseWeapon):
     ):
         if await self.check():
             Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
-            attribute_bonus["CriticalDamageBase"] = (
-                Critical_Damage_Base
-                + (
-                    weapon_effect["21037"]["Param"]["CriticalDamageBase"][
-                        self.weapon_rank - 1
-                    ]
-                    * 4
-                )
+            attribute_bonus["CriticalDamageBase"] = Critical_Damage_Base + (
+                weapon_effect["21037"]["Param"]["CriticalDamageBase"][
+                    self.weapon_rank - 1
+                ]
+                * 4
             )
         return attribute_bonus
+
 
 # 在火的远处
 class FlamesAfar(BaseWeapon):
@@ -2521,6 +2528,7 @@ class FlamesAfar(BaseWeapon):
             )
         return attribute_bonus
 
+
 # 织造命运之线
 class DestinysThreadsForewoven(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2529,7 +2537,7 @@ class DestinysThreadsForewoven(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 装备者每有100点防御力，使装备者造成的伤害提高0.8%，最多使造成的伤害提高32%。
+        # 装备者每有100点防御力, 使装备者造成的伤害提高0.8%, 最多使造成的伤害提高32%。
         return True
 
     async def weapon_ability(
@@ -2539,12 +2547,25 @@ class DestinysThreadsForewoven(BaseWeapon):
         attribute_bonus: Dict[str, float],
     ):
         if await self.check():
-            defence = base_attr["defence"] * (1 + attribute_bonus["DefenceAddedRatio"]) + attribute_bonus["DefenceDelta"]
-            damage_added = (defence/100) * weapon_effect["21039"]["Param"]["AllDamageAddedRatio"][self.weapon_rank - 1]
-            damage_added = min(damage_added, weapon_effect["21039"]["Param"]["AllDamageAddedRatio_max"][self.weapon_rank - 1])
+            defence = (
+                base_attr["defence"] * (1 + attribute_bonus["DefenceAddedRatio"])
+                + attribute_bonus["DefenceDelta"]
+            )
+            damage_added = (defence / 100) * weapon_effect["21039"]["Param"][
+                "AllDamageAddedRatio"
+            ][self.weapon_rank - 1]
+            damage_added = min(
+                damage_added,
+                weapon_effect["21039"]["Param"]["AllDamageAddedRatio_max"][
+                    self.weapon_rank - 1
+                ],
+            )
             all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
-            attribute_bonus["AllDamageAddedRatio"] = all_damage_added_ratio + damage_added
+            attribute_bonus["AllDamageAddedRatio"] = (
+                all_damage_added_ratio + damage_added
+            )
         return attribute_bonus
+
 
 # 银河沦陷日
 class TheDayTheCosmosFell(BaseWeapon):
@@ -2554,7 +2575,7 @@ class TheDayTheCosmosFell(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 装备者施放攻击后，若有不少于2个被攻击的敌方目标具有对应属性弱点，装备者的暴击伤害提高20%，持续2回合。
+        # 装备者施放攻击后, 若有不少于2个被攻击的敌方目标具有对应属性弱点, 装备者的暴击伤害提高20%, 持续2回合。
         return True
 
     async def weapon_ability(
@@ -2575,6 +2596,7 @@ class TheDayTheCosmosFell(BaseWeapon):
             )
         return attribute_bonus
 
+
 # 好戏开演
 class ItsShowtime(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2583,7 +2605,7 @@ class ItsShowtime(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 装备者对敌方目标施加负面状态后，获得一层【戏法】，每层【戏法】使装备者造成的伤害提高6%，最多叠加3层，持续1回合。当装备者的效果命中大于等于80%时，攻击力提高20%。
+        # 装备者对敌方目标施加负面状态后, 获得一层【戏法】, 每层【戏法】使装备者造成的伤害提高6%, 最多叠加3层, 持续1回合。当装备者的效果命中大于等于80%时, 攻击力提高20%。
         return True
 
     async def weapon_ability(
@@ -2594,14 +2616,11 @@ class ItsShowtime(BaseWeapon):
     ):
         if await self.check():
             all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
-            attribute_bonus["AllDamageAddedRatio"] = (
-                all_damage_added_ratio
-                + (
-                    weapon_effect["21041"]["Param"]["AllDamageAddedRatio"][
-                        self.weapon_rank - 1
-                    ]
-                    * 3
-                )
+            attribute_bonus["AllDamageAddedRatio"] = all_damage_added_ratio + (
+                weapon_effect["21041"]["Param"]["AllDamageAddedRatio"][
+                    self.weapon_rank - 1
+                ]
+                * 3
             )
             Status_Probability_Base = attribute_bonus.get("StatusProbabilityBase", 0)
             if Status_Probability_Base >= 0.8:
@@ -2616,6 +2635,7 @@ class ItsShowtime(BaseWeapon):
                 )
         return attribute_bonus
 
+
 # 铭记于心的约定
 class IndeliblePromise(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2624,7 +2644,7 @@ class IndeliblePromise(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 当装备者释放终结技时，暴击率提高15%，持续2回合。
+        # 当装备者释放终结技时, 暴击率提高15%, 持续2回合。
         return True
 
     async def weapon_ability(
@@ -2645,6 +2665,7 @@ class IndeliblePromise(BaseWeapon):
             )
         return attribute_bonus
 
+
 # 两个人的演唱会
 class ConcertforTwo(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2653,7 +2674,7 @@ class ConcertforTwo(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 场上每有一名持有护盾的角色，装备者造成的伤害提高4%。
+        # 场上每有一名持有护盾的角色, 装备者造成的伤害提高4%。
         return True
 
     async def weapon_ability(
@@ -2664,16 +2685,14 @@ class ConcertforTwo(BaseWeapon):
     ):
         if await self.check():
             all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
-            attribute_bonus["AllDamageAddedRatio"] = (
-                all_damage_added_ratio
-                + (
-                    weapon_effect["21043"]["Param"]["AllDamageAddedRatio"][
-                        self.weapon_rank - 1
-                    ]
-                    * 4
-                )
+            attribute_bonus["AllDamageAddedRatio"] = all_damage_added_ratio + (
+                weapon_effect["21043"]["Param"]["AllDamageAddedRatio"][
+                    self.weapon_rank - 1
+                ]
+                * 4
             )
         return attribute_bonus
+
 
 # 行于流逝的岸
 class AlongthePassingShore(BaseWeapon):
@@ -2683,7 +2702,7 @@ class AlongthePassingShore(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 装备者对陷入【泡影】状态的目标造成的伤害提高24%，终结技造成的伤害额外提高24%
+        # 装备者对陷入【泡影】状态的目标造成的伤害提高24%, 终结技造成的伤害额外提高24%
         return True
 
     async def weapon_ability(
@@ -2705,13 +2724,10 @@ class AlongthePassingShore(BaseWeapon):
             Ultra_Dmg_Add = attribute_bonus.get("UltraDmgAdd", 0)
             attribute_bonus["UltraDmgAdd"] = (
                 Ultra_Dmg_Add
-                + (
-                    weapon_effect["23024"]["Param"]["UltraDmgAdd"][
-                        self.weapon_rank - 1
-                    ]
-                )
+                + (weapon_effect["23024"]["Param"]["UltraDmgAdd"][self.weapon_rank - 1])
             )
         return attribute_bonus
+
 
 # 命运从未公平
 class InherentlyUnjustDestiny(BaseWeapon):
@@ -2721,7 +2737,7 @@ class InherentlyUnjustDestiny(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 当装备者为我方目标提供护盾时，使装备者的暴击伤害提高40%，持续2回合。当装备者发动追加攻击击中敌方目标时，有100%的基础概率使受到攻击的敌方目标受到的伤害提高10%，持续2回合。
+        # 当装备者为我方目标提供护盾时, 使装备者的暴击伤害提高40%, 持续2回合。当装备者发动追加攻击击中敌方目标时, 有100%的基础概率使受到攻击的敌方目标受到的伤害提高10%, 持续2回合。
         return True
 
     async def weapon_ability(
@@ -2743,13 +2759,10 @@ class InherentlyUnjustDestiny(BaseWeapon):
             Dmg_Ratio = attribute_bonus.get("DmgRatio", 0)
             attribute_bonus["DmgRatio"] = (
                 Dmg_Ratio
-                + (
-                    weapon_effect["23023"]["Param"]["DmgRatio"][
-                        self.weapon_rank - 1
-                    ]
-                )
+                + (weapon_effect["23023"]["Param"]["DmgRatio"][self.weapon_rank - 1])
             )
         return attribute_bonus
+
 
 # 夜色流光溢彩
 class FlowingNightglow(BaseWeapon):
@@ -2759,7 +2772,7 @@ class FlowingNightglow(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 【华彩】使装备者的攻击力提高48%，使我方全体造成的伤害提高24%，持续1回合。
+        # 【华彩】使装备者的攻击力提高48%, 使我方全体造成的伤害提高24%, 持续1回合。
         return True
 
     async def weapon_ability(
@@ -2789,6 +2802,7 @@ class FlowingNightglow(BaseWeapon):
             )
         return attribute_bonus
 
+
 # 驶向第二次生命
 class SailingTowardsASecondLife(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2797,7 +2811,7 @@ class SailingTowardsASecondLife(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 造成的击破伤害无视目标20%的防御力。当装备者击中敌方目标时，使目标受到的伤害提高1%，该状态最多叠加6层
+        # 造成的击破伤害无视目标20%的防御力。当装备者击中敌方目标时, 使目标受到的伤害提高1%, 该状态最多叠加6层
         return True
 
     async def weapon_ability(
@@ -2817,16 +2831,11 @@ class SailingTowardsASecondLife(BaseWeapon):
                 )
             )
             Dmg_Ratio = attribute_bonus.get("DmgRatio", 0)
-            attribute_bonus["DmgRatio"] = (
-                Dmg_Ratio
-                + (
-                    weapon_effect["23027"]["Param"]["DmgRatio"][
-                        self.weapon_rank - 1
-                    ]
-                    * 6
-                )
+            attribute_bonus["DmgRatio"] = Dmg_Ratio + (
+                weapon_effect["23027"]["Param"]["DmgRatio"][self.weapon_rank - 1] * 6
             )
         return attribute_bonus
+
 
 # 无边曼舞
 class BoundlessChoreo(BaseWeapon):
@@ -2857,6 +2866,7 @@ class BoundlessChoreo(BaseWeapon):
             )
         return attribute_bonus
 
+
 # 为了明日的旅途
 class ForTomorrowsJourney(BaseWeapon):
     weapon_base_attributes: Dict
@@ -2865,7 +2875,7 @@ class ForTomorrowsJourney(BaseWeapon):
         super().__init__(weapon)
 
     async def check(self):
-        # 装备者施放终结技后，造成的伤害提高18%
+        # 装备者施放终结技后, 造成的伤害提高18%
         return True
 
     async def weapon_ability(
@@ -2885,6 +2895,7 @@ class ForTomorrowsJourney(BaseWeapon):
                 )
             )
         return attribute_bonus
+
 
 class Weapon:
     @classmethod
