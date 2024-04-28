@@ -2291,10 +2291,9 @@ class Mar7th(BaseAvatar):
             self.avatar_level,
         )
         if self.avatar_rank >= 4:
-            defence = (
-                base_attr["defence"] * (1 + attribute_bonus["DefenceAddedRatio"])
-                + attribute_bonus["DefenceDelta"]
-            )
+            defence = base_attr.get("defence", 0) * (
+                1 + attribute_bonus.get("DefenceAddedRatio", 0)
+            ) + attribute_bonus.get("DefenceDelta", 0)
             damage_add = defence * 0.3
             damagelist4[0] += damage_add
             damagelist4[1] += damage_add
