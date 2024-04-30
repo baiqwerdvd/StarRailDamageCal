@@ -1163,7 +1163,6 @@ class Fuxuan(BaseAvatar):
             self.avatar_level,
             1,
         )
-        damagelist2[2] += damage2
         skill_info_list.append({"name": "终结技", "damagelist": damagelist2})
 
         # 计算终结技治疗
@@ -4685,42 +4684,35 @@ class Robin(BaseAvatar):
         pass
 
     def eidolons(self):
-        if self.avatar_rank >= 2:
-            self.eidolon_attribute["CriticalDamageBase"] = 0.2
-        if self.avatar_rank >= 6:
-            self.eidolon_attribute["AllDamageResistancePenetration"] = 0.2
-
+        if self.avatar_rank >= 1:
+            self.eidolon_attribute["AllDamageResistancePenetration"] = 0.24
+        
     def extra_ability(self):
-        pass
+        self.extra_ability_attribute["Talent_CriticalDamageBase"] = 0.25
 
     async def getdamage(
         self,
         base_attr: Dict[str, float],
         attribute_bonus: Dict[str, float],
     ):
+       
         # 战技伤害加成
         all_damage_added_ratio = attribute_bonus.get("AllDamageAddedRatio", 0)
-        attribute_bonus["AllDamageAddedRatio"] = (
-            all_damage_added_ratio + self.Skill_num("BPSkill", "BPSkill")
-        )
-
+        attribute_bonus["AllDamageAddedRatio"] = all_damage_added_ratio + self.Skill_num("BPSkill", "BPSkill")
+        
         # 终结技攻击加成计算
         attack = (
             base_attr["attack"] * (1 + attribute_bonus["AttackAddedRatio"])
             + attribute_bonus["AttackDelta"]
         )
-        add_attack = (attack * self.Skill_num("Ultra", "Ultra_A")) + self.Skill_num(
-            "Ultra", "Ultra_G"
-        )
-        attribute_bonus["AttackDelta"] = (
-            attribute_bonus.get("AttackDelta", 0) + add_attack
-        )
-
+        add_attack = (attack * self.Skill_num("Ultra", "Ultra_A")) + self.Skill_num("Ultra", "Ultra_G")
+        attribute_bonus["AttackDelta"] = attribute_bonus.get("AttackDelta", 0) + add_attack
+        
         # 天赋爆伤加成
         Critical_Damage_Base = attribute_bonus.get("CriticalDamageBase", 0)
-        attribute_bonus["CriticalDamageBase"] = Critical_Damage_Base + self.Skill_num(
-            "Talent", "Talent"
-        )
+        attribute_bonus["CriticalDamageBase"] =  Critical_Damage_Base + self.Skill_num("Talent", "Talent")
+        
+        
 
         skill_info_list = []
         # 计算普攻伤害
@@ -4735,33 +4727,31 @@ class Robin(BaseAvatar):
             self.avatar_level,
         )
         skill_info_list.append({"name": "普攻", "damagelist": damagelist1})
-
+        
         # 计算战技治疗量
         skill_num = self.Skill_num("BPSkill", "BPSkill")
         damagelist2 = {}
         damagelist2[0] = add_attack
         skill_info_list.append({"name": "终结技攻击提高", "damagelist": damagelist2})
-
+        
         # 计算追击伤害
         skill_multiplier = self.Skill_num("Ultra", "Ultra")
         add_attr_bonus = copy.deepcopy(attribute_bonus)
-        add_attr_bonus["CriticalDamageBase"] = 1
-        add_attr_bonus["CriticalChanceBase"] = 0.95
-        if self.avatar_rank >= 1:
-            skill_multiplier = skill_multiplier + 0.72
+        add_attr_bonus['CriticalDamageBase'] = 1
+        add_attr_bonus['CriticalChanceBase'] = 0.95
         if self.avatar_rank >= 6:
-            add_attr_bonus["CriticalDamageBase"] = 3
+            add_attr_bonus['CriticalDamageBase'] = 5.5
         damagelist4 = await calculate_damage(
             base_attr,
             add_attr_bonus,
-            "Talent",
-            "Talent",
+            "fujia",
+            "fujia",
             self.avatar_element,
             skill_multiplier,
             self.avatar_level,
         )
-        skill_info_list.append({"name": "【协奏】追加伤害", "damagelist": damagelist4})
-
+        skill_info_list.append({"name": "【协奏】附加伤害", "damagelist": damagelist4})
+        
         return skill_info_list
 
 
