@@ -22,7 +22,10 @@ class AvatarInstance:
             self.raw_data.skill,
         )
         self.avatar = BaseAvatarinfo(self.raw_data.avatar)
-        self.weapon = Weapon.create(self.raw_data.weapon)
+        if self.raw_data.weapon is None:
+            self.weapon = None
+        else:
+            self.weapon = Weapon.create(self.raw_data.weapon)
         self.relic_set = RelicSet().create(self.raw_data.relic)
 
         self.base_attr = self.cal_role_base_attr()
@@ -31,7 +34,8 @@ class AvatarInstance:
         self.cal_relic_attr_add()
         self.cal_avatar_attr_add()
         self.cal_avatar_eidolon_add()
-        self.cal_weapon_attr_add()
+        if self.weapon is not None:
+            self.cal_weapon_attr_add()
 
     def merge_attribute_bonus(self, add_attribute: Dict[str, float]):
         for attribute in add_attribute:
@@ -48,6 +52,9 @@ class AvatarInstance:
                 base_attr[attr_name] += attr_value
             else:
                 base_attr[attr_name] = attr_value
+
+        if self.weapon is None:
+            return base_attr
 
         weapon_attribute = self.weapon.weapon_base_attribute
         for attr_name, attr_value in weapon_attribute.items():
@@ -85,15 +92,18 @@ class AvatarInstance:
                     self.attribute_bonus[bonus_property] = value
 
     def cal_weapon_attr_add(self):
+        if self.weapon is None:
+            return
         self.merge_attribute_bonus(self.weapon.weapon_attribute)
 
     async def get_damage_info(self):
         Ultra_Use = self.avatar.Ultra_Use()
-        self.attribute_bonus = await self.weapon.weapon_ability(
-            Ultra_Use,
-            self.base_attr,
-            self.attribute_bonus,
-        )
+        if self.weapon is not None:
+            self.attribute_bonus = await self.weapon.weapon_ability(
+                Ultra_Use,
+                self.base_attr,
+                self.attribute_bonus,
+            )
         for set_skill in self.relic_set.SetSkill:
             self.attribute_bonus = await set_skill.set_skill_ability(
                 self.base_attr,

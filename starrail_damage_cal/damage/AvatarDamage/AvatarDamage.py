@@ -4686,10 +4686,9 @@ class Robin(BaseAvatar):
         )
 
         # 终结技攻击加成计算
-        attack = (
-            base_attr["attack"] * (1 + attribute_bonus["AttackAddedRatio"])
-            + attribute_bonus["AttackDelta"]
-        )
+        attack = base_attr["attack"] * (
+            1 + attribute_bonus.get("AttackAddedRatio", 0)
+        ) + attribute_bonus.get("AttackDelta", 0)
         add_attack = (attack * self.Skill_num("Ultra", "Ultra_A")) + self.Skill_num(
             "Ultra", "Ultra_G"
         )

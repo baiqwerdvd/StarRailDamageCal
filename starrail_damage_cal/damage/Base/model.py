@@ -70,7 +70,7 @@ class DamageInstanceAvatar(Struct):
 
 class DamageInstance:
     avatar: DamageInstanceAvatar
-    weapon: DamageInstanceWeapon
+    weapon: Union[DamageInstanceWeapon, None]
     relic: List[DamageInstanceRelic]
     skill: List[DamageInstanceSkill]
 
@@ -90,12 +90,15 @@ class DamageInstance:
                 Union[List, None],
             ),
         )
-        self.weapon = DamageInstanceWeapon(
-            id_=char.equipment["equipmentID"],
-            level=char.equipment["equipmentLevel"],
-            rank=char.equipment["equipmentRank"],
-            promotion=char.equipment["equipmentPromotion"],
-        )
+        if char.equipment.get("equipmentID") is not None:
+            self.weapon = DamageInstanceWeapon(
+                id_=char.equipment["equipmentID"],
+                level=char.equipment["equipmentLevel"],
+                rank=char.equipment["equipmentRank"],
+                promotion=char.equipment["equipmentPromotion"],
+            )
+        else:
+            self.weapon = None
         self.relic = []
         for relic in char.char_relic:
             self.relic.append(msgspec.convert(relic, DamageInstanceRelic))

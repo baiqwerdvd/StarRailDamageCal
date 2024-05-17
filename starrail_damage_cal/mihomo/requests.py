@@ -33,9 +33,13 @@ async def get_char_card_info(
             with Path.open(path / f"{uid!s}.json", "w") as file:
                 file.write(req.text)
         try:
+            print(req.json())
             return convert(req.json(), type=MihomoData)
         except msgspec.ValidationError as e:
-            if req.text == '{"detail":"Queue timeout"}':
+            if (
+                req.text
+                == '{"detail":"Queue timeout,please refer to https://discord.gg/pkdTJ9svEh for more infomation"}'
+            ):
                 raise MihomoQueueTimeoutError from e
             if req.text == '{"detail":"Invalid uid"}':
                 raise InvalidUidError(uid) from e
