@@ -16,7 +16,7 @@ avatarId2EnName_fileName = f"avatarId2EnName_mapping_{version}.json"
 EquipmentID2Name_fileName = f"EquipmentID2Name_mapping_{version}.json"
 skillId2Name_fileName = f"skillId2Name_mapping_{version}.json"
 skillId2Type_fileName = f"skillId2Type_mapping_{version}.json"
-Property2Name_fileName = "Property2Name.json"
+Property2Name_fileName = f"Property2Name_mapping_{version}.json"
 RelicId2SetId_fileName = f"RelicId2SetId_mapping_{version}.json"
 SetId2Name_fileName = f"SetId2Name_mapping_{version}.json"
 rankId2Name_fileName = f"rankId2Name_mapping_{version}.json"
@@ -90,8 +90,7 @@ with Path.open(MAP / EquipmentID2AbilityProperty_fileName, encoding="UTF-8") as 
     )
 
 with Path.open(MAP / RelicSetSkill_fileName, encoding="UTF-8") as f:
-    data = json.load(f)
-    RelicSetSkill = RelicSetSkillModel.from_json(data)
+    RelicSetSkill = RelicSetSkillModel.from_json(json.load(f))
 
 with Path.open(MAP / skillId2AttackType_fileName, encoding="UTF-8") as f:
     skillId2AttackType = msgjson.decode(f.read(), type=Dict[str, str])
