@@ -5,7 +5,7 @@ from starrail_damage_cal.cal_damage import DamageCal
 
 
 async def test_get_damage_data_by_uid() -> None:
-    data = await DamageCal.get_all_damage_data_by_uid(uid="100404677")
+    data = await DamageCal.get_all_damage_data_by_uid(uid="100111010")
     if isinstance(data, Union[List, dict]):
         print(json.dumps(data, ensure_ascii=False, indent=4))
 

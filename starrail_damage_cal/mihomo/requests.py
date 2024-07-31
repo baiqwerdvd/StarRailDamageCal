@@ -33,7 +33,6 @@ async def get_char_card_info(
             with Path.open(path / f"{uid!s}.json", "w") as file:
                 file.write(req.text)
         try:
-            print(req.json())
             return convert(req.json(), type=MihomoData)
         except msgspec.ValidationError as e:
             if (

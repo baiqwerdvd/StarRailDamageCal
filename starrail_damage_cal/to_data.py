@@ -220,9 +220,14 @@ async def get_data(
 
     # 处理基础属性
     base_attributes = {}
-    avatar_promotion_base = AvatarPromotionConfig.Avatar[str(char.avatarId)][
-        str(char.promotion)
-    ]
+    avatar_promotion_base = None
+    for avatar in AvatarPromotionConfig:
+        if avatar.AvatarID == char.avatarId:
+            avatar_promotion_base = avatar
+            break
+    if not avatar_promotion_base:
+        msg = f"AvatarPromotionConfig not found: {char.avatarId}"
+        raise ValueError(msg)
 
     # 攻击力
     base_attributes["attack"] = (
@@ -262,9 +267,14 @@ async def get_data(
         equipment_info["equipmentRank"] = char.equipment.rank
         equipment_info["equipmentRarity"] = EquipmentID2Rarity[str(char.equipment.tid)]
         equipment_base_attributes = {}
-        equipment_promotion_base = EquipmentPromotionConfig.Equipment[
-            str(char.equipment.tid)
-        ][str(equipment_info["equipmentPromotion"])]
+        equipment_promotion_base = None
+        for equipment in EquipmentPromotionConfig:
+            if equipment.EquipmentID == char.equipment.tid:
+                equipment_promotion_base = equipment
+                break
+        if not equipment_promotion_base:
+            msg = f"EquipmentPromotionConfig not found: {char.equipment.tid}"
+            raise ValueError(msg)
 
         equipment_level = char.equipment.level if char.equipment.level else 1
         # 生命值

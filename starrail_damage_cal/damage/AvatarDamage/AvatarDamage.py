@@ -4842,5 +4842,5 @@ class AvatarDamage:
             return Welt(char, skills)
         if char.id_ == 1213:
             return Danhengil(char, skills)
-        msg = "不支持的角色"
+        msg = f"{char.id_} 不支持的角色"
         raise ValueError(msg)

@@ -70,9 +70,15 @@ class BaseAvatarinfo:
         self.avatar_attribute = self.get_attribute()
 
     def get_attribute(self):
-        promotion = AvatarPromotionConfig.Avatar[str(self.avatar_id)][
-            str(self.avatar_promotion)
-        ]
+        promotion = None
+
+        for avatar in AvatarPromotionConfig:
+            if avatar.AvatarID == self.avatar_id:
+                promotion = avatar
+                break
+        if not promotion:
+            msg = f"AvatarPromotionConfig not found: {self.avatar_id}"
+            raise ValueError(msg)
 
         return BaseAvatarAttribute(
             # 攻击力
@@ -118,9 +124,15 @@ class BaseAvatar:
         self.avatar_attribute = self.get_attribute()
 
     def get_attribute(self):
-        promotion = AvatarPromotionConfig.Avatar[str(self.avatar_id)][
-            str(self.avatar_promotion)
-        ]
+        promotion = None
+
+        for avatar in AvatarPromotionConfig:
+            if avatar.AvatarID == self.avatar_id:
+                promotion = avatar
+                break
+        if not promotion:
+            msg = f"AvatarPromotionConfig not found: {self.avatar_id}"
+            raise ValueError(msg)
 
         return BaseAvatarAttribute(
             # 攻击力

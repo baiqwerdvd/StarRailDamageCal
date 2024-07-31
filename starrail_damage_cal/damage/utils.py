@@ -16,7 +16,14 @@ async def cal_relic_main_affix(
         group_id = str(rarity) + str(relic_type)
     else:
         group_id = str(RelicId2MainAffixGroup[str(relic_id)])
-    relic_data = RelicMainAffixConfig.Relic[group_id][str(affix_id)]
+    relic_data = None
+    for relic in RelicMainAffixConfig:
+        if relic.GroupID == int(group_id) and relic.AffixID == affix_id:
+            relic_data = relic
+            break
+    if relic_data is None:
+        msg = f"RelicMainAffixConfig not found: {group_id} {affix_id}"
+        raise ValueError(msg)
     base_value = relic_data.BaseValue.Value
     level_add = relic_data.LevelAdd.Value
     value = base_value + level_add * relic_level
@@ -26,7 +33,14 @@ async def cal_relic_main_affix(
 
 async def cal_relic_sub_affix(relic_id: int, affix_id: int, cnt: int, step: int):
     rarity = int(str(relic_id)[0]) - 1
-    relic_data = RelicSubAffixConfig.Relic[str(rarity)][str(affix_id)]
+    relic_data = None
+    for relic in RelicSubAffixConfig:
+        if relic.AffixID == affix_id:
+            relic_data = relic
+            break
+    if relic_data is None:
+        msg = f"RelicSubAffixConfig not found: {rarity} {affix_id}"
+        raise ValueError(msg)
     base_value = relic_data.BaseValue.Value
     step_value = relic_data.StepValue.Value
     value = base_value * cnt + step_value * step

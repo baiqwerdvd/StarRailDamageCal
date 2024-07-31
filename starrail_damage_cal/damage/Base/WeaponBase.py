@@ -55,9 +55,14 @@ class BaseWeapon:
     async def check(self) -> bool: ...
 
     def get_attribute(self):
-        promotion = EquipmentPromotionConfig.Equipment[str(self.weapon_id)][
-            str(self.weapon_promotion)
-        ]
+        promotion = None
+        for equipment in EquipmentPromotionConfig:
+            if equipment.EquipmentID == self.weapon_id:
+                promotion = equipment
+                break
+        if not promotion:
+            msg = f"EquipmentPromotionConfig not found: {self.weapon_id}"
+            raise ValueError(msg)
 
         return BaseWeaponAttribute(
             hp=(
