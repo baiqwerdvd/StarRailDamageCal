@@ -35,7 +35,7 @@ async def cal_relic_sub_affix(relic_id: int, affix_id: int, cnt: int, step: int)
     rarity = int(str(relic_id)[0]) - 1
     relic_data = None
     for relic in RelicSubAffixConfig:
-        if relic.AffixID == affix_id:
+        if relic.AffixID == affix_id and relic.GroupID == rarity:
             relic_data = relic
             break
     if relic_data is None:
