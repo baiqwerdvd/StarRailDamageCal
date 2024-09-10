@@ -28,6 +28,29 @@ async def cal_info(char_data: Dict):
     return await avatar.get_damage_info()
 
 
+async def get_char_data(uid: str, avatar_name: str):
+    char_name = alias_to_char_name(avatar_name)
+    char_id = name_to_avatar_id(char_name)
+
+    if char_id == "":
+        raise CharNameError(char_name)
+
+    char_id_list, char_data_dict = await api_to_dict(uid)
+
+    if isinstance(char_id_list, str):
+        msg = "char_id_list is str"
+        raise MihomoRequestError(msg)
+
+    if char_data_dict is None:
+        msg = "char_data_dict is None"
+        raise MihomoRequestError(msg)
+
+    if char_id not in char_id_list:
+        raise NotInCharacterShowcaseError
+
+    return char_data_dict[char_id]
+
+
 class DamageCal:
     @classmethod
     async def cal_info(cls, char_data: Dict):
@@ -40,26 +63,7 @@ class DamageCal:
 
     @classmethod
     async def get_damage_data_by_uid(cls, uid: str, avatar_name: str):
-        char_name = alias_to_char_name(avatar_name)
-        char_id = name_to_avatar_id(char_name)
-
-        if char_id == "":
-            raise CharNameError(char_name)
-
-        char_id_list, char_data_dict = await api_to_dict(uid)
-
-        if isinstance(char_id_list, str):
-            msg = "char_id_list is str"
-            raise MihomoRequestError(msg)
-
-        if char_data_dict is None:
-            msg = "char_data_dict is None"
-            raise MihomoRequestError(msg)
-
-        if char_id not in char_id_list:
-            raise NotInCharacterShowcaseError
-
-        char_data = char_data_dict[char_id]
+        char_data = await get_char_data(uid, avatar_name)
         return await cls.cal_info(char_data)
 
     @classmethod
