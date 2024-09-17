@@ -34,6 +34,14 @@ from starrail_damage_cal.mihomo.models import Avatar, MihomoData
 from starrail_damage_cal.mihomo.requests import get_char_card_info
 
 
+async def api_to_model(
+    uid: Union[str, None] = None,
+    mihomo_raw: Union[MihomoData, None] = None,
+    save_path: Union[Path, None] = None,
+) -> Tuple[List[str], List[Dict[str, Any]]]:
+    pass
+
+
 async def api_to_dict(
     uid: Union[str, None] = None,
     mihomo_raw: Union[MihomoData, None] = None,
@@ -52,14 +60,11 @@ async def api_to_dict(
         path = save_path / uid
         path.mkdir(parents=True, exist_ok=True)
         with Path.open(path / f"{uid!s}.json", "wb") as file:
-            file.write(msgjson.format(msgjson.encode(PlayerDetailInfo), indent=4))
+            _ = file.write(msgjson.format(msgjson.encode(PlayerDetailInfo), indent=4))
         with Path.open(path / "rawData.json", "wb") as file:
-            file.write(msgjson.format(msgjson.encode(sr_data), indent=4))
+            _ = file.write(msgjson.format(msgjson.encode(sr_data), indent=4))
 
     player_uid = str(PlayerDetailInfo.uid)
-
-    if sr_data.detailInfo is None:
-        raise CharacterShowcaseNotOpenError(player_uid)
 
     char_name_list: List[str] = []
     char_id_list: List[str] = []
@@ -222,7 +227,7 @@ async def get_data(
     base_attributes = {}
     avatar_promotion_base = None
     for avatar in AvatarPromotionConfig:
-        if avatar.AvatarID == char.avatarId:
+        if avatar.AvatarID == char.avatarId and avatar.Promotion == char.promotion:
             avatar_promotion_base = avatar
             break
     if not avatar_promotion_base:
@@ -256,7 +261,6 @@ async def get_data(
     char_data["baseAttributes"] = base_attributes
 
     # 处理武器
-
     equipment_info = {}
     if char.equipment and char.equipment.tid is not None:
         equipment_info["equipmentID"] = char.equipment.tid
@@ -269,7 +273,7 @@ async def get_data(
         equipment_base_attributes = {}
         equipment_promotion_base = None
         for equipment in EquipmentPromotionConfig:
-            if equipment.EquipmentID == char.equipment.tid:
+            if equipment.EquipmentID == char.equipment.tid and equipment.Promotion == char.equipment.promotion:
                 equipment_promotion_base = equipment
                 break
         if not equipment_promotion_base:

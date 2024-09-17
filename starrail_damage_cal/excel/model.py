@@ -21,7 +21,6 @@ class PromotionAttr(Struct):
 
 class SingleAvatarPromotion(Struct):
     AvatarID: int
-    # Promotion: int
     PromotionCostList: List[PromotionCost]
     MaxLevel: int
     # WorldLevelRequire: Union[int, None]
@@ -35,12 +34,12 @@ class SingleAvatarPromotion(Struct):
     CriticalChance: PromotionAttr
     CriticalDamage: PromotionAttr
     BaseAggro: PromotionAttr
+    Promotion: Union[int, None] = None
     PlayerLevelRequire: Union[int, None] = None
 
 
 class SingleEquipmentPromotion(Struct):
     EquipmentID: int
-    # Promotion: int
     PromotionCostList: List[PromotionCost]
     MaxLevel: int
     # WorldLevelRequire: Union[int, None]
@@ -50,6 +49,7 @@ class SingleEquipmentPromotion(Struct):
     BaseAttackAdd: PromotionAttr
     BaseDefence: PromotionAttr
     BaseDefenceAdd: PromotionAttr
+    Promotion: Union[int, None] = None
     PlayerLevelRequire: Union[int, None] = None
 
 

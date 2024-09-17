@@ -8,9 +8,8 @@ from starrail_damage_cal.to_data import api_to_dict
 
 async def test_get_damage_data_by_uid() -> None:
     # print(await api_to_dict("108069476"))
-    char_data = await get_char_data(uid="108069476", avatar_name="流萤")
-    if isinstance(char_data, Union[List, dict]):
-        print(json.dumps(char_data, ensure_ascii=False, indent=4))
+    char_data = await get_char_data(uid="100086290", avatar_name="希儿")
+    print(json.dumps(char_data, ensure_ascii=False, indent=4))
 
     char = await cal_char_info(char_data)
     avatar = AvatarInstance(char)
