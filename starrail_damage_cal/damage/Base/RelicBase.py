@@ -1,14 +1,14 @@
 from abc import abstractmethod
 from typing import Dict
 
-from starrail_damage_cal.damage.Base.model import DamageInstanceRelic
-from starrail_damage_cal.logger import logger
-from starrail_damage_cal.map.model.RelicSetSkill import RelicSetStatusAdd
-from starrail_damage_cal.map.SR_MAP_PATH import RelicSetSkill
+from ...logger import logger
+from ...map.model.RelicSetSkill import RelicSetStatusAdd
+from ...map.SR_MAP_PATH import RelicSetSkill
+from ...model import Relic
 
 
 class SingleRelic:
-    def __init__(self, relic: DamageInstanceRelic):
+    def __init__(self, relic: Relic):
         self.raw_relic = relic
         self.relic_id = relic.relicId
         self.set_id = relic.SetId

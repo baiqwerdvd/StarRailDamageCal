@@ -41,7 +41,8 @@ ignore = [
     "ARG",
     "COM812",
     "N801",
-    "ISC"
+    "ISC",
+    "TID252"
 ]
 line-length = 88
 target-version = "py38"

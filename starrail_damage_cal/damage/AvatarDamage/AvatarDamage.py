@@ -1,24 +1,24 @@
 import copy
 from typing import Dict, List
 
-from starrail_damage_cal.damage.Base.AvatarBase import BaseAvatar, BaseAvatarBuff
-from starrail_damage_cal.damage.Base.model import (
+from ...damage.Base.AvatarBase import BaseAvatar, BaseAvatarBuff
+from ...damage.Base.model import (
     DamageInstanceAvatar,
-    DamageInstanceSkill,
 )
-from starrail_damage_cal.damage.Role import (
+from ...damage.Role import (
     break_damage,
     calculate_damage,
     calculate_heal,
     calculate_shield,
 )
-from starrail_damage_cal.logger import logger
+from ...logger import logger
+from ...model import MohomoAvatarSkill
 
 
 class Seele(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -118,7 +118,7 @@ class Seele(BaseAvatar):
 class JingYuan(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -210,7 +210,7 @@ class JingYuan(BaseAvatar):
 class Welt(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -319,7 +319,7 @@ class Welt(BaseAvatar):
 class Danhengil(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -534,7 +534,7 @@ class Danhengil(BaseAvatar):
 class Argenti(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -646,7 +646,7 @@ class Argenti(BaseAvatar):
 class Clara(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -775,7 +775,7 @@ class Clara(BaseAvatar):
 class Silverwolf(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -857,7 +857,7 @@ class Silverwolf(BaseAvatar):
 class Kafka(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -955,7 +955,7 @@ class Kafka(BaseAvatar):
 class Blade(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1100,7 +1100,7 @@ class Blade(BaseAvatar):
 class Fuxuan(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1177,7 +1177,7 @@ class Fuxuan(BaseAvatar):
 class Yanqing(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1272,7 +1272,7 @@ class Yanqing(BaseAvatar):
 class Himeko(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1359,7 +1359,7 @@ class Himeko(BaseAvatar):
 class Qingque(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1437,7 +1437,7 @@ class Qingque(BaseAvatar):
 class Jingliu(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1542,7 +1542,7 @@ class Jingliu(BaseAvatar):
 class Topaz(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1627,7 +1627,7 @@ class Topaz(BaseAvatar):
 class Guinaifen(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1717,7 +1717,7 @@ class Guinaifen(BaseAvatar):
 class Gepard(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1782,7 +1782,7 @@ class Gepard(BaseAvatar):
 class Luocha(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -1909,7 +1909,7 @@ class Luocha(BaseAvatar):
 class Bailu(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2005,7 +2005,7 @@ class Bailu(BaseAvatar):
 class Lynx(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2120,7 +2120,7 @@ class Lynx(BaseAvatar):
 class Natasha(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2214,7 +2214,7 @@ class Natasha(BaseAvatar):
 class Mar7th(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2310,7 +2310,7 @@ class Mar7th(BaseAvatar):
 class Bronya(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2374,7 +2374,7 @@ class Bronya(BaseAvatar):
 class Yukong(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2455,7 +2455,7 @@ class Yukong(BaseAvatar):
 class Sushang(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2559,7 +2559,7 @@ class Sushang(BaseAvatar):
 class Luka(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2674,7 +2674,7 @@ class Luka(BaseAvatar):
 class DanHeng(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2751,7 +2751,7 @@ class DanHeng(BaseAvatar):
 class Arlan(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2826,7 +2826,7 @@ class Arlan(BaseAvatar):
 class Asta(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2895,7 +2895,7 @@ class Asta(BaseAvatar):
 class Herta(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -2984,7 +2984,7 @@ class Herta(BaseAvatar):
 class Serval(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3078,7 +3078,7 @@ class Serval(BaseAvatar):
 class Pela(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3167,7 +3167,7 @@ class Pela(BaseAvatar):
 class Sampo(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3257,7 +3257,7 @@ class Sampo(BaseAvatar):
 class Hook(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3366,7 +3366,7 @@ class Hook(BaseAvatar):
 class Tingyun(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3420,7 +3420,7 @@ class Tingyun(BaseAvatar):
 class Trailblazer(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3508,7 +3508,7 @@ class Trailblazer(BaseAvatar):
 class Trailblazer_K(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3633,7 +3633,7 @@ class Trailblazer_K(BaseAvatar):
 class Huohuo(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3737,7 +3737,7 @@ class Huohuo(BaseAvatar):
 class Hanya(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3814,7 +3814,7 @@ class Hanya(BaseAvatar):
 class DrRatio(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -3913,7 +3913,7 @@ class DrRatio(BaseAvatar):
 class RuanMei(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -4011,7 +4011,7 @@ class RuanMei(BaseAvatar):
 class XueYi(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -4105,7 +4105,7 @@ class XueYi(BaseAvatar):
 class BlackSwan(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -4217,7 +4217,7 @@ class BlackSwan(BaseAvatar):
 class Sparkle(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -4287,7 +4287,7 @@ class Sparkle(BaseAvatar):
 class Acheron(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -4444,7 +4444,7 @@ class Acheron(BaseAvatar):
 class Aventurine(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -4557,7 +4557,7 @@ class Aventurine(BaseAvatar):
 class Gallagher(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -4657,7 +4657,7 @@ class Gallagher(BaseAvatar):
 class Robin(BaseAvatar):
     Buff: BaseAvatarBuff
 
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         super().__init__(char=char, skills=skills)
         self.eidolon_attribute: Dict[str, float] = {}
         self.extra_ability_attribute: Dict[str, float] = {}
@@ -4745,7 +4745,7 @@ class Robin(BaseAvatar):
 
 class AvatarDamage:
     @classmethod
-    def create(cls, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def create(cls, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         if char.id_ == 1214:
             return XueYi(char, skills)
         if char.id_ == 1306:

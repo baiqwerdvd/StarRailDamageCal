@@ -2,10 +2,10 @@ import json
 from pathlib import Path
 from typing import List
 
-from starrail_damage_cal.damage.Base.model import (
+from ...damage.Base.model import (
     DamageInstanceAvatar,
-    DamageInstanceSkill,
 )
+from ...model import MohomoAvatarSkill
 
 path = Path(__file__).parent.parent
 with Path.open(path / "Excel" / "SkillData.json", encoding="utf-8") as f:
@@ -22,7 +22,7 @@ skill_types = {
 
 
 class SingleSkill:
-    def __init__(self, skill: DamageInstanceSkill):
+    def __init__(self, skill: MohomoAvatarSkill):
         self.id = skill.skillId
         self.level = skill.skillLevel
 
@@ -35,7 +35,7 @@ class BaseSkills:
     Talent_: SingleSkill
 
     @classmethod
-    def create(cls, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def create(cls, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         for skill in skills:
             skill_attack_type = skill.skillAttackType
             if skill_attack_type not in skill_types:

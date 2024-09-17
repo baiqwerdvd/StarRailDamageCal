@@ -3,9 +3,9 @@ from typing import Dict, List, Tuple
 
 from msgspec import Struct
 
-from starrail_damage_cal.damage.Base.model import DamageInstanceWeapon
-from starrail_damage_cal.excel.model import EquipmentPromotionConfig
-from starrail_damage_cal.map.SR_MAP_PATH import EquipmentID2AbilityProperty
+from ...damage.Base.model import DamageInstanceWeapon
+from ...excel.model import EquipmentPromotionConfig
+from ...map.SR_MAP_PATH import EquipmentID2AbilityProperty
 
 
 class BaseWeaponAttribute(Struct):
@@ -29,7 +29,6 @@ class BaseWeapon:
         self.weapon_promotion = weapon.promotion
         self.weapon_base_attribute = self.get_attribute()
         self.weapon_attribute: Dict[str, float] = {}
-        self.get_attribute()
         self.weapon_property_ability()
 
     @abstractmethod
@@ -57,7 +56,7 @@ class BaseWeapon:
     def get_attribute(self):
         promotion = None
         for equipment in EquipmentPromotionConfig:
-            if equipment.EquipmentID == self.weapon_id:
+            if equipment.EquipmentID == int(self.weapon_id):
                 promotion = equipment
                 break
         if not promotion:

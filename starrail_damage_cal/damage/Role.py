@@ -1,7 +1,7 @@
 import copy
 from typing import Dict
 
-from starrail_damage_cal.damage.utils import merge_attribute
+from ..damage.utils import merge_attribute
 
 
 async def calculate_heal(
@@ -10,7 +10,7 @@ async def calculate_heal(
     skill_type: str,
     skill_multiplier: float,
     skill_num: float,
-    is_atk=0,
+    is_atk: int = 0,
 ):
     add_attr_bonus = copy.deepcopy(attribute_bonus)
     merged_attr = await merge_attribute(base_attr, add_attr_bonus)
@@ -34,7 +34,7 @@ async def calculate_shield(
     attribute_bonus: Dict[str, float],
     skill_multiplier: float,
     skill_num: float,
-    is_atk=0,
+    is_atk: int = 0,
 ):
     add_attr_bonus = copy.deepcopy(attribute_bonus)
     merged_attr = await merge_attribute(base_attr, add_attr_bonus)
@@ -155,7 +155,7 @@ async def calculate_damage(
     element: str,
     skill_multiplier: float,
     level: int,
-    is_hp=0,
+    is_hp: int=0,
 ):
     add_attr_bonus = copy.deepcopy(attribute_bonus)
 
@@ -439,7 +439,7 @@ async def calculate_damage_tz(
     skill_type: str,
     add_skill_type: str,
     element: str,
-    is_hp=0,
+    is_hp:int=0,
 ):
     add_attr_bonus_tz = copy.deepcopy(add_attr_bonus)
     add_attr_bonus_tz["AttackAddedRatio"] = (

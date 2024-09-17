@@ -1,10 +1,10 @@
 from collections import Counter
 from typing import Dict, List, Union
 
-from starrail_damage_cal.damage.Base.model import DamageInstanceRelic
-from starrail_damage_cal.damage.Base.RelicBase import BaseRelicSetSkill, SingleRelic
-from starrail_damage_cal.damage.utils import merge_attribute
-from starrail_damage_cal.logger import logger
+from ...damage.Base.RelicBase import BaseRelicSetSkill, SingleRelic
+from ...damage.utils import merge_attribute
+from ...logger import logger
+from ...model import Relic
 
 
 class Relic101(BaseRelicSetSkill):
@@ -941,7 +941,7 @@ class RelicSet:
         ]
     ]
 
-    def create(self, relic_list: List[DamageInstanceRelic]):
+    def create(self, relic_list: List[Relic]):
         set_id_list: List[int] = []
         for relic in relic_list:
             set_id_list.append(relic.SetId)

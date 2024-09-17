@@ -2,7 +2,7 @@ from typing import List, Union
 
 from msgspec import Struct, convert
 
-from starrail_damage_cal.excel.read_excel import (
+from ..excel.read_excel import (
     AvatarPromotion,
     EquipmentPromotion,
     RelicMainAffix,

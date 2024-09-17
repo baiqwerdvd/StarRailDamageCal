@@ -4,8 +4,8 @@ from typing import Dict, List, TypedDict, Union
 
 from msgspec import json as msgjson
 
-from starrail_damage_cal.map.model.RelicSetSkill import RelicSetSkillModel
-from starrail_damage_cal.version import StarRail_version
+from ..map.model.RelicSetSkill import RelicSetSkillModel
+from ..version import StarRail_version
 
 MAP = Path(__file__).parent / "data"
 

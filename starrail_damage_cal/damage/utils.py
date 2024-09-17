@@ -1,7 +1,7 @@
 from typing import Dict
 
-from starrail_damage_cal.excel.model import RelicMainAffixConfig, RelicSubAffixConfig
-from starrail_damage_cal.map.SR_MAP_PATH import RelicId2MainAffixGroup
+from ..excel.model import RelicMainAffixConfig, RelicSubAffixConfig
+from ..map.SR_MAP_PATH import RelicId2MainAffixGroup
 
 
 async def cal_relic_main_affix(
@@ -11,7 +11,7 @@ async def cal_relic_main_affix(
     relic_type: int,
     relic_level: int,
 ):
-    if set_id[0] == 3:
+    if set_id[0] == "3":
         rarity = int(str(relic_id)[0]) - 1
         group_id = str(rarity) + str(relic_type)
     else:

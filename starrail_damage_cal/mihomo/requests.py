@@ -7,12 +7,12 @@ import msgspec
 from httpx import AsyncClient
 from msgspec import convert
 
-from starrail_damage_cal.exception import (
+from ..exception import (
     InvalidUidError,
     MihomoModelError,
     MihomoQueueTimeoutError,
 )
-from starrail_damage_cal.mihomo.models import MihomoData
+from ..mihomo.models import MihomoData
 
 _HEADER = {"User-Agent": "StarRailDamageCal/"}
 
@@ -31,7 +31,7 @@ async def get_char_card_info(
             path = save_path / str(uid)
             path.mkdir(parents=True, exist_ok=True)
             with Path.open(path / f"{uid!s}.json", "w") as file:
-                _= file.write(req.text)
+                _ = file.write(req.text)
         try:
             return convert(req.json(), type=MihomoData)
         except msgspec.ValidationError as e:

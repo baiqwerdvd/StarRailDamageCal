@@ -2,12 +2,13 @@ import json
 from pathlib import Path
 from typing import Dict
 
-from starrail_damage_cal.damage.AvatarDamage.AvatarDamage import AvatarDamage
-from starrail_damage_cal.damage.Base.AvatarBase import BaseAvatarinfo
-from starrail_damage_cal.damage.Base.model import DamageInstance
-from starrail_damage_cal.damage.Relic.Relic import RelicSet, SingleRelic
-from starrail_damage_cal.damage.Weapon.Weapon import Weapon
-from starrail_damage_cal.mono.Character import Character
+from ..damage.AvatarDamage.AvatarDamage import AvatarDamage
+from ..damage.Base.AvatarBase import BaseAvatarinfo
+from ..damage.Base.model import DamageInstance
+from ..damage.Base.RelicBase import SingleRelic
+from ..damage.Relic.Relic import RelicSet
+from ..damage.Weapon.Weapon import Weapon
+from ..mono.Character import Character
 
 Excel_path = Path(__file__).parent
 with Path.open(Excel_path / "Excel" / "SkillData.json", encoding="utf-8") as f:
@@ -109,8 +110,5 @@ class AvatarInstance:
                 self.base_attr,
                 self.attribute_bonus,
             )
-        if self.attribute_bonus is None:
-            msg = "attribute_bonus is None"
-            raise Exception(msg)  # noqa: TRY002
 
         return await self.avatardamage.getdamage(self.base_attr, self.attribute_bonus)

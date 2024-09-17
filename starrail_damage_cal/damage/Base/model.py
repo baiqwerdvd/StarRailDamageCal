@@ -1,107 +1,54 @@
 from typing import List, Union
 
-import msgspec
 from msgspec import Struct, field
 
-
-class DamageInstanceSkill(Struct):
-    skillId: int
-    skillName: str
-    skillEffect: str
-    skillAttackType: str
-    skillLevel: int
-
-
-class DamageInstanceRelicSubAffix(Struct):
-    SubAffixID: int
-    Property: str
-    Name: str
-    Cnt: int
-    Step: int
-    Value: float
-
-
-class DamageInstanceRelicMainAffix(Struct):
-    AffixID: int
-    Property: str
-    Name: str
-    Value: float
-
-
-class DamageInstanceRelic(Struct):
-    relicId: int
-    relicName: str
-    SetId: int
-    SetName: str
-    Type: int
-    MainAffix: DamageInstanceRelicMainAffix
-    SubAffixList: Union[List[DamageInstanceRelicSubAffix], None]
-    Level: int = 0
+from ...model import (
+    MohomoAvatarAttributeBonus,
+    MohomoAvatarExtraAbility,
+    MohomoAvatarSkill,
+    Relic,
+)
+from ...mono.Character import Character
 
 
 class DamageInstanceWeapon(Struct):
-    id_: str = field(name="id")
+    id_: int = field(name="id")
     level: int
     rank: int
     promotion: int
 
 
-class AttributeBounsStatusAdd(Struct):
-    property_: str = field(name="property")
-    name: str
-    value: float
-
-
-class DamageInstanceAvatarAttributeBouns(Struct):
-    attributeBonusId: int
-    attributeBonusLevel: int
-    statusAdd: AttributeBounsStatusAdd
-
-
 class DamageInstanceAvatar(Struct):
-    id_: str = field(name="id")
+    id_: int = field(name="id")
     level: int
     rank: int
     element: str
     promotion: int
-    attribute_bonus: Union[List[DamageInstanceAvatarAttributeBouns], None]
-    extra_ability: Union[List, None]
+    attribute_bonus: List[MohomoAvatarAttributeBonus]
+    extra_ability: List[MohomoAvatarExtraAbility]
 
 
 class DamageInstance:
     avatar: DamageInstanceAvatar
     weapon: Union[DamageInstanceWeapon, None]
-    relic: List[DamageInstanceRelic]
-    skill: List[DamageInstanceSkill]
+    relic: List[Relic]
+    skill: List[MohomoAvatarSkill]
 
-    def __init__(self, char):
+    def __init__(self, char: Character):
         self.avatar = DamageInstanceAvatar(
             id_=char.char_id,
             level=char.char_level,
             rank=char.char_rank,
             element=char.char_element,
             promotion=char.char_promotion,
-            attribute_bonus=msgspec.convert(
-                char.attribute_bonus,
-                Union[List[DamageInstanceAvatarAttributeBouns], None],
-            ),
-            extra_ability=msgspec.convert(
-                char.extra_ability,
-                Union[List, None],
-            ),
+            attribute_bonus=char.attribute_bonus,
+            extra_ability=char.extra_ability,
         )
-        if char.equipment.get("equipmentID") is not None:
-            self.weapon = DamageInstanceWeapon(
-                id_=char.equipment["equipmentID"],
-                level=char.equipment["equipmentLevel"],
-                rank=char.equipment["equipmentRank"],
-                promotion=char.equipment["equipmentPromotion"],
-            )
-        else:
-            self.weapon = None
-        self.relic = []
-        for relic in char.char_relic:
-            self.relic.append(msgspec.convert(relic, DamageInstanceRelic))
-        self.skill = []
-        for skill in char.char_skill:
-            self.skill.append(msgspec.convert(skill, DamageInstanceSkill))
+        self.weapon = DamageInstanceWeapon(
+            id_=char.equipment.equipmentID,
+            level=char.equipment.equipmentLevel,
+            rank=char.equipment.equipmentRank,
+            promotion=char.equipment.equipmentPromotion,
+        )
+        self.relic = char.char_relic
+        self.skill = char.char_skill

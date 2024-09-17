@@ -6,12 +6,12 @@ from typing import List, Tuple, Union
 import msgspec
 from msgspec import Struct
 
-from starrail_damage_cal.damage.Base.model import (
+from ...damage.Base.model import (
     DamageInstanceAvatar,
-    DamageInstanceSkill,
 )
-from starrail_damage_cal.damage.Base.SkillBase import BaseSkills
-from starrail_damage_cal.excel.model import AvatarPromotionConfig
+from ...damage.Base.SkillBase import BaseSkills
+from ...excel.model import AvatarPromotionConfig
+from ...model import MohomoAvatarSkill
 
 path = Path(__file__).parent.parent
 with Path.open(path / "Excel" / "SkillData.json", encoding="utf-8") as f:
@@ -41,11 +41,11 @@ class BaseAvatarAttribute(Struct):
 
 class BaseAvatarBuff:
     @classmethod
-    def create(cls, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
-        cls.extra_ability_id = []
+    def create(cls, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
+        cls.extra_ability_id: List[int] = []
         if char.extra_ability:
             for extra_ability in char.extra_ability:
-                cls.extra_ability_id.append(extra_ability["extraAbilityId"])
+                cls.extra_ability_id.append(extra_ability.extraAbilityId)
         return cls
 
     @abstractmethod
@@ -111,7 +111,7 @@ class BaseAvatarinfo:
 
 
 class BaseAvatar:
-    def __init__(self, char: DamageInstanceAvatar, skills: List[DamageInstanceSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
         self.Skill = BaseSkills.create(char=char, skills=skills)
         self.Buff = BaseAvatarBuff.create(char=char, skills=skills)
         self.avatar_id = char.id_
