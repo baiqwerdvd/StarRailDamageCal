@@ -1,5 +1,5 @@
+from ..excel.model import CharAlias
 from ..map.SR_MAP_PATH import (
-    alias_data,
     avatarId2Name,
 )
 
@@ -14,7 +14,7 @@ def name_to_avatar_id(name: str) -> str:
 
 
 def alias_to_char_name(char_name: str) -> str:
-    for i in alias_data["characters"]:
-        if char_name in alias_data["characters"][i]:
-            return alias_data["characters"][i][0]
+    for i in CharAlias["characters"]:
+        if char_name in CharAlias["characters"][i]:
+            return CharAlias["characters"][i][0]
     return char_name

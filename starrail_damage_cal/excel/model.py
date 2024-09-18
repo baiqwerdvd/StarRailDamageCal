@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import List, Union
+from typing import Dict, List, Union
 
 from msgspec import Struct, convert
 
@@ -67,6 +67,26 @@ class SingleRelicSubAffix(Struct):
     StepValue: PromotionAttr
     StepNum: int
 
+
+class SingleAvatarRelicScore(Struct):
+    role: str
+    HPDelta: float
+    HPAddedRatio: float
+    AttackDelta: float
+    AttackAddedRatio: float
+    DefenceDelta: float
+    DefenceAddedRatio: float
+    SpeedDelta: float
+    CriticalChanceBase: float
+    CriticalDamageBase: float
+    BreakDamageAddedRatioBase: float
+    HealRatio: float
+    SPRatio: float
+    StatusProbabilityBase: float
+    StatusResistanceBase: float
+    AttributeAddedRatio: float
+
+
 with Path.open(EXCEL / "RelicMainAffixConfig.json", encoding="utf8") as f:
     RelicMainAffixConfig = convert(json.load(f), List[SingleRelicMainAffix])
 
@@ -78,3 +98,9 @@ with Path.open(EXCEL / "AvatarPromotionConfig.json", encoding="utf8") as f:
 
 with Path.open(EXCEL / "EquipmentPromotionConfig.json", encoding="utf8") as f:
     EquipmentPromotionConfig = convert(json.load(f), List[SingleEquipmentPromotion])
+
+with Path.open(EXCEL / "AvatarRelicScore.json", encoding="utf8") as f:
+    AvatarRelicScore = convert(json.load(f), List[SingleAvatarRelicScore])
+
+with Path.open(EXCEL / "char_alias.json", encoding="utf8") as f:
+    CharAlias = convert(json.load(f), Dict[str, Dict[str, List[str]]])

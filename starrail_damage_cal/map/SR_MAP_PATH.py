@@ -13,6 +13,7 @@ version = StarRail_version
 avatarId2Name_fileName = f"avatarId2Name_mapping_{version}.json"
 avatarId2EnName_fileName = f"avatarId2EnName_mapping_{version}.json"
 EquipmentID2Name_fileName = f"EquipmentID2Name_mapping_{version}.json"
+EquipmentID2EnName_fileName = f"EquipmentID2EnName_mapping_{version}.json"
 skillId2Name_fileName = f"skillId2Name_mapping_{version}.json"
 skillId2Type_fileName = f"skillId2Type_mapping_{version}.json"
 Property2Name_fileName = f"Property2Name_mapping_{version}.json"
@@ -28,6 +29,7 @@ EquipmentID2AbilityProperty_fileName = (
 RelicSetSkill_fileName = f"RelicSetSkill_mapping_{version}.json"
 skillId2AttackType_fileName = f"skillId2AttackType_mapping_{version}.json"
 EquipmentID2Rarity_fileName = f"EquipmentID2Rarity_mapping_{version}.json"
+RelicId2Rarity_fileName = f"RelicId2Rarity_mapping_{version}.json"
 ItemId2Name_fileName = f"ItemId2Name_mapping_{version}.json"
 RelicId2MainAffixGroup_fileName = f"RelicId2MainAffixGroup_mapping_{version}.json"
 avatarRankSkillUp_fileName = f"avatarRankSkillUp_mapping_{version}.json"
@@ -91,6 +93,9 @@ with Path.open(MAP / avatarId2EnName_fileName, encoding="UTF-8") as f:
 with Path.open(MAP / EquipmentID2Name_fileName, encoding="UTF-8") as f:
     EquipmentID2Name = msgjson.decode(f.read(), type=Dict[str, str])
 
+with Path.open(MAP / EquipmentID2EnName_fileName, encoding="UTF-8") as f:
+    EquipmentID2EnName = msgjson.decode(f.read(), type=Dict[str, str])
+
 with Path.open(MAP / skillId2Name_fileName, encoding="UTF-8") as f:
     skillId2Name = msgjson.decode(f.read(), type=Dict[str, str])
 
@@ -116,9 +121,6 @@ with Path.open(MAP / characterSkillTree_fileName, encoding="UTF-8") as f:
 
 with Path.open(MAP / avatarId2DamageType_fileName, encoding="UTF-8") as f:
     avatarId2DamageType = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / "char_alias.json", encoding="UTF-8") as f:
-    alias_data = msgjson.decode(f.read(), type=Dict[str, Dict[str, List[str]]])
 
 with Path.open(MAP / avatarId2Rarity_fileName, encoding="UTF-8") as f:
     avatarId2Rarity = msgjson.decode(f.read(), type=Dict[str, str])
@@ -148,3 +150,6 @@ with Path.open(MAP / RelicId2MainAffixGroup_fileName, encoding="UTF-8") as f:
 
 with Path.open(MAP / avatarRankSkillUp_fileName, encoding="UTF-8") as f:
     AvatarRankSkillUp = msgjson.decode(f.read(), type=Dict[str, Union[List[LU], None]])
+
+with Path.open(MAP / RelicId2Rarity_fileName, encoding="UTF-8") as f:
+    RelicId2Rarity = msgjson.decode(f.read(), type=Dict[str, int])
