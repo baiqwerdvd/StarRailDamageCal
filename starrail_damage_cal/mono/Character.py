@@ -77,10 +77,7 @@ class Character:
         # 处理套装属性
         set_id_dict = Counter(set_id_list)
         # logger.info(set_id_dict.most_common())
-        for item in set_id_dict.most_common():
-            set_property = ""
-            set_id = item[0]
-            count = item[1]
+        for set_id, count in set_id_dict.most_common():
             set_value = 0
             if count >= 2:
                 status_add = RelicSetSkill[str(set_id)].get("2", None)

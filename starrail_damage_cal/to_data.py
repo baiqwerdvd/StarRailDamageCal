@@ -377,8 +377,8 @@ async def get_data(
         path.mkdir(parents=True, exist_ok=True)
         path.mkdir(parents=True, exist_ok=True)
         with Path.open(
-            path / f"{char_data.avatarName}.json", "w", encoding="UTF-8"
+            path / f"{char_data.avatarName}.json", "wb", encoding="UTF-8"
         ) as file:
-            json.dump(char_data, file, ensure_ascii=False)
+            _ = file.write(msgjson.encode(char_data))
 
     return char_data, char_data.avatarName
