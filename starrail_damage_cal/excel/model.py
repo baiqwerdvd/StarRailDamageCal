@@ -1,13 +1,10 @@
+import json
+from pathlib import Path
 from typing import List, Union
 
 from msgspec import Struct, convert
 
-from ..excel.read_excel import (
-    AvatarPromotion,
-    EquipmentPromotion,
-    RelicMainAffix,
-    RelicSubAffix,
-)
+EXCEL = Path(__file__).parent
 
 
 class PromotionCost(Struct):
@@ -70,8 +67,14 @@ class SingleRelicSubAffix(Struct):
     StepValue: PromotionAttr
     StepNum: int
 
+with Path.open(EXCEL / "RelicMainAffixConfig.json", encoding="utf8") as f:
+    RelicMainAffixConfig = convert(json.load(f), List[SingleRelicMainAffix])
 
-AvatarPromotionConfig = convert(AvatarPromotion, List[SingleAvatarPromotion])
-EquipmentPromotionConfig = convert(EquipmentPromotion, List[SingleEquipmentPromotion])
-RelicMainAffixConfig = convert(RelicMainAffix, List[SingleRelicMainAffix])
-RelicSubAffixConfig = convert(RelicSubAffix, List[SingleRelicSubAffix])
+with Path.open(EXCEL / "RelicSubAffixConfig.json", encoding="utf8") as f:
+    RelicSubAffixConfig = convert(json.load(f), List[SingleRelicSubAffix])
+
+with Path.open(EXCEL / "AvatarPromotionConfig.json", encoding="utf8") as f:
+    AvatarPromotionConfig = convert(json.load(f), List[SingleAvatarPromotion])
+
+with Path.open(EXCEL / "EquipmentPromotionConfig.json", encoding="utf8") as f:
+    EquipmentPromotionConfig = convert(json.load(f), List[SingleEquipmentPromotion])

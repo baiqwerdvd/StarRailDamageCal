@@ -1,5 +1,5 @@
 from collections import Counter
-from typing import List
+from typing import Dict, List
 
 from ..map.SR_MAP_PATH import (
     EquipmentID2AbilityProperty,
@@ -22,10 +22,10 @@ class Character:
         self.attribute_bonus = card_prop.avatarAttributeBonus
         self.char_relic = card_prop.RelicInfo
         self.base_attributes = card_prop.baseAttributes
-        self.add_attr = {}
         self.equipment = card_prop.equipmentInfo
         self.rarity = card_prop.avatarRarity
         self.eidolons = card_prop.rankList
+        self.add_attr: Dict[str, float] = {}
 
     async def get_equipment_info(self):
         base_attr = self.base_attributes
@@ -36,16 +36,15 @@ class Character:
         equip_ability_property = ability_property[str(equip_rank)]
 
         equip_add_base_attr = equip.baseAttributes
-        base_attr.hp = base_attr.hp + equip_add_base_attr.hp
-        base_attr.attack = base_attr.attack + equip_add_base_attr.attack
-        base_attr.defence = base_attr.defence + equip_add_base_attr.defence
+        base_attr.hp += equip_add_base_attr.hp
+        base_attr.attack += +equip_add_base_attr.attack
+        base_attr.defence += equip_add_base_attr.defence
         self.base_attributes = base_attr
 
         for equip_ability in equip_ability_property:
-            property_type: str = equip_ability["PropertyType"]
-            value: float = equip_ability["Value"]["Value"]
+            property_type = equip_ability.PropertyType
+            value = equip_ability.Value.Value
             self.add_attr[property_type] = value + self.add_attr.get(property_type, 0)
-        return self.add_attr
 
     async def get_char_attribute_bonus(self):
         attribute_bonus = self.attribute_bonus
@@ -84,7 +83,7 @@ class Character:
             count = item[1]
             set_value = 0
             if count >= 2:
-                status_add = RelicSetSkill.RelicSet[str(set_id)]["2"]
+                status_add = RelicSetSkill[str(set_id)].get("2", None)
                 if status_add:
                     set_property = status_add.Property
                     set_value = status_add.Value
@@ -94,7 +93,7 @@ class Character:
                             0,
                         )
             if count == 4:
-                status_add = RelicSetSkill.RelicSet[str(set_id)]["4"]
+                status_add = RelicSetSkill[str(set_id)].get("4", None)
                 if status_add:
                     set_property = status_add.Property
                     set_value = status_add.Value

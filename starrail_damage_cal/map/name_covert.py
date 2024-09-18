@@ -1,4 +1,4 @@
-from starrail_damage_cal.map.SR_MAP_PATH import (
+from ..map.SR_MAP_PATH import (
     alias_data,
     avatarId2Name,
 )

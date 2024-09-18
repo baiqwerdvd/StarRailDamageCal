@@ -43,8 +43,8 @@ class BaseWeapon:
         ability_property = EquipmentID2AbilityProperty[str(self.weapon_id)]
         equip_ability_property = ability_property[str(self.weapon_rank)]
         for equip_ability in equip_ability_property:
-            property_type = equip_ability["PropertyType"]
-            value = equip_ability["Value"]["Value"]
+            property_type = equip_ability.PropertyType
+            value = equip_ability.Value.Value
             if property_type in self.weapon_attribute:
                 self.weapon_attribute[property_type] += value
             else:

@@ -8,6 +8,7 @@ async def test_get_damage_data_by_uid() -> None:
     print(char_data)
 
     char = await cal_char_info(char_data)
+    print(char.add_attr)
     avatar = AvatarInstance(char)
     print(avatar.base_attr)
     print(avatar.attribute_bonus)

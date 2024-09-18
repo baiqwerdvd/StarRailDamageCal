@@ -1,10 +1,9 @@
-import json
 from pathlib import Path
 from typing import Dict, List, TypedDict, Union
 
+from msgspec import Struct
 from msgspec import json as msgjson
 
-from ..map.model.RelicSetSkill import RelicSetSkillModel
 from ..version import StarRail_version
 
 MAP = Path(__file__).parent / "data"
@@ -39,9 +38,48 @@ class TS(TypedDict):
     Icon: Dict[str, str]
 
 
-class LU(TypedDict):
+class LU(Struct):
     id: str
     num: int
+
+
+class TV(Struct):
+    type: str
+    value: float
+
+
+class AbilityPropertyValue(Struct):
+    Value: float
+
+
+class AbilityProperty(Struct):
+    PropertyType: str
+    Value: AbilityPropertyValue
+
+
+class SkillTreeLevel(Struct):
+    promotion: int
+    level: int
+    properties: List[TV]
+    materials: List[LU]
+
+
+class CharacterSkillTreeModel(Struct):
+    id: str
+    name: str
+    max_level: int
+    desc: str
+    params: List[List[float]]
+    anchor: str
+    pre_points: List[str]
+    level_up_skills: List[LU]
+    levels: List[SkillTreeLevel]
+    icon: str
+
+
+class RelicSetStatusAdd(Struct):
+    Property: str
+    Value: float
 
 
 with Path.open(MAP / avatarId2Name_fileName, encoding="UTF-8") as f:
@@ -72,13 +110,15 @@ with Path.open(MAP / rankId2Name_fileName, encoding="UTF-8") as f:
     rankId2Name = msgjson.decode(f.read(), type=Dict[str, str])
 
 with Path.open(MAP / characterSkillTree_fileName, encoding="UTF-8") as f:
-    characterSkillTree = msgjson.decode(f.read(), type=Dict[str, Dict])
+    characterSkillTree = msgjson.decode(
+        f.read(), type=Dict[str, Dict[str, CharacterSkillTreeModel]]
+    )
 
 with Path.open(MAP / avatarId2DamageType_fileName, encoding="UTF-8") as f:
     avatarId2DamageType = msgjson.decode(f.read(), type=Dict[str, str])
 
 with Path.open(MAP / "char_alias.json", encoding="UTF-8") as f:
-    alias_data = msgjson.decode(f.read(), type=Dict[str, Dict[str, List]])
+    alias_data = msgjson.decode(f.read(), type=Dict[str, Dict[str, List[str]]])
 
 with Path.open(MAP / avatarId2Rarity_fileName, encoding="UTF-8") as f:
     avatarId2Rarity = msgjson.decode(f.read(), type=Dict[str, str])
@@ -86,11 +126,13 @@ with Path.open(MAP / avatarId2Rarity_fileName, encoding="UTF-8") as f:
 with Path.open(MAP / EquipmentID2AbilityProperty_fileName, encoding="UTF-8") as f:
     EquipmentID2AbilityProperty = msgjson.decode(
         f.read(),
-        type=Dict[str, Dict[str, List]],
+        type=Dict[str, Dict[str, List[AbilityProperty]]],
     )
 
 with Path.open(MAP / RelicSetSkill_fileName, encoding="UTF-8") as f:
-    RelicSetSkill = RelicSetSkillModel.from_json(json.load(f))
+    RelicSetSkill = msgjson.decode(
+        f.read(), type=Dict[str, Dict[str, RelicSetStatusAdd]]
+    )
 
 with Path.open(MAP / skillId2AttackType_fileName, encoding="UTF-8") as f:
     skillId2AttackType = msgjson.decode(f.read(), type=Dict[str, str])

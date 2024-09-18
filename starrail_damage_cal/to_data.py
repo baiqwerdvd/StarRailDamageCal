@@ -175,17 +175,17 @@ async def get_data(
                     value=0,
                 ),
             )
-            status_add = characterSkillTree[str(char.avatarId)][str(behavior.pointId)][
-                "levels"
-            ][behavior.level - 1]["properties"]
-            if status_add:
-                for property_ in status_add:
-                    attribute_bonus_temp.statusAdd.property_ = property_["type"]
-                    attribute_bonus_temp.statusAdd.name = Property2Name[
-                        property_["type"]
-                    ]
-                    attribute_bonus_temp.statusAdd.value = property_["value"]
-                    char_data.avatarAttributeBonus.append(attribute_bonus_temp)
+            status_add = (
+                characterSkillTree[str(char.avatarId)][str(behavior.pointId)]
+                .levels[behavior.level - 1]
+                .properties
+            )
+            # if status_add:
+            for property_ in status_add:
+                attribute_bonus_temp.statusAdd.property_ = property_.type
+                attribute_bonus_temp.statusAdd.name = Property2Name[property_.type]
+                attribute_bonus_temp.statusAdd.value = property_.value
+                char_data.avatarAttributeBonus.append(attribute_bonus_temp)
 
     # 处理遗器
     if char.relicList:
@@ -265,8 +265,8 @@ async def get_data(
             level_up_skill = AvatarRankSkillUp[str(rank_id)]
             if level_up_skill:
                 for item in level_up_skill:
-                    skill_id = item["id"]
-                    skill_up_num = item["num"]
+                    skill_id = item.id
+                    skill_up_num = item.num
                     # 查找skill_id在不在avatarSkill中
                     for index, skill_item in enumerate(char_data.avatarSkill):
                         if str(skill_id) == str(skill_item.skillId):

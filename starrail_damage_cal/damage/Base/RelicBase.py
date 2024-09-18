@@ -2,8 +2,7 @@ from abc import abstractmethod
 from typing import Dict
 
 from ...logger import logger
-from ...map.model.RelicSetSkill import RelicSetStatusAdd
-from ...map.SR_MAP_PATH import RelicSetSkill
+from ...map.SR_MAP_PATH import RelicSetSkill, RelicSetStatusAdd
 from ...model import Relic
 
 
@@ -80,12 +79,12 @@ class BaseRelicSetSkill:
 
         relic_set_attribute: Dict[str, float] = {}
         if self.pieces2:
-            status_add = RelicSetSkill.RelicSet[str(self.setId)]["2"]
+            status_add = RelicSetSkill[str(self.setId)].get("2", None)
             if status_add:
                 add_relic_set_attribute(status_add)
 
         if self.pieces4:
-            status_add = RelicSetSkill.RelicSet[str(self.setId)]["4"]
+            status_add = RelicSetSkill[str(self.setId)].get("4", None)
             if status_add:
                 add_relic_set_attribute(status_add)
 

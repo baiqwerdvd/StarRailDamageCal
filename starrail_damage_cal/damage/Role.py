@@ -255,6 +255,7 @@ def apply_attribute_bonus(
 
 
 def calculate_damage_reduction(level: int):
+    _ = level
     enemy_damage_reduction = 0.1
     return 1 - enemy_damage_reduction
 
@@ -265,6 +266,7 @@ def calculate_resistance_area(
     add_skill_type: str,
     element: str,
 ):
+    _ = skill_type
     enemy_status_resistance = 0.0
     for attr in merged_attr:
         if "ResistancePenetration" in attr:

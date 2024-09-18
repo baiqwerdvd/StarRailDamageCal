@@ -77,6 +77,8 @@ class AvatarInstance:
             self.merge_attribute_bonus(set_skill.relicSetAttribute)
 
     def cal_avatar_eidolon_add(self):
+        if self.avatardamage is None:
+            return
         self.merge_attribute_bonus(self.avatardamage.eidolon_attribute)
         self.merge_attribute_bonus(self.avatardamage.extra_ability_attribute)
 
