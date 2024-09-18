@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 from typing import Dict, List, Tuple, Union
 
@@ -375,10 +374,7 @@ async def get_data(
     if save_path:
         path = save_path / str(uid)
         path.mkdir(parents=True, exist_ok=True)
-        path.mkdir(parents=True, exist_ok=True)
-        with Path.open(
-            path / f"{char_data.avatarName}.json", "wb", encoding="UTF-8"
-        ) as file:
+        with Path.open(path / f"{char_data.avatarName}.json", "wb") as file:
             _ = file.write(msgjson.encode(char_data))
 
     return char_data, char_data.avatarName
