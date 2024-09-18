@@ -3,9 +3,9 @@ from typing import List, Union
 from msgspec import Struct, field
 
 from ...model import (
-    MohomoAvatarAttributeBonus,
-    MohomoAvatarExtraAbility,
-    MohomoAvatarSkill,
+    MihomoAvatarAttributeBonus,
+    MihomoAvatarExtraAbility,
+    MihomoAvatarSkill,
     Relic,
 )
 from ...mono.Character import Character
@@ -24,15 +24,15 @@ class DamageInstanceAvatar(Struct):
     rank: int
     element: str
     promotion: int
-    attribute_bonus: List[MohomoAvatarAttributeBonus]
-    extra_ability: List[MohomoAvatarExtraAbility]
+    attribute_bonus: List[MihomoAvatarAttributeBonus]
+    extra_ability: List[MihomoAvatarExtraAbility]
 
 
 class DamageInstance:
     avatar: DamageInstanceAvatar
     weapon: Union[DamageInstanceWeapon, None]
     relic: List[Relic]
-    skill: List[MohomoAvatarSkill]
+    skill: List[MihomoAvatarSkill]
 
     def __init__(self, char: Character):
         self.avatar = DamageInstanceAvatar(

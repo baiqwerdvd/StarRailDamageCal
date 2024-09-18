@@ -11,7 +11,7 @@ from ...damage.Base.model import (
 )
 from ...damage.Base.SkillBase import BaseSkills
 from ...excel.model import AvatarPromotionConfig
-from ...model import MohomoAvatarSkill
+from ...model import MihomoAvatarSkill
 
 path = Path(__file__).parent.parent
 with Path.open(path / "Excel" / "SkillData.json", encoding="utf-8") as f:
@@ -41,7 +41,7 @@ class BaseAvatarAttribute(Struct):
 
 class BaseAvatarBuff:
     @classmethod
-    def create(cls, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
+    def create(cls, char: DamageInstanceAvatar, skills: List[MihomoAvatarSkill]):
         cls.extra_ability_id: List[int] = []
         if char.extra_ability:
             for extra_ability in char.extra_ability:
@@ -111,7 +111,7 @@ class BaseAvatarinfo:
 
 
 class BaseAvatar:
-    def __init__(self, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
+    def __init__(self, char: DamageInstanceAvatar, skills: List[MihomoAvatarSkill]):
         self.Skill = BaseSkills.create(char=char, skills=skills)
         self.Buff = BaseAvatarBuff.create(char=char, skills=skills)
         self.avatar_id = char.id_

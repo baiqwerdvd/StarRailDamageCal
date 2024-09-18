@@ -37,10 +37,10 @@ from .model import (
     AvatarBaseAttributes,
     AvatarEquipmentInfo,
     EquipmentBaseAttributes,
-    MohomoAvatarAttributeBonus,
-    MohomoAvatarExtraAbility,
-    MohomoAvatarSkill,
-    MohomoCharacter,
+    MihomoAvatarAttributeBonus,
+    MihomoAvatarExtraAbility,
+    MihomoAvatarSkill,
+    MihomoCharacter,
     RankData,
     Relic,
     RelicMainAffix,
@@ -52,7 +52,7 @@ async def api_to_dict(
     uid: Union[str, None] = None,
     mihomo_raw: Union[MihomoData, None] = None,
     save_path: Union[Path, None] = None,
-) -> Tuple[List[str], Dict[str, MohomoCharacter]]:
+) -> Tuple[List[str], Dict[str, MihomoCharacter]]:
     if not mihomo_raw:
         if not uid:
             raise KeyError
@@ -74,7 +74,7 @@ async def api_to_dict(
 
     char_name_list: List[str] = []
     char_id_list: List[str] = []
-    char_data_list: Dict[str, MohomoCharacter] = {}
+    char_data_list: Dict[str, MihomoCharacter] = {}
     nickName = PlayerDetailInfo.nickname
     avatarList = (
         PlayerDetailInfo.avatarDetailList if PlayerDetailInfo.avatarDetailList else []
@@ -100,9 +100,9 @@ async def api_to_dict(
 
 async def get_data(
     char: Avatar, nick_name: str, uid: str, save_path: Union[Path, None] = None
-) -> Tuple[MohomoCharacter, str]:
+) -> Tuple[MihomoCharacter, str]:
     # 处理基本信息
-    char_data = MohomoCharacter(
+    char_data = MihomoCharacter(
         uid=uid,
         nickName=nick_name,
         avatarId=char.avatarId,
@@ -141,7 +141,7 @@ async def get_data(
     for behavior in char.skillTreeList:
         # 处理技能
         if f"{char.avatarId}0" == str(behavior.pointId)[0:5]:
-            skill_temp = MohomoAvatarSkill(
+            skill_temp = MihomoAvatarSkill(
                 skillId=char.avatarId * 100 + behavior.pointId % 10,
                 skillName=skillId2Name[
                     str(char.avatarId * 100 + behavior.pointId % 10)
@@ -158,7 +158,7 @@ async def get_data(
 
         # 处理技能树中的额外能力
         if f"{char.avatarId}1" == str(behavior.pointId)[0:5]:
-            extra_ability_temp = MohomoAvatarExtraAbility(
+            extra_ability_temp = MihomoAvatarExtraAbility(
                 extraAbilityId=behavior.pointId,
                 extraAbilityLevel=behavior.level,
             )
@@ -166,7 +166,7 @@ async def get_data(
 
         # 处理技能树中的属性加成
         if f"{char.avatarId}2" == str(behavior.pointId)[0:5]:
-            attribute_bonus_temp = MohomoAvatarAttributeBonus(
+            attribute_bonus_temp = MihomoAvatarAttributeBonus(
                 attributeBonusId=behavior.pointId,
                 attributeBonusLevel=behavior.level,
                 statusAdd=AttributeBounsStatusAdd(

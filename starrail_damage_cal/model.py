@@ -3,7 +3,7 @@ from typing import List
 from msgspec import Struct, field
 
 
-class MohomoAvatarSkill(Struct):
+class MihomoAvatarSkill(Struct):
     skillId: int
     skillName: str
     skillEffect: str
@@ -11,7 +11,7 @@ class MohomoAvatarSkill(Struct):
     skillLevel: int
 
 
-class MohomoAvatarExtraAbility(Struct):
+class MihomoAvatarExtraAbility(Struct):
     extraAbilityId: int
     extraAbilityLevel: int
 
@@ -22,7 +22,7 @@ class AttributeBounsStatusAdd(Struct):
     value: float
 
 
-class MohomoAvatarAttributeBonus(Struct):
+class MihomoAvatarAttributeBonus(Struct):
     attributeBonusId: int
     attributeBonusLevel: int
     statusAdd: AttributeBounsStatusAdd
@@ -86,7 +86,7 @@ class RankData(Struct):
     rankName: str
 
 
-class MohomoCharacter(Struct):
+class MihomoCharacter(Struct):
     uid: str
     nickName: str
     avatarId: int
@@ -95,9 +95,9 @@ class MohomoCharacter(Struct):
     avatarRarity: str
     avatarLevel: int
     avatarPromotion: int
-    avatarSkill: List[MohomoAvatarSkill]
-    avatarExtraAbility: List[MohomoAvatarExtraAbility]
-    avatarAttributeBonus: List[MohomoAvatarAttributeBonus]
+    avatarSkill: List[MihomoAvatarSkill]
+    avatarExtraAbility: List[MihomoAvatarExtraAbility]
+    avatarAttributeBonus: List[MihomoAvatarAttributeBonus]
     RelicInfo: List[Relic]
     avatarEnName: str
     baseAttributes: AvatarBaseAttributes

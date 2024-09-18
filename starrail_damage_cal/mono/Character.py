@@ -5,11 +5,11 @@ from ..map.SR_MAP_PATH import (
     EquipmentID2AbilityProperty,
     RelicSetSkill,
 )
-from ..model import MohomoCharacter
+from ..model import MihomoCharacter
 
 
 class Character:
-    def __init__(self, card_prop: MohomoCharacter):
+    def __init__(self, card_prop: MihomoCharacter):
         self.char_level = card_prop.avatarLevel
         self.char_id = card_prop.avatarId
         self.char_name = card_prop.avatarName

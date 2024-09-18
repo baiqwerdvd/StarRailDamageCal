@@ -5,7 +5,7 @@ from typing import List
 from ...damage.Base.model import (
     DamageInstanceAvatar,
 )
-from ...model import MohomoAvatarSkill
+from ...model import MihomoAvatarSkill
 
 path = Path(__file__).parent.parent
 with Path.open(path / "Excel" / "SkillData.json", encoding="utf-8") as f:
@@ -22,7 +22,7 @@ skill_types = {
 
 
 class SingleSkill:
-    def __init__(self, skill: MohomoAvatarSkill):
+    def __init__(self, skill: MihomoAvatarSkill):
         self.id = skill.skillId
         self.level = skill.skillLevel
 
@@ -35,7 +35,7 @@ class BaseSkills:
     Talent_: SingleSkill
 
     @classmethod
-    def create(cls, char: DamageInstanceAvatar, skills: List[MohomoAvatarSkill]):
+    def create(cls, char: DamageInstanceAvatar, skills: List[MihomoAvatarSkill]):
         for skill in skills:
             skill_attack_type = skill.skillAttackType
             if skill_attack_type not in skill_types:

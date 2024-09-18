@@ -10,12 +10,12 @@ from .exception import (
 )
 from .map.name_covert import alias_to_char_name, name_to_avatar_id
 from .mihomo.models import MihomoData
-from .model import MohomoCharacter
+from .model import MihomoCharacter
 from .mono.Character import Character
 from .to_data import api_to_dict
 
 
-async def cal_char_info(char_data: MohomoCharacter):
+async def cal_char_info(char_data: MihomoCharacter):
     char: Character = Character(char_data)
     await char.get_equipment_info()
     await char.get_char_attribute_bonus()
@@ -23,7 +23,7 @@ async def cal_char_info(char_data: MohomoCharacter):
     return char
 
 
-async def cal_info(char_data: MohomoCharacter):
+async def cal_info(char_data: MihomoCharacter):
     char = await cal_char_info(char_data)
     avatar = AvatarInstance(char)
     return await avatar.get_damage_info()
