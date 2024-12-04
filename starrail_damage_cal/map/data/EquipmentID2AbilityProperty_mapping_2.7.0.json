@@ -2982,6 +2982,48 @@
             }
         ]
     },
+    "21048": {
+        "1": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.08
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.09
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.1
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.11
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.12
+                }
+            }
+        ]
+    },
     "22002": {
         "1": [
             {
@@ -3198,5 +3240,138 @@
                 }
             }
         ]
+    },
+    "23033": {
+        "1": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.6
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.7
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.8
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.9
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 1
+                }
+            }
+        ]
+    },
+    "22003": {
+        "1": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.12
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.15
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.21
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.24
+                }
+            }
+        ]
+    },
+    "23035": {
+        "1": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.6
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.7
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.8
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.9
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 1
+                }
+            }
+        ]
+    },
+    "23034": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
     }
 }
