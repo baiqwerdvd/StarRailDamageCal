@@ -56,7 +56,7 @@ class SingleRelicMainAffix(Struct):
     Property: str
     BaseValue: PromotionAttr
     LevelAdd: PromotionAttr
-    IsAvailable: bool
+    IsAvailable: Union[bool, None] = None
 
 
 class SingleRelicSubAffix(Struct):
