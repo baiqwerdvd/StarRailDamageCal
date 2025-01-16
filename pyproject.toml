@@ -1,6 +1,6 @@
 [project]
 name = "starrail_damage_cal"
-version = "2.0.0"
+version = "3.0.0"
 description = "For StarRail Role Damage Cal"
 authors = [
     {name = "qwerdvd", email = "105906879+qwerdvd@users.noreply.github.com"},

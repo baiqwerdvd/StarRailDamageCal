@@ -235,5 +235,21 @@
             "Property": "CriticalChanceBase",
             "Value": 0.08
         }
+    },
+    "123": {
+        "2": {
+            "Property": "AttackAddedRatio",
+            "Value": 0.12
+        }
+    },
+    "124": {
+        "2": {
+            "Property": "QuantumAddedRatio",
+            "Value": 0.1
+        },
+        "4": {
+            "Property": "SpeedAddedRatio",
+            "Value": -0.08
+        }
     }
 }
