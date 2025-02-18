@@ -46,7 +46,7 @@ class SingleEquipmentPromotion(Struct):
     BaseAttackAdd: PromotionAttr
     BaseDefence: PromotionAttr
     BaseDefenceAdd: PromotionAttr
-    Promotion: Union[int, None] = None
+    Promotion: int = 0
     PlayerLevelRequire: Union[int, None] = None
 
 
