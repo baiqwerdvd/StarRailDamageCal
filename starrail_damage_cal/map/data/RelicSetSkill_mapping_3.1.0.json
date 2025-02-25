@@ -251,5 +251,17 @@
             "Property": "SpeedAddedRatio",
             "Value": -0.08
         }
+    },
+    "319": {
+        "2": {
+            "Property": "HPAddedRatio",
+            "Value": 0.12
+        }
+    },
+    "320": {
+        "2": {
+            "Property": "SpeedAddedRatio",
+            "Value": 0.06
+        }
     }
 }

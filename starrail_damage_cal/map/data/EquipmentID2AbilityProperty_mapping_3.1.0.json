@@ -3597,5 +3597,161 @@
                 }
             }
         ]
+    },
+    "23038": {
+        "1": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.36
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.42
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.48
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.54
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.6
+                }
+            }
+        ]
+    },
+    "24005": {
+        "1": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.06
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.075
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.09
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.105
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.12
+                }
+            }
+        ]
+    },
+    "23039": {
+        "1": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.18
+                }
+            },
+            {
+                "PropertyType": "HealTakenRatio",
+                "Value": {
+                    "Value": 0.2
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.21
+                }
+            },
+            {
+                "PropertyType": "HealTakenRatio",
+                "Value": {
+                    "Value": 0.25
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.24
+                }
+            },
+            {
+                "PropertyType": "HealTakenRatio",
+                "Value": {
+                    "Value": 0.3
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.27
+                }
+            },
+            {
+                "PropertyType": "HealTakenRatio",
+                "Value": {
+                    "Value": 0.35
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "HPAddedRatio",
+                "Value": {
+                    "Value": 0.3
+                }
+            },
+            {
+                "PropertyType": "HealTakenRatio",
+                "Value": {
+                    "Value": 0.4
+                }
+            }
+        ]
     }
 }

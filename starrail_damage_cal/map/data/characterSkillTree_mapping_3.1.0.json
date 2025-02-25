@@ -76426,7 +76426,7 @@
                     ]
                 }
             ],
-            "icon": "icon/skill/1402_servant1.png"
+            "icon": "icon/skill/1402_memosprite_skill.png"
         },
         "1402302": {
             "id": "1402302",
@@ -76553,7 +76553,7 @@
                     ]
                 }
             ],
-            "icon": "icon/skill/1402_servant.png"
+            "icon": "icon/skill/1402_memosprite_talent.png"
         }
     },
     "8001": {
@@ -85416,7 +85416,7 @@
                     ]
                 }
             ],
-            "icon": "icon/skill/8007_servant1.png"
+            "icon": "icon/skill/8007_memosprite_skill.png"
         },
         "8007302": {
             "id": "8007302",
@@ -85543,7 +85543,7 @@
                     ]
                 }
             ],
-            "icon": "icon/skill/8007_servant.png"
+            "icon": "icon/skill/8007_memosprite_talent.png"
         }
     },
     "8008": {
@@ -86916,7 +86916,7 @@
                     ]
                 }
             ],
-            "icon": "icon/skill/8008_servant1.png"
+            "icon": "icon/skill/8008_memosprite_skill.png"
         },
         "8008302": {
             "id": "8008302",
@@ -87043,7 +87043,7 @@
                     ]
                 }
             ],
-            "icon": "icon/skill/8008_servant.png"
+            "icon": "icon/skill/8008_memosprite_talent.png"
         }
     }
 }
