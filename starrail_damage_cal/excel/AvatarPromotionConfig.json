@@ -23286,5 +23286,661 @@
     "BaseAggro": {
       "Value": 100
     }
+  },
+  {
+    "AvatarID": 1407,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 4000
+      },
+      {
+        "ItemID": 115011,
+        "ItemNum": 5
+      }
+    ],
+    "MaxLevel": 20,
+    "PlayerLevelRequire": 15,
+    "AttackBase": {
+      "Value": 71.28
+    },
+    "AttackAdd": {
+      "Value": 3.564
+    },
+    "DefenceBase": {
+      "Value": 66
+    },
+    "DefenceAdd": {
+      "Value": 3.3
+    },
+    "HPBase": {
+      "Value": 221.76
+    },
+    "HPAdd": {
+      "Value": 11.088
+    },
+    "SpeedBase": {
+      "Value": 95
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 100
+    }
+  },
+  {
+    "AvatarID": 1407,
+    "Promotion": 1,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 8000
+      },
+      {
+        "ItemID": 115011,
+        "ItemNum": 10
+      }
+    ],
+    "MaxLevel": 30,
+    "WorldLevelRequire": 1,
+    "AttackBase": {
+      "Value": 99.792
+    },
+    "AttackAdd": {
+      "Value": 3.564
+    },
+    "DefenceBase": {
+      "Value": 92.4
+    },
+    "DefenceAdd": {
+      "Value": 3.3
+    },
+    "HPBase": {
+      "Value": 310.464
+    },
+    "HPAdd": {
+      "Value": 11.088
+    },
+    "SpeedBase": {
+      "Value": 95
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 100
+    }
+  },
+  {
+    "AvatarID": 1407,
+    "Promotion": 2,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 16000
+      },
+      {
+        "ItemID": 115012,
+        "ItemNum": 6
+      },
+      {
+        "ItemID": 110436,
+        "ItemNum": 3
+      }
+    ],
+    "MaxLevel": 40,
+    "WorldLevelRequire": 2,
+    "AttackBase": {
+      "Value": 128.304
+    },
+    "AttackAdd": {
+      "Value": 3.564
+    },
+    "DefenceBase": {
+      "Value": 118.8
+    },
+    "DefenceAdd": {
+      "Value": 3.3
+    },
+    "HPBase": {
+      "Value": 399.168
+    },
+    "HPAdd": {
+      "Value": 11.088
+    },
+    "SpeedBase": {
+      "Value": 95
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 100
+    }
+  },
+  {
+    "AvatarID": 1407,
+    "Promotion": 3,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 40000
+      },
+      {
+        "ItemID": 115012,
+        "ItemNum": 9
+      },
+      {
+        "ItemID": 110436,
+        "ItemNum": 7
+      }
+    ],
+    "MaxLevel": 50,
+    "WorldLevelRequire": 3,
+    "AttackBase": {
+      "Value": 156.816
+    },
+    "AttackAdd": {
+      "Value": 3.564
+    },
+    "DefenceBase": {
+      "Value": 145.2
+    },
+    "DefenceAdd": {
+      "Value": 3.3
+    },
+    "HPBase": {
+      "Value": 487.872
+    },
+    "HPAdd": {
+      "Value": 11.088
+    },
+    "SpeedBase": {
+      "Value": 95
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 100
+    }
+  },
+  {
+    "AvatarID": 1407,
+    "Promotion": 4,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 80000
+      },
+      {
+        "ItemID": 115013,
+        "ItemNum": 6
+      },
+      {
+        "ItemID": 110436,
+        "ItemNum": 20
+      }
+    ],
+    "MaxLevel": 60,
+    "WorldLevelRequire": 4,
+    "AttackBase": {
+      "Value": 185.328
+    },
+    "AttackAdd": {
+      "Value": 3.564
+    },
+    "DefenceBase": {
+      "Value": 171.6
+    },
+    "DefenceAdd": {
+      "Value": 3.3
+    },
+    "HPBase": {
+      "Value": 576.576
+    },
+    "HPAdd": {
+      "Value": 11.088
+    },
+    "SpeedBase": {
+      "Value": 95
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 100
+    }
+  },
+  {
+    "AvatarID": 1407,
+    "Promotion": 5,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 160000
+      },
+      {
+        "ItemID": 115013,
+        "ItemNum": 9
+      },
+      {
+        "ItemID": 110436,
+        "ItemNum": 35
+      }
+    ],
+    "MaxLevel": 70,
+    "WorldLevelRequire": 5,
+    "AttackBase": {
+      "Value": 213.84
+    },
+    "AttackAdd": {
+      "Value": 3.564
+    },
+    "DefenceBase": {
+      "Value": 198
+    },
+    "DefenceAdd": {
+      "Value": 3.3
+    },
+    "HPBase": {
+      "Value": 665.28
+    },
+    "HPAdd": {
+      "Value": 11.088
+    },
+    "SpeedBase": {
+      "Value": 95
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 100
+    }
+  },
+  {
+    "AvatarID": 1407,
+    "Promotion": 6,
+    "PromotionCostList": [],
+    "MaxLevel": 80,
+    "WorldLevelRequire": 5,
+    "AttackBase": {
+      "Value": 242.352
+    },
+    "AttackAdd": {
+      "Value": 3.564
+    },
+    "DefenceBase": {
+      "Value": 224.4
+    },
+    "DefenceAdd": {
+      "Value": 3.3
+    },
+    "HPBase": {
+      "Value": 753.984
+    },
+    "HPAdd": {
+      "Value": 11.088
+    },
+    "SpeedBase": {
+      "Value": 95
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 100
+    }
+  },
+  {
+    "AvatarID": 1405,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 4000
+      },
+      {
+        "ItemID": 115011,
+        "ItemNum": 5
+      }
+    ],
+    "MaxLevel": 20,
+    "PlayerLevelRequire": 15,
+    "AttackBase": {
+      "Value": 102.96
+    },
+    "AttackAdd": {
+      "Value": 5.148
+    },
+    "DefenceBase": {
+      "Value": 75.9
+    },
+    "DefenceAdd": {
+      "Value": 3.795
+    },
+    "HPBase": {
+      "Value": 132
+    },
+    "HPAdd": {
+      "Value": 6.6
+    },
+    "SpeedBase": {
+      "Value": 97
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 75
+    }
+  },
+  {
+    "AvatarID": 1405,
+    "Promotion": 1,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 8000
+      },
+      {
+        "ItemID": 115011,
+        "ItemNum": 10
+      }
+    ],
+    "MaxLevel": 30,
+    "WorldLevelRequire": 1,
+    "AttackBase": {
+      "Value": 144.144
+    },
+    "AttackAdd": {
+      "Value": 5.148
+    },
+    "DefenceBase": {
+      "Value": 106.26
+    },
+    "DefenceAdd": {
+      "Value": 3.795
+    },
+    "HPBase": {
+      "Value": 184.8
+    },
+    "HPAdd": {
+      "Value": 6.6
+    },
+    "SpeedBase": {
+      "Value": 97
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 75
+    }
+  },
+  {
+    "AvatarID": 1405,
+    "Promotion": 2,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 16000
+      },
+      {
+        "ItemID": 115012,
+        "ItemNum": 6
+      },
+      {
+        "ItemID": 110425,
+        "ItemNum": 3
+      }
+    ],
+    "MaxLevel": 40,
+    "WorldLevelRequire": 2,
+    "AttackBase": {
+      "Value": 185.328
+    },
+    "AttackAdd": {
+      "Value": 5.148
+    },
+    "DefenceBase": {
+      "Value": 136.62
+    },
+    "DefenceAdd": {
+      "Value": 3.795
+    },
+    "HPBase": {
+      "Value": 237.6
+    },
+    "HPAdd": {
+      "Value": 6.6
+    },
+    "SpeedBase": {
+      "Value": 97
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 75
+    }
+  },
+  {
+    "AvatarID": 1405,
+    "Promotion": 3,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 40000
+      },
+      {
+        "ItemID": 115012,
+        "ItemNum": 9
+      },
+      {
+        "ItemID": 110425,
+        "ItemNum": 7
+      }
+    ],
+    "MaxLevel": 50,
+    "WorldLevelRequire": 3,
+    "AttackBase": {
+      "Value": 226.512
+    },
+    "AttackAdd": {
+      "Value": 5.148
+    },
+    "DefenceBase": {
+      "Value": 166.98
+    },
+    "DefenceAdd": {
+      "Value": 3.795
+    },
+    "HPBase": {
+      "Value": 290.4
+    },
+    "HPAdd": {
+      "Value": 6.6
+    },
+    "SpeedBase": {
+      "Value": 97
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 75
+    }
+  },
+  {
+    "AvatarID": 1405,
+    "Promotion": 4,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 80000
+      },
+      {
+        "ItemID": 115013,
+        "ItemNum": 6
+      },
+      {
+        "ItemID": 110425,
+        "ItemNum": 20
+      }
+    ],
+    "MaxLevel": 60,
+    "WorldLevelRequire": 4,
+    "AttackBase": {
+      "Value": 267.696
+    },
+    "AttackAdd": {
+      "Value": 5.148
+    },
+    "DefenceBase": {
+      "Value": 197.34
+    },
+    "DefenceAdd": {
+      "Value": 3.795
+    },
+    "HPBase": {
+      "Value": 343.2
+    },
+    "HPAdd": {
+      "Value": 6.6
+    },
+    "SpeedBase": {
+      "Value": 97
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 75
+    }
+  },
+  {
+    "AvatarID": 1405,
+    "Promotion": 5,
+    "PromotionCostList": [
+      {
+        "ItemID": 2,
+        "ItemNum": 160000
+      },
+      {
+        "ItemID": 115013,
+        "ItemNum": 9
+      },
+      {
+        "ItemID": 110425,
+        "ItemNum": 35
+      }
+    ],
+    "MaxLevel": 70,
+    "WorldLevelRequire": 5,
+    "AttackBase": {
+      "Value": 308.88
+    },
+    "AttackAdd": {
+      "Value": 5.148
+    },
+    "DefenceBase": {
+      "Value": 227.7
+    },
+    "DefenceAdd": {
+      "Value": 3.795
+    },
+    "HPBase": {
+      "Value": 396
+    },
+    "HPAdd": {
+      "Value": 6.6
+    },
+    "SpeedBase": {
+      "Value": 97
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 75
+    }
+  },
+  {
+    "AvatarID": 1405,
+    "Promotion": 6,
+    "PromotionCostList": [],
+    "MaxLevel": 80,
+    "WorldLevelRequire": 5,
+    "AttackBase": {
+      "Value": 350.064
+    },
+    "AttackAdd": {
+      "Value": 5.148
+    },
+    "DefenceBase": {
+      "Value": 258.06
+    },
+    "DefenceAdd": {
+      "Value": 3.795
+    },
+    "HPBase": {
+      "Value": 448.8
+    },
+    "HPAdd": {
+      "Value": 6.6
+    },
+    "SpeedBase": {
+      "Value": 97
+    },
+    "CriticalChance": {
+      "Value": 0.05
+    },
+    "CriticalDamage": {
+      "Value": 0.5
+    },
+    "BaseAggro": {
+      "Value": 75
+    }
   }
 ]
