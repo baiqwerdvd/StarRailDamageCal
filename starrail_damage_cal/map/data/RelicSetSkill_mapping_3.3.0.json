@@ -263,5 +263,17 @@
             "Property": "SpeedAddedRatio",
             "Value": 0.06
         }
+    },
+    "125": {
+        "2": {
+            "Property": "SpeedAddedRatio",
+            "Value": 0.06
+        }
+    },
+    "126": {
+        "2": {
+            "Property": "CriticalDamageBase",
+            "Value": 0.16
+        }
     }
 }

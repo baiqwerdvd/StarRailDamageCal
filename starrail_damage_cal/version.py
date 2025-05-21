@@ -1,1 +1,1 @@
-StarRail_version = "3.2.0"
+StarRail_version = "3.3.0"

@@ -3754,6 +3754,48 @@
             }
         ]
     },
+    "23042": {
+        "1": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.21
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.24
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.27
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.3
+                }
+            }
+        ]
+    },
     "23041": {
         "1": [],
         "2": [],
@@ -3841,6 +3883,48 @@
                 "PropertyType": "AttackAddedRatio",
                 "Value": {
                     "Value": 0.16
+                }
+            }
+        ]
+    },
+    "23043": {
+        "1": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.21
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.24
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.27
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.3
                 }
             }
         ]
