@@ -275,5 +275,12 @@
             "Property": "CriticalDamageBase",
             "Value": 0.16
         }
+    },
+    "321": {},
+    "322": {
+        "2": {
+            "Property": "AttackAddedRatio",
+            "Value": 0.12
+        }
     }
 }
