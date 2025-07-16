@@ -96,6 +96,9 @@ with Path.open(EXCEL / "RelicSubAffixConfig.json", encoding="utf8") as f:
 with Path.open(EXCEL / "AvatarPromotionConfig.json", encoding="utf8") as f:
     AvatarPromotionConfig = convert(json.load(f), List[SingleAvatarPromotion])
 
+with Path.open(EXCEL / "AvatarPromotionConfigLD.json", encoding="utf8") as f:
+    AvatarPromotionConfig += convert(json.load(f), List[SingleAvatarPromotion])
+
 with Path.open(EXCEL / "EquipmentPromotionConfig.json", encoding="utf8") as f:
     EquipmentPromotionConfig = convert(json.load(f), List[SingleEquipmentPromotion])
 
