@@ -38,6 +38,7 @@ class Avatar(Struct):
     pos: Union[int, None] = field(default=0)
     rank: Union[int, None] = field(default=0)
     promotion: Union[int, None] = field(default=0)
+    enhancedId: Union[int, None] = field(default=0)
 
 
 class Challenge(Struct):

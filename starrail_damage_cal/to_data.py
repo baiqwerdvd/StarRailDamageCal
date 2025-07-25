@@ -135,28 +135,29 @@ async def get_data(
         ),
         rank=0,
         rankList=[],
+        enhancedId=char.enhancedId if char.enhancedId else 0
     )
     # 处理技能
     for behavior in char.skillTreeList:
         # 处理技能
-        if f"{char.avatarId}0" == str(behavior.pointId)[0:5]:
+        if f"{char.avatarId}0" == str(behavior.pointId)[0:5] or f"{char_data.enhancedId}{char.avatarId}0" == str(behavior.pointId)[0:6]:
             skill_temp = MihomoAvatarSkill(
-                skillId=char.avatarId * 100 + behavior.pointId % 10,
+                skillId=char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000,
                 skillName=skillId2Name[
-                    str(char.avatarId * 100 + behavior.pointId % 10)
+                    str(char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000)
                 ],
                 skillEffect=skillId2Effect[
-                    str(char.avatarId * 100 + behavior.pointId % 10)
+                    str(char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000)
                 ],
                 skillAttackType=skillId2AttackType[
-                    str(char.avatarId * 100 + behavior.pointId % 10)
+                    str(char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000)
                 ],
                 skillLevel=behavior.level,
             )
             char_data.avatarSkill.append(skill_temp)
 
         # 处理技能树中的额外能力
-        if f"{char.avatarId}1" == str(behavior.pointId)[0:5]:
+        if f"{char.avatarId}1" == str(behavior.pointId)[0:5] or f"{char_data.enhancedId}{char.avatarId}1" == str(behavior.pointId)[0:6]:
             extra_ability_temp = MihomoAvatarExtraAbility(
                 extraAbilityId=behavior.pointId,
                 extraAbilityLevel=behavior.level,
@@ -164,7 +165,7 @@ async def get_data(
             char_data.avatarExtraAbility.append(extra_ability_temp)
 
         # 处理技能树中的属性加成
-        if f"{char.avatarId}2" == str(behavior.pointId)[0:5]:
+        if f"{char.avatarId}2" == str(behavior.pointId)[0:5] or f"{char_data.enhancedId}{char.avatarId}2" == str(behavior.pointId)[0:6]:
             attribute_bonus_temp = MihomoAvatarAttributeBonus(
                 attributeBonusId=behavior.pointId,
                 attributeBonusLevel=behavior.level,

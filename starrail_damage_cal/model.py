@@ -104,3 +104,4 @@ class MihomoCharacter(Struct):
     equipmentInfo: AvatarEquipmentInfo
     rank: int
     rankList: List[RankData]
+    enhancedId: int
