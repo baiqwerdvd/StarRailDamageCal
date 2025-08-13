@@ -17,7 +17,8 @@ from .to_data import api_to_dict
 
 async def cal_char_info(char_data: MihomoCharacter):
     char: Character = Character(char_data)
-    await char.get_equipment_info()
+    if char.equipment.equipmentID:
+        await char.get_equipment_info()
     await char.get_char_attribute_bonus()
     await char.get_relic_info()
     return char
