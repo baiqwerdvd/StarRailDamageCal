@@ -4362,5 +4362,131 @@
                 }
             }
         ]
+    },
+    "23047": {
+        "1": [
+            {
+                "PropertyType": "StatusProbabilityBase",
+                "Value": {
+                    "Value": 0.4
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "StatusProbabilityBase",
+                "Value": {
+                    "Value": 0.45
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "StatusProbabilityBase",
+                "Value": {
+                    "Value": 0.5
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "StatusProbabilityBase",
+                "Value": {
+                    "Value": 0.55
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "StatusProbabilityBase",
+                "Value": {
+                    "Value": 0.6
+                }
+            }
+        ]
+    },
+    "23048": {
+        "1": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.64
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.8
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.96
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 1.12
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 1.28
+                }
+            }
+        ]
+    },
+    "22005": {
+        "1": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.16
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.2
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.24
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.28
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.32
+                }
+            }
+        ]
     }
 }
