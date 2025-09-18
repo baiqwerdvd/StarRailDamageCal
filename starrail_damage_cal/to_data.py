@@ -141,16 +141,17 @@ async def get_data(
     for behavior in char.skillTreeList:
         # 处理技能
         if f"{char.avatarId}0" == str(behavior.pointId)[0:5] or f"{char_data.enhancedId}{char.avatarId}0" == str(behavior.pointId)[0:6]:
+            skillId=char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000000
             skill_temp = MihomoAvatarSkill(
-                skillId=char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000,
+                skillId=skillId,
                 skillName=skillId2Name[
-                    str(char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000)
+                    str(skillId)
                 ],
                 skillEffect=skillId2Effect[
-                    str(char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000)
+                    str(skillId)
                 ],
                 skillAttackType=skillId2AttackType[
-                    str(char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000)
+                    str(skillId)
                 ],
                 skillLevel=behavior.level,
             )
