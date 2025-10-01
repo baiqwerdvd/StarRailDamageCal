@@ -282,5 +282,12 @@
             "Property": "AttackAddedRatio",
             "Value": 0.12
         }
-    }
+    },
+    "127": {
+        "2": {
+            "Property": "CriticalChanceBase",
+            "Value": 0.08
+        }
+    },
+    "128": {}
 }
