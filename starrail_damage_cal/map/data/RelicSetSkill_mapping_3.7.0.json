@@ -289,5 +289,17 @@
             "Value": 0.08
         }
     },
-    "128": {}
+    "128": {},
+    "323": {
+        "2": {
+            "Property": "CriticalChanceBase",
+            "Value": 0.08
+        }
+    },
+    "324": {
+        "2": {
+            "Property": "CriticalDamageBase",
+            "Value": 0.16
+        }
+    }
 }
