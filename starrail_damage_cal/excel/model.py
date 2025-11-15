@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Union
 
-from msgspec import Struct, convert
+from msgspec import Struct, convert, field
 
 EXCEL = Path(__file__).parent
 
@@ -88,25 +88,25 @@ class SingleAvatarRelicScore(Struct):
 
 
 class SingleStarRailRelicMain(Struct):
-    HPDelta: Union[float, None]
-    AttackDelta: Union[float, None]
-    HPAddedRatio: Union[float, None]
-    AttackAddedRatio: Union[float, None]
-    DefenceAddedRatio: Union[float, None]
-    CriticalDamageBase: Union[float, None]
-    CriticalChanceBase: Union[float, None]
-    HealRatioBase: Union[float, None]
-    StatusProbabilityBase: Union[float, None]
-    SpeedDelta: Union[float, None]
-    PhysicalAddedRatio: Union[float, None]
-    FireAddedRatio: Union[float, None]
-    IceAddedRatio: Union[float, None]
-    ThunderAddedRatio: Union[float, None]
-    WindAddedRatio: Union[float, None]
-    QuantumAddedRatio: Union[float, None]
-    ImaginaryAddedRatio: Union[float, None]
-    BreakDamageAddedRatioBase: Union[float, None]
-    SPRatioBase: Union[float, None]
+    HPDelta: Union[float, None] = None
+    AttackDelta: Union[float, None] = None
+    HPAddedRatio: Union[float, None] = None
+    AttackAddedRatio: Union[float, None] = None
+    DefenceAddedRatio: Union[float, None] = None
+    CriticalDamageBase: Union[float, None] = None
+    CriticalChanceBase: Union[float, None] = None
+    HealRatioBase: Union[float, None] = None
+    StatusProbabilityBase: Union[float, None] = None
+    SpeedDelta: Union[float, None] = None
+    PhysicalAddedRatio: Union[float, None] = None
+    FireAddedRatio: Union[float, None] = None
+    IceAddedRatio: Union[float, None] = None
+    ThunderAddedRatio: Union[float, None] = None
+    WindAddedRatio: Union[float, None] = None
+    QuantumAddedRatio: Union[float, None] = None
+    ImaginaryAddedRatio: Union[float, None] = None
+    BreakDamageAddedRatioBase: Union[float, None] = None
+    SPRatioBase: Union[float, None] = None
 
 
 class SingleStarRailRelicWeight(Struct):
@@ -125,9 +125,9 @@ class SingleStarRailRelicWeight(Struct):
 
 
 class SingleStarRailRelicScore(Struct):
-    main: Dict[str, Dict[str, SingleStarRailRelicMain]]
+    main: Dict[str, SingleStarRailRelicMain]
     weight: SingleStarRailRelicWeight
-    max: float
+    max_value: float = field(name="max")
 
 
 with Path.open(EXCEL / "RelicMainAffixConfig.json", encoding="utf8") as f:
