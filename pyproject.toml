@@ -1,6 +1,6 @@
 [project]
 name = "starrail_damage_cal"
-version = "3.7.1"
+version = "3.7.2"
 description = "For StarRail Role Damage Cal"
 authors = [
     {name = "qwerdvd", email = "105906879+qwerdvd@users.noreply.github.com"},
@@ -47,7 +47,7 @@ ignore = [
     "TID252"
 ]
 line-length = 88
-target-version = "py38"
+target-version = "py39"
 ignore-init-module-imports = true
 
 [tool.pdm.dev-dependencies]

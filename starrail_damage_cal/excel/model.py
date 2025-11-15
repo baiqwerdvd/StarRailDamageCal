@@ -87,6 +87,49 @@ class SingleAvatarRelicScore(Struct):
     AttributeAddedRatio: float
 
 
+class SingleStarRailRelicMain(Struct):
+    HPDelta: Union[float, None]
+    AttackDelta: Union[float, None]
+    HPAddedRatio: Union[float, None]
+    AttackAddedRatio: Union[float, None]
+    DefenceAddedRatio: Union[float, None]
+    CriticalDamageBase: Union[float, None]
+    CriticalChanceBase: Union[float, None]
+    HealRatioBase: Union[float, None]
+    StatusProbabilityBase: Union[float, None]
+    SpeedDelta: Union[float, None]
+    PhysicalAddedRatio: Union[float, None]
+    FireAddedRatio: Union[float, None]
+    IceAddedRatio: Union[float, None]
+    ThunderAddedRatio: Union[float, None]
+    WindAddedRatio: Union[float, None]
+    QuantumAddedRatio: Union[float, None]
+    ImaginaryAddedRatio: Union[float, None]
+    BreakDamageAddedRatioBase: Union[float, None]
+    SPRatioBase: Union[float, None]
+
+
+class SingleStarRailRelicWeight(Struct):
+    HPDelta: float
+    AttackDelta: float
+    DefenceDelta: float
+    HPAddedRatio: float
+    AttackAddedRatio: float
+    DefenceAddedRatio: float
+    SpeedDelta: float
+    CriticalChanceBase: float
+    CriticalDamageBase: float
+    StatusProbabilityBase: float
+    StatusResistanceBase: float
+    BreakDamageAddedRatioBase: float
+
+
+class SingleStarRailRelicScore(Struct):
+    main: Dict[str, Dict[str, SingleStarRailRelicMain]]
+    weight: SingleStarRailRelicWeight
+    max: float
+
+
 with Path.open(EXCEL / "RelicMainAffixConfig.json", encoding="utf8") as f:
     RelicMainAffixConfig = convert(json.load(f), List[SingleRelicMainAffix])
 
@@ -107,3 +150,6 @@ with Path.open(EXCEL / "AvatarRelicScore.json", encoding="utf8") as f:
 
 with Path.open(EXCEL / "char_alias.json", encoding="utf8") as f:
     CharAlias = convert(json.load(f), Dict[str, Dict[str, List[str]]])
+    
+with Path.open(EXCEL / "relic_scores.json", encoding="utf8") as f:
+    StarRailRelicScores = convert(json.load(f), Dict[str, SingleStarRailRelicScore])
