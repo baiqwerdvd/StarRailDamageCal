@@ -4,6 +4,8 @@ from typing import Dict, List, Union
 
 from msgspec import Struct, convert, field
 
+from .. import data_paths
+
 EXCEL = Path(__file__).parent
 
 
@@ -130,26 +132,79 @@ class SingleStarRailRelicScore(Struct):
     max_value: float = field(name="max")
 
 
-with Path.open(EXCEL / "RelicMainAffixConfig.json", encoding="utf8") as f:
-    RelicMainAffixConfig = convert(json.load(f), List[SingleRelicMainAffix])
+def _load_excel_json(file_name: str):
+    with Path.open(
+        data_paths.resolve_data_path(Path("excel") / file_name),
+        encoding="utf8",
+    ) as f:
+        return json.load(f)
 
-with Path.open(EXCEL / "RelicSubAffixConfig.json", encoding="utf8") as f:
-    RelicSubAffixConfig = convert(json.load(f), List[SingleRelicSubAffix])
 
-with Path.open(EXCEL / "AvatarPromotionConfig.json", encoding="utf8") as f:
-    AvatarPromotionConfig = convert(json.load(f), List[SingleAvatarPromotion])
+def _replace_list(name: str, values: list) -> None:
+    current_value = globals().get(name)
+    if isinstance(current_value, list):
+        current_value[:] = values
+        return
+    globals()[name] = values
 
-with Path.open(EXCEL / "AvatarPromotionConfigLD.json", encoding="utf8") as f:
-    AvatarPromotionConfig += convert(json.load(f), List[SingleAvatarPromotion])
 
-with Path.open(EXCEL / "EquipmentPromotionConfig.json", encoding="utf8") as f:
-    EquipmentPromotionConfig = convert(json.load(f), List[SingleEquipmentPromotion])
+def _replace_dict(name: str, values: dict) -> None:
+    current_value = globals().get(name)
+    if isinstance(current_value, dict):
+        current_value.clear()
+        current_value.update(values)
+        return
+    globals()[name] = values
 
-with Path.open(EXCEL / "AvatarRelicScore.json", encoding="utf8") as f:
-    AvatarRelicScore = convert(json.load(f), List[SingleAvatarRelicScore])
 
-with Path.open(EXCEL / "char_alias.json", encoding="utf8") as f:
-    CharAlias = convert(json.load(f), Dict[str, Dict[str, List[str]]])
-    
-with Path.open(EXCEL / "relic_scores.json", encoding="utf8") as f:
-    StarRailRelicScores = convert(json.load(f), Dict[str, SingleStarRailRelicScore])
+def reload_excel_data() -> None:
+    _replace_list(
+        "RelicMainAffixConfig",
+        convert(
+            _load_excel_json("RelicMainAffixConfig.json"), List[SingleRelicMainAffix]
+        ),
+    )
+    _replace_list(
+        "RelicSubAffixConfig",
+        convert(
+            _load_excel_json("RelicSubAffixConfig.json"), List[SingleRelicSubAffix]
+        ),
+    )
+
+    avatar_promotion = convert(
+        _load_excel_json("AvatarPromotionConfig.json"),
+        List[SingleAvatarPromotion],
+    )
+    avatar_promotion += convert(
+        _load_excel_json("AvatarPromotionConfigLD.json"),
+        List[SingleAvatarPromotion],
+    )
+    _replace_list("AvatarPromotionConfig", avatar_promotion)
+
+    _replace_list(
+        "EquipmentPromotionConfig",
+        convert(
+            _load_excel_json("EquipmentPromotionConfig.json"),
+            List[SingleEquipmentPromotion],
+        ),
+    )
+    _replace_list(
+        "AvatarRelicScore",
+        convert(
+            _load_excel_json("AvatarRelicScore.json"), List[SingleAvatarRelicScore]
+        ),
+    )
+    _replace_dict(
+        "CharAlias",
+        convert(_load_excel_json("char_alias.json"), Dict[str, Dict[str, List[str]]]),
+    )
+    _replace_dict(
+        "StarRailRelicScores",
+        convert(
+            _load_excel_json("relic_scores.json"),
+            Dict[str, SingleStarRailRelicScore],
+        ),
+    )
+
+
+reload_excel_data()

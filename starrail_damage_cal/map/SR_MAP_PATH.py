@@ -4,6 +4,7 @@ from typing import Dict, List, TypedDict, Union
 from msgspec import Struct
 from msgspec import json as msgjson
 
+from .. import data_paths
 from ..version import StarRail_version
 
 MAP = Path(__file__).parent / "data"
@@ -83,75 +84,121 @@ class RelicSetStatusAdd(Struct):
     Value: float
 
 
-with Path.open(MAP / avatarId2Name_fileName, encoding="UTF-8") as f:
-    avatarId2Name = msgjson.decode(f.read(), type=Dict[str, str])
+def _load_map_json(file_name: str, data_type):
+    with Path.open(
+        data_paths.resolve_data_path(Path("map") / "data" / file_name),
+        encoding="UTF-8",
+    ) as f:
+        return msgjson.decode(f.read(), type=data_type)
 
-with Path.open(MAP / avatarId2EnName_fileName, encoding="UTF-8") as f:
-    avatarId2EnName = msgjson.decode(f.read(), type=Dict[str, str])
 
-with Path.open(MAP / EquipmentID2Name_fileName, encoding="UTF-8") as f:
-    EquipmentID2Name = msgjson.decode(f.read(), type=Dict[str, str])
+def _replace_dict(name: str, values: dict) -> None:
+    current_value = globals().get(name)
+    if isinstance(current_value, dict):
+        current_value.clear()
+        current_value.update(values)
+        return
+    globals()[name] = values
 
-with Path.open(MAP / EquipmentID2EnName_fileName, encoding="UTF-8") as f:
-    EquipmentID2EnName = msgjson.decode(f.read(), type=Dict[str, str])
 
-with Path.open(MAP / skillId2Name_fileName, encoding="UTF-8") as f:
-    skillId2Name = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / skillId2Type_fileName, encoding="UTF-8") as f:
-    skillId2Effect = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / Property2Name_fileName, encoding="UTF-8") as f:
-    Property2Name = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / RelicId2SetId_fileName, encoding="UTF-8") as f:
-    RelicId2SetId = msgjson.decode(f.read(), type=Dict[str, int])
-
-with Path.open(MAP / SetId2Name_fileName, encoding="UTF-8") as f:
-    SetId2Name = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / rankId2Name_fileName, encoding="UTF-8") as f:
-    rankId2Name = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / characterSkillTree_fileName, encoding="UTF-8") as f:
-    characterSkillTree = msgjson.decode(
-        f.read(), type=Dict[str, Dict[str, CharacterSkillTreeModel]]
+def reload_map_data() -> None:
+    _replace_dict(
+        "avatarId2Name",
+        _load_map_json(avatarId2Name_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "avatarId2EnName",
+        _load_map_json(avatarId2EnName_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "EquipmentID2Name",
+        _load_map_json(EquipmentID2Name_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "EquipmentID2EnName",
+        _load_map_json(EquipmentID2EnName_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "skillId2Name",
+        _load_map_json(skillId2Name_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "skillId2Effect",
+        _load_map_json(skillId2Type_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "Property2Name",
+        _load_map_json(Property2Name_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "RelicId2SetId",
+        _load_map_json(RelicId2SetId_fileName, Dict[str, int]),
+    )
+    _replace_dict(
+        "SetId2Name",
+        _load_map_json(SetId2Name_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "rankId2Name",
+        _load_map_json(rankId2Name_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "characterSkillTree",
+        _load_map_json(
+            characterSkillTree_fileName,
+            Dict[str, Dict[str, CharacterSkillTreeModel]],
+        ),
+    )
+    _replace_dict(
+        "avatarId2DamageType",
+        _load_map_json(avatarId2DamageType_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "avatarId2Rarity",
+        _load_map_json(avatarId2Rarity_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "EquipmentID2AbilityProperty",
+        _load_map_json(
+            EquipmentID2AbilityProperty_fileName,
+            Dict[str, Dict[str, List[AbilityProperty]]],
+        ),
+    )
+    _replace_dict(
+        "RelicSetSkill",
+        _load_map_json(
+            RelicSetSkill_fileName,
+            Dict[str, Dict[str, RelicSetStatusAdd]],
+        ),
+    )
+    _replace_dict(
+        "skillId2AttackType",
+        _load_map_json(skillId2AttackType_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "EquipmentID2Rarity",
+        _load_map_json(EquipmentID2Rarity_fileName, Dict[str, int]),
+    )
+    _replace_dict(
+        "ItemId2Name",
+        _load_map_json(ItemId2Name_fileName, Dict[str, str]),
+    )
+    _replace_dict(
+        "RelicId2MainAffixGroup",
+        _load_map_json(RelicId2MainAffixGroup_fileName, Dict[str, int]),
+    )
+    _replace_dict(
+        "AvatarRankSkillUp",
+        _load_map_json(avatarRankSkillUp_fileName, Dict[str, Union[List[LU], None]]),
+    )
+    _replace_dict(
+        "RelicId2Rarity",
+        _load_map_json(RelicId2Rarity_fileName, Dict[str, int]),
+    )
+    _replace_dict(
+        "MysPropertyType2Property",
+        _load_map_json(MysPropertyType2Property_fileName, Dict[str, str]),
     )
 
-with Path.open(MAP / avatarId2DamageType_fileName, encoding="UTF-8") as f:
-    avatarId2DamageType = msgjson.decode(f.read(), type=Dict[str, str])
 
-with Path.open(MAP / avatarId2Rarity_fileName, encoding="UTF-8") as f:
-    avatarId2Rarity = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / EquipmentID2AbilityProperty_fileName, encoding="UTF-8") as f:
-    EquipmentID2AbilityProperty = msgjson.decode(
-        f.read(),
-        type=Dict[str, Dict[str, List[AbilityProperty]]],
-    )
-
-with Path.open(MAP / RelicSetSkill_fileName, encoding="UTF-8") as f:
-    RelicSetSkill = msgjson.decode(
-        f.read(), type=Dict[str, Dict[str, RelicSetStatusAdd]]
-    )
-
-with Path.open(MAP / skillId2AttackType_fileName, encoding="UTF-8") as f:
-    skillId2AttackType = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / EquipmentID2Rarity_fileName, encoding="UTF-8") as f:
-    EquipmentID2Rarity = msgjson.decode(f.read(), type=Dict[str, int])
-
-with Path.open(MAP / ItemId2Name_fileName, encoding="UTF-8") as f:
-    ItemId2Name = msgjson.decode(f.read(), type=Dict[str, str])
-
-with Path.open(MAP / RelicId2MainAffixGroup_fileName, encoding="UTF-8") as f:
-    RelicId2MainAffixGroup = msgjson.decode(f.read(), type=Dict[str, int])
-
-with Path.open(MAP / avatarRankSkillUp_fileName, encoding="UTF-8") as f:
-    AvatarRankSkillUp = msgjson.decode(f.read(), type=Dict[str, Union[List[LU], None]])
-
-with Path.open(MAP / RelicId2Rarity_fileName, encoding="UTF-8") as f:
-    RelicId2Rarity = msgjson.decode(f.read(), type=Dict[str, int])
-
-with Path.open(MAP / MysPropertyType2Property_fileName, encoding="UTF-8") as f:
-    MysPropertyType2Property = msgjson.decode(f.read(), type=Dict[str, str])
+reload_map_data()
