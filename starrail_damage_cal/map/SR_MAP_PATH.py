@@ -23,9 +23,7 @@ rankId2Name_fileName = f"rankId2Name_mapping.json"
 characterSkillTree_fileName = f"characterSkillTree_mapping.json"
 avatarId2DamageType_fileName = f"avatarId2DamageType_mapping.json"
 avatarId2Rarity_fileName = f"avatarId2Rarity_mapping.json"
-EquipmentID2AbilityProperty_fileName = (
-    f"EquipmentID2AbilityProperty_mapping.json"
-)
+EquipmentID2AbilityProperty_fileName = f"EquipmentID2AbilityProperty_mapping.json"
 RelicSetSkill_fileName = f"RelicSetSkill_mapping.json"
 skillId2AttackType_fileName = f"skillId2AttackType_mapping.json"
 EquipmentID2Rarity_fileName = f"EquipmentID2Rarity_mapping.json"
@@ -33,6 +31,7 @@ RelicId2Rarity_fileName = f"RelicId2Rarity_mapping.json"
 ItemId2Name_fileName = f"ItemId2Name_mapping.json"
 RelicId2MainAffixGroup_fileName = f"RelicId2MainAffixGroup_mapping.json"
 avatarRankSkillUp_fileName = f"avatarRankSkillUp_mapping.json"
+MysPropertyType2Property_fileName = "MysPropertyType2Property_mapping.json"
 
 
 class TS(TypedDict):
@@ -153,3 +152,6 @@ with Path.open(MAP / avatarRankSkillUp_fileName, encoding="UTF-8") as f:
 
 with Path.open(MAP / RelicId2Rarity_fileName, encoding="UTF-8") as f:
     RelicId2Rarity = msgjson.decode(f.read(), type=Dict[str, int])
+
+with Path.open(MAP / MysPropertyType2Property_fileName, encoding="UTF-8") as f:
+    MysPropertyType2Property = msgjson.decode(f.read(), type=Dict[str, str])

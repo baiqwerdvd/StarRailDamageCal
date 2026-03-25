@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List, Tuple, Union
+from typing import Any, Dict, List, Tuple, Union
 
 from msgspec import json as msgjson
 
@@ -16,6 +16,7 @@ from .map.SR_MAP_PATH import (
     EquipmentID2Name,
     EquipmentID2Rarity,
     ItemId2Name,
+    MysPropertyType2Property,
     Property2Name,
     RelicId2SetId,
     SetId2Name,
@@ -135,30 +136,34 @@ async def get_data(
         ),
         rank=0,
         rankList=[],
-        enhancedId=char.enhancedId if char.enhancedId else 0
+        enhancedId=char.enhancedId if char.enhancedId else 0,
     )
     # 处理技能
     for behavior in char.skillTreeList:
         # 处理技能
-        if f"{char.avatarId}0" == str(behavior.pointId)[0:5] or f"{char_data.enhancedId}{char.avatarId}0" == str(behavior.pointId)[0:6]:
-            skillId=char.avatarId * 100 + behavior.pointId % 10 + char_data.enhancedId * 1000000
+        if (
+            f"{char.avatarId}0" == str(behavior.pointId)[0:5]
+            or f"{char_data.enhancedId}{char.avatarId}0" == str(behavior.pointId)[0:6]
+        ):
+            skillId = (
+                char.avatarId * 100
+                + behavior.pointId % 10
+                + char_data.enhancedId * 1000000
+            )
             skill_temp = MihomoAvatarSkill(
                 skillId=skillId,
-                skillName=skillId2Name[
-                    str(skillId)
-                ],
-                skillEffect=skillId2Effect[
-                    str(skillId)
-                ],
-                skillAttackType=skillId2AttackType[
-                    str(skillId)
-                ],
+                skillName=skillId2Name[str(skillId)],
+                skillEffect=skillId2Effect[str(skillId)],
+                skillAttackType=skillId2AttackType[str(skillId)],
                 skillLevel=behavior.level,
             )
             char_data.avatarSkill.append(skill_temp)
 
         # 处理技能树中的额外能力
-        if f"{char.avatarId}1" == str(behavior.pointId)[0:5] or f"{char_data.enhancedId}{char.avatarId}1" == str(behavior.pointId)[0:6]:
+        if (
+            f"{char.avatarId}1" == str(behavior.pointId)[0:5]
+            or f"{char_data.enhancedId}{char.avatarId}1" == str(behavior.pointId)[0:6]
+        ):
             extra_ability_temp = MihomoAvatarExtraAbility(
                 extraAbilityId=behavior.pointId,
                 extraAbilityLevel=behavior.level,
@@ -166,7 +171,10 @@ async def get_data(
             char_data.avatarExtraAbility.append(extra_ability_temp)
 
         # 处理技能树中的属性加成
-        if f"{char.avatarId}2" == str(behavior.pointId)[0:5] or f"{char_data.enhancedId}{char.avatarId}2" == str(behavior.pointId)[0:6]:
+        if (
+            f"{char.avatarId}2" == str(behavior.pointId)[0:5]
+            or f"{char_data.enhancedId}{char.avatarId}2" == str(behavior.pointId)[0:6]
+        ):
             attribute_bonus_temp = MihomoAvatarAttributeBonus(
                 attributeBonusId=behavior.pointId,
                 attributeBonusLevel=behavior.level,
@@ -369,6 +377,382 @@ async def get_data(
         equipment_info.baseAttributes.defence = (
             equipment_promotion_base.BaseDefence.Value
             + equipment_promotion_base.BaseDefenceAdd.Value * (equipment_level - 1)
+        )
+
+    char_data.equipmentInfo = equipment_info
+
+    if save_path:
+        path = save_path / str(uid)
+        path.mkdir(parents=True, exist_ok=True)
+        with Path.open(path / f"{char_data.avatarName}.json", "wb") as file:
+            _ = file.write(msgjson.encode(char_data))
+
+    return char_data, char_data.avatarName
+
+
+def _parse_mys_value(value_str: Any) -> float:
+    if isinstance(value_str, (int, float)):
+        return float(value_str)
+    value = str(value_str).strip()
+    if value.endswith("%"):
+        return float(value[:-1]) / 100
+    return float(value)
+
+
+def _infer_promotion(level: int) -> int:
+    if level > 70:
+        return 6
+    if level > 60:
+        return 5
+    if level > 50:
+        return 4
+    if level > 40:
+        return 3
+    if level > 30:
+        return 2
+    if level > 20:
+        return 1
+    return 0
+
+
+def _get_mys_promotion(source: Any, level: int) -> int:
+    promotion_attrs = (
+        "promotion",
+        "promotion_level",
+        "promote_level",
+        "promote",
+        "promotion_stage",
+    )
+    for attr_name in promotion_attrs:
+        promotion = getattr(source, attr_name, None)
+        if promotion is not None:
+            return int(promotion)
+
+    max_level_attrs = ("max_level", "max_lv", "maxLevel")
+    promotion_by_max_level = {
+        20: 0,
+        30: 1,
+        40: 2,
+        50: 3,
+        60: 4,
+        70: 5,
+        80: 6,
+    }
+    for attr_name in max_level_attrs:
+        max_level = getattr(source, attr_name, None)
+        try:
+            max_level_int = int(max_level)
+        except (TypeError, ValueError):
+            continue
+        if max_level_int in promotion_by_max_level:
+            return promotion_by_max_level[max_level_int]
+
+    return _infer_promotion(level)
+
+
+async def mys_to_dict(
+    uid: str,
+    nick_name: str,
+    mys_avatar_list: list,
+    save_path: Union[Path, None] = None,
+) -> Tuple[List[str], Dict[str, MihomoCharacter]]:
+    """Convert a list of MiYouShe AvatarListItemDetail objects to MihomoCharacter format.
+
+    Args:
+        uid: Player UID string.
+        nick_name: Player nickname.
+        mys_avatar_list: List of AvatarListItemDetail instances from MiYouShe API.
+        save_path: Optional directory to save the serialised results.
+
+    Returns:
+        Tuple of (char_id_list, char_data_dict) mirroring api_to_dict().
+    """
+    char_id_list: List[str] = []
+    char_data_dict: Dict[str, MihomoCharacter] = {}
+    for avatar in mys_avatar_list:
+        char_data, avatar_name = await _get_mys_data(avatar, nick_name, uid, save_path)
+        avatar_id_str = str(char_data.avatarId)
+        if avatar_id_str not in char_id_list:
+            char_id_list.append(avatar_id_str)
+            char_data_dict[avatar_id_str] = char_data
+
+    if not char_id_list:
+        raise CharacterShowcaseNotOpenError(uid)
+
+    return char_id_list, char_data_dict
+
+
+async def _get_mys_data(
+    avatar: Any,
+    nick_name: str,
+    uid: str,
+    save_path: Union[Path, None] = None,
+) -> Tuple[MihomoCharacter, str]:
+    """Convert a single MiYouShe avatar to MihomoCharacter."""
+    avatar_id: int = avatar.id
+    level: int = avatar.level
+    enhanced_id: int = avatar.cur_enhanced_id if avatar.cur_enhanced_id else 0
+    promotion: int = _get_mys_promotion(avatar, level)
+
+    char_data = MihomoCharacter(
+        uid=uid,
+        nickName=nick_name,
+        avatarId=avatar_id,
+        avatarName=avatarId2Name[str(avatar_id)],
+        avatarElement=avatarId2DamageType[str(avatar_id)],
+        avatarRarity=avatarId2Rarity[str(avatar_id)],
+        avatarPromotion=promotion,
+        avatarLevel=level,
+        avatarSkill=[],
+        avatarExtraAbility=[],
+        avatarAttributeBonus=[],
+        RelicInfo=[],
+        avatarEnName=avatarId2EnName[str(avatar_id)],
+        baseAttributes=AvatarBaseAttributes(
+            hp=0,
+            attack=0,
+            defence=0,
+            speed=0,
+            CriticalChanceBase=0,
+            CriticalDamageBase=0,
+            BaseAggro=0,
+        ),
+        equipmentInfo=AvatarEquipmentInfo(
+            equipmentID=0,
+            equipmentName="",
+            equipmentLevel=0,
+            equipmentPromotion=0,
+            equipmentRank=0,
+            equipmentRarity=0,
+            baseAttributes=EquipmentBaseAttributes(hp=0, attack=0, defence=0),
+        ),
+        rank=0,
+        rankList=[],
+        enhancedId=enhanced_id,
+    )
+
+    # 处理技能
+    for skill in getattr(avatar, "skills", None) or []:
+        # W-1 fix: skip unactivated skill nodes
+        if not skill.is_activated:
+            continue
+
+        point_id: int = skill.point_id
+        point_id_str = str(point_id)
+
+        # C-2 fix: normalize enhanced point_id for characterSkillTree lookup
+        # MYS may prefix enhanced_id (e.g., 11307201 for enhanced avatar 1307)
+        # but characterSkillTree uses base avatar_id keys (e.g., 1307201)
+        normalized_point_id = point_id
+        if enhanced_id and point_id_str.startswith(str(enhanced_id)):
+            normalized_point_id = int(point_id_str[len(str(enhanced_id)) :])
+
+        # 主技能: pointId 第5位为 0
+        if (
+            f"{avatar_id}0" == point_id_str[0:5]
+            or f"{enhanced_id}{avatar_id}0" == point_id_str[0:6]
+        ):
+            skill_id = avatar_id * 100 + point_id % 10 + enhanced_id * 1000000
+            if str(skill_id) in skillId2Name:
+                skill_temp = MihomoAvatarSkill(
+                    skillId=skill_id,
+                    skillName=skillId2Name[str(skill_id)],
+                    skillEffect=skillId2Effect[str(skill_id)],
+                    skillAttackType=skillId2AttackType[str(skill_id)],
+                    skillLevel=skill.level,
+                )
+                char_data.avatarSkill.append(skill_temp)
+
+        # 额外能力: pointId 第5位为 1
+        elif (
+            f"{avatar_id}1" == point_id_str[0:5]
+            or f"{enhanced_id}{avatar_id}1" == point_id_str[0:6]
+        ):
+            extra_ability_temp = MihomoAvatarExtraAbility(
+                extraAbilityId=point_id,
+                extraAbilityLevel=skill.level,
+            )
+            char_data.avatarExtraAbility.append(extra_ability_temp)
+
+        # 属性加成: pointId 第5位为 2
+        elif (
+            f"{avatar_id}2" == point_id_str[0:5]
+            or f"{enhanced_id}{avatar_id}2" == point_id_str[0:6]
+        ):
+            attribute_bonus_temp = MihomoAvatarAttributeBonus(
+                attributeBonusId=point_id,
+                attributeBonusLevel=skill.level,
+                statusAdd=AttributeBounsStatusAdd(
+                    property_="",
+                    name="",
+                    value=0,
+                ),
+            )
+            # C-2 fix: use base avatar_id for characterSkillTree lookup
+            tree_key = str(avatar_id)
+            pid_key = str(normalized_point_id)
+            if (
+                tree_key in characterSkillTree
+                and pid_key in characterSkillTree[tree_key]
+            ):
+                status_add = (
+                    characterSkillTree[tree_key][pid_key]
+                    .levels[skill.level - 1]
+                    .properties
+                )
+                for property_ in status_add:
+                    attribute_bonus_temp.statusAdd.property_ = property_.type
+                    attribute_bonus_temp.statusAdd.name = Property2Name[property_.type]
+                    attribute_bonus_temp.statusAdd.value = property_.value
+                    char_data.avatarAttributeBonus.append(attribute_bonus_temp)
+
+    # 处理遗器 (relics + ornaments)
+    all_relics = list(getattr(avatar, "relics", None) or []) + list(
+        getattr(avatar, "ornaments", None) or []
+    )
+    for relic in all_relics:
+        relic_id: int = relic.id
+        main_prop_type = str(relic.main_property.property_type)
+        main_property_name = MysPropertyType2Property[main_prop_type]
+        main_property_value = _parse_mys_value(relic.main_property.value)
+
+        relic_temp = Relic(
+            relicId=relic_id,
+            relicName=ItemId2Name[str(relic_id)],
+            SetId=RelicId2SetId[str(relic_id)],
+            SetName=SetId2Name[str(RelicId2SetId[str(relic_id)])],
+            Type=relic.pos,
+            MainAffix=RelicMainAffix(
+                AffixID=relic.main_property.property_type,
+                Property=main_property_name,
+                Name=Property2Name[main_property_name],
+                Value=main_property_value,
+            ),
+            SubAffixList=[],
+            Level=relic.level,
+        )
+
+        for sub in relic.properties:
+            sub_property_name = MysPropertyType2Property[str(sub.property_type)]
+            sub_affix_temp = RelicSubAffix(
+                SubAffixID=sub.property_type,
+                Property=sub_property_name,
+                Name=Property2Name[sub_property_name],
+                Cnt=sub.times,
+                Step=0,
+                Value=_parse_mys_value(sub.value),
+            )
+            relic_temp.SubAffixList.append(sub_affix_temp)
+
+        char_data.RelicInfo.append(relic_temp)
+
+    # 处理命座
+    rank_temp: List[RankData] = []
+    unlocked_ranks = [
+        rank
+        for rank in (getattr(avatar, "ranks", None) or [])
+        if getattr(rank, "is_unlocked", False)
+    ]
+    char_data.rank = len(unlocked_ranks)
+    for r in unlocked_ranks:
+        rankTemp = RankData(
+            rankId=r.id,
+            rankName=rankId2Name.get(str(r.id), ""),
+        )
+        rank_temp.append(rankTemp)
+    char_data.rankList = rank_temp
+
+    # 处理命座中的 level_up_skills
+    for rank_item in char_data.rankList:
+        rank_id = rank_item.rankId
+        level_up_skill = AvatarRankSkillUp.get(str(rank_id))
+        if level_up_skill:
+            for item in level_up_skill:
+                skill_id = item.id
+                skill_up_num = item.num
+                for index, skill_item in enumerate(char_data.avatarSkill):
+                    if str(skill_id) == str(skill_item.skillId):
+                        char_data.avatarSkill[index].skillLevel += skill_up_num
+                        break
+
+    # 处理基础属性 (from AvatarPromotionConfig, NOT MYS properties)
+    # MYS properties.base includes equipment base stats which would cause double-counting
+    avatar_promotion_base = None
+    for entry in AvatarPromotionConfig:
+        if entry.AvatarID == avatar_id and entry.Promotion == promotion:
+            avatar_promotion_base = entry
+            break
+    if not avatar_promotion_base:
+        msg = f"AvatarPromotionConfig not found: {avatar_id}"
+        raise ValueError(msg)
+
+    char_data.baseAttributes = AvatarBaseAttributes(
+        hp=(
+            avatar_promotion_base.HPBase.Value
+            + avatar_promotion_base.HPAdd.Value * (level - 1)
+        ),
+        attack=(
+            avatar_promotion_base.AttackBase.Value
+            + avatar_promotion_base.AttackAdd.Value * (level - 1)
+        ),
+        defence=(
+            avatar_promotion_base.DefenceBase.Value
+            + avatar_promotion_base.DefenceAdd.Value * (level - 1)
+        ),
+        speed=avatar_promotion_base.SpeedBase.Value,
+        CriticalChanceBase=avatar_promotion_base.CriticalChance.Value,
+        CriticalDamageBase=avatar_promotion_base.CriticalDamage.Value,
+        BaseAggro=avatar_promotion_base.BaseAggro.Value,
+    )
+
+    # 处理武器
+    equipment_info = AvatarEquipmentInfo(
+        equipmentID=0,
+        equipmentName="",
+        equipmentLevel=0,
+        equipmentPromotion=0,
+        equipmentRank=0,
+        equipmentRarity=0,
+        baseAttributes=EquipmentBaseAttributes(hp=0, attack=0, defence=0),
+    )
+    if avatar.equip is not None:
+        equip = avatar.equip
+        equip_id: int = equip.id
+        equip_level: int = equip.level if equip.level else 1
+        equip_promotion = _get_mys_promotion(equip, equip_level)
+
+        equipment_info.equipmentID = equip_id
+        equipment_info.equipmentName = EquipmentID2Name[str(equip_id)]
+        equipment_info.equipmentLevel = equip_level
+        equipment_info.equipmentPromotion = equip_promotion
+        equipment_info.equipmentRank = equip.rank if equip.rank else 0
+        equipment_info.equipmentRarity = EquipmentID2Rarity.get(
+            str(equip_id), equip.rarity
+        )
+
+        equipment_promotion_base = None
+        for equipment in EquipmentPromotionConfig:
+            if (
+                equipment.EquipmentID == equip_id
+                and equipment.Promotion == equip_promotion
+            ):
+                equipment_promotion_base = equipment
+                break
+        if not equipment_promotion_base:
+            msg = f"EquipmentPromotionConfig not found: {equip_id}"
+            raise ValueError(msg)
+
+        equipment_info.baseAttributes.hp = (
+            equipment_promotion_base.BaseHP.Value
+            + equipment_promotion_base.BaseHPAdd.Value * (equip_level - 1)
+        )
+        equipment_info.baseAttributes.attack = (
+            equipment_promotion_base.BaseAttack.Value
+            + equipment_promotion_base.BaseAttackAdd.Value * (equip_level - 1)
+        )
+        equipment_info.baseAttributes.defence = (
+            equipment_promotion_base.BaseDefence.Value
+            + equipment_promotion_base.BaseDefenceAdd.Value * (equip_level - 1)
         )
 
     char_data.equipmentInfo = equipment_info

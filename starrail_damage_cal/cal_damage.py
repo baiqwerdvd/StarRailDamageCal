@@ -12,7 +12,7 @@ from .map.name_covert import alias_to_char_name, name_to_avatar_id
 from .mihomo.models import MihomoData
 from .model import MihomoCharacter
 from .mono.Character import Character
-from .to_data import api_to_dict
+from .to_data import api_to_dict, mys_to_dict
 
 
 async def cal_char_info(char_data: MihomoCharacter):
@@ -84,6 +84,58 @@ class DamageCal:
     async def get_all_damage_data_by_mihomo_raw(cls, mihomo_raw: Dict):
         mihomo_data = convert(mihomo_raw, type=MihomoData)
         char_id_list, char_data_dict = await api_to_dict(mihomo_raw=mihomo_data)
+
+        if isinstance(char_id_list, str):
+            msg = "char_id_list is str"
+            raise MihomoRequestError(msg)
+
+        if char_data_dict is None:
+            msg = "char_data_dict is None"
+            raise MihomoRequestError(msg)
+
+        damage_dict = {}
+
+        for char_id in char_id_list:
+            char_data = char_data_dict[char_id]
+            damage_dict[char_id] = await cal_info(char_data)
+
+        return damage_dict
+
+    @classmethod
+    async def get_damage_data_by_mys_raw(
+        cls, uid: str, nick_name: str, mys_avatar_list: list, avatar_name: str
+    ):
+        char_name = alias_to_char_name(avatar_name)
+        char_id = name_to_avatar_id(char_name)
+
+        if char_id == "":
+            raise CharNameError(char_name)
+
+        char_id_list, char_data_dict = await mys_to_dict(
+            uid, nick_name, mys_avatar_list
+        )
+
+        if isinstance(char_id_list, str):
+            msg = "char_id_list is str"
+            raise MihomoRequestError(msg)
+
+        if char_data_dict is None:
+            msg = "char_data_dict is None"
+            raise MihomoRequestError(msg)
+
+        if char_id not in char_id_list:
+            raise NotInCharacterShowcaseError
+
+        char_data = char_data_dict[char_id]
+        return await cal_info(char_data)
+
+    @classmethod
+    async def get_all_damage_data_by_mys_raw(
+        cls, uid: str, nick_name: str, mys_avatar_list: list
+    ):
+        char_id_list, char_data_dict = await mys_to_dict(
+            uid, nick_name, mys_avatar_list
+        )
 
         if isinstance(char_id_list, str):
             msg = "char_id_list is str"
