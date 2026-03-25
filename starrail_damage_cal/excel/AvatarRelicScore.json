@@ -1095,7 +1095,7 @@
         "SPRatio": 0.0,
         "StatusProbabilityBase": 1.0,
         "StatusResistanceBase": 0.0,
-        "AttributeAddedRatio": 1		
+        "AttributeAddedRatio": 1
     },
     {
 		"role": "Saber",
@@ -1185,6 +1185,24 @@
         "SPRatio": 0.0,
         "StatusProbabilityBase": 0.0,
         "StatusResistanceBase": 0.75,
+        "AttributeAddedRatio": 1		
+    },
+    {
+		"role": "昔涟",
+        "HPDelta": 0.75,
+        "HPAddedRatio": 0.75,
+        "AttackDelta": 0.0,
+        "AttackAddedRatio": 0.0,
+        "DefenceDelta": 0.0,
+        "DefenceAddedRatio": 0.0,
+        "SpeedDelta": 1.0,
+        "CriticalChanceBase": 1.0,
+        "CriticalDamageBase": 1.0,
+        "BreakDamageAddedRatioBase": 0.0,
+        "HealRatio": 0,
+        "SPRatio": 0.75,
+        "StatusProbabilityBase": 0.0,
+        "StatusResistanceBase": 0.0,
         "AttributeAddedRatio": 1		
     }
 ]

@@ -4573,6 +4573,48 @@
             }
         ]
     },
+    "23050": {
+        "1": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.6
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.75
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.9
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 1.05
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "BreakDamageAddedRatioBase",
+                "Value": {
+                    "Value": 1.2
+                }
+            }
+        ]
+    },
     "23051": {
         "1": [
             {
@@ -4653,6 +4695,272 @@
                 "PropertyType": "SpeedAddedRatio",
                 "Value": {
                     "Value": 0.3
+                }
+            }
+        ]
+    },
+    "20023": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
+    },
+    "20024": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
+    },
+    "21064": {
+        "1": [
+            {
+                "PropertyType": "ElationDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.12
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "ElationDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.14
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "ElationDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.16
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "ElationDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "ElationDamageAddedRatioBase",
+                "Value": {
+                    "Value": 0.2
+                }
+            }
+        ]
+    },
+    "21065": {
+        "1": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.12
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.14
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.16
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.2
+                }
+            }
+        ]
+    },
+    "23053": {
+        "1": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.48
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.56
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.64
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.72
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.8
+                }
+            }
+        ]
+    },
+    "23054": {
+        "1": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.21
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.24
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.27
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.3
+                }
+            }
+        ]
+    },
+    "23056": {
+        "1": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.21
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.24
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.27
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "CriticalChanceBase",
+                "Value": {
+                    "Value": 0.3
+                }
+            }
+        ]
+    },
+    "24006": {
+        "1": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.2
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.25
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.3
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.35
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "AttackAddedRatio",
+                "Value": {
+                    "Value": 0.4
                 }
             }
         ]

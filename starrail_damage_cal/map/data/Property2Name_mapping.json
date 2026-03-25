@@ -18,6 +18,8 @@
     "SPRatioBase": "能量恢复效率",
     "StatusProbabilityBase": "效果命中",
     "StatusResistanceBase": "效果抵抗",
+    "ElationDamageAddedRatio": "欢愉度",
+    "ElationDamageAddedRatioBase": "欢愉度",
     "PhysicalAddedRatio": "物理属性伤害提高",
     "PhysicalResistance": "物理属性抗性提高",
     "FireAddedRatio": "火属性伤害提高",

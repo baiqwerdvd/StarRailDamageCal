@@ -301,5 +301,24 @@
             "Property": "CriticalDamageBase",
             "Value": 0.16
         }
-    }
+    },
+    "129": {
+        "2": {
+            "Property": "CriticalDamageBase",
+            "Value": 0.16
+        }
+    },
+    "130": {
+        "2": {
+            "Property": "SpeedAddedRatio",
+            "Value": 0.06
+        }
+    },
+    "325": {
+        "2": {
+            "Property": "ElationDamageAddedRatioBase",
+            "Value": 0.08
+        }
+    },
+    "326": {}
 }
