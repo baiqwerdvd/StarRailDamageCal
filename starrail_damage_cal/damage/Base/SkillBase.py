@@ -36,10 +36,25 @@ class BaseSkills:
 
     @classmethod
     def create(cls, char: DamageInstanceAvatar, skills: List[MihomoAvatarSkill]):
+        del char
+        skill_data = cls()
+        for skill_name in skill_types.values():
+            setattr(skill_data, skill_name, None)
         for skill in skills:
             skill_attack_type = skill.skillAttackType
             if skill_attack_type not in skill_types:
                 msg = f"Unknown skillAttackType: {skill_attack_type}"
                 raise ValueError(msg)
-            setattr(cls, skill_types[skill_attack_type], SingleSkill(skill))
-        return cls
+            setattr(skill_data, skill_types[skill_attack_type], SingleSkill(skill))
+
+        required_skills = ("Normal_", "BPSkill_", "Ultra_", "Talent_")
+        missing_skills = [
+            skill_name
+            for skill_name in required_skills
+            if getattr(skill_data, skill_name) is None
+        ]
+        if missing_skills:
+            msg = f"Missing required skills: {', '.join(missing_skills)}"
+            raise ValueError(msg)
+
+        return skill_data

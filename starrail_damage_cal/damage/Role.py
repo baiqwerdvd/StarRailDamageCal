@@ -240,17 +240,20 @@ def apply_attribute_bonus(
     add_skill_type: str,
 ):
     # Apply attribute bonuses to attack and status probability
-    for attr in add_attr_bonus:
+    for attr, value in tuple(add_attr_bonus.items()):
         if "AttackAddedRatio" in attr and attr.split("AttackAddedRatio")[0] in (
             skill_type,
             add_skill_type,
         ):
-            # print(f'{attr} 有 {merged_attr[attr]} 攻击加成')
-            add_attr_bonus["AttackAddedRatio"] += add_attr_bonus[attr]
+            add_attr_bonus["AttackAddedRatio"] = add_attr_bonus.get(
+                "AttackAddedRatio", 0
+            ) + value
         if "StatusProbabilityBase" in attr and attr.split("StatusProbabilityBase")[
             0
         ] in (skill_type, add_skill_type):
-            add_attr_bonus["StatusProbabilityBase"] += add_attr_bonus[attr]
+            add_attr_bonus["StatusProbabilityBase"] = add_attr_bonus.get(
+                "StatusProbabilityBase", 0
+            ) + value
     return add_attr_bonus
 
 

@@ -62,14 +62,14 @@ class PlayerSpaceInfo(Struct):
 
 
 class PlayerDetailInfo(Struct):
-    assistAvatarList: Union[List[Avatar], None]
-    platform: Union[int, str]
     isDisplayAvatar: bool
     uid: int
     nickname: str
     level: int
-    recordInfo: Union[PlayerSpaceInfo, None]
-    headIcon: int
+    assistAvatarList: Union[List[Avatar], None] = None
+    platform: Union[int, str] = 0
+    recordInfo: Union[PlayerSpaceInfo, None] = None
+    headIcon: int = 0
     friendCount: Union[int, None] = field(default=0)
     worldLevel: Union[int, None] = field(default=0)
     avatarDetailList: Union[List[Avatar], None] = None

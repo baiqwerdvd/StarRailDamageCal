@@ -11,6 +11,7 @@ from ...damage.Role import (
     calculate_heal,
     calculate_shield,
 )
+from ...exception import UnsupportedAvatarError
 from ...logger import logger
 from ...model import MihomoAvatarSkill
 
@@ -4842,4 +4843,4 @@ class AvatarDamage:
             return Welt(char, skills)
         if char.id_ == 1213:
             return Danhengil(char, skills)
-        return None
+        raise UnsupportedAvatarError(char.id_)

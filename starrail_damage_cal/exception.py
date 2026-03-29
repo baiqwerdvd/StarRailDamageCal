@@ -56,3 +56,11 @@ class CharacterShowcaseNotOpenError(Exception):
 
     def __str__(self):
         return self.uid
+
+
+class UnsupportedAvatarError(Exception):
+    def __init__(self, avatar_id: int):
+        self.avatar_id = avatar_id
+
+    def __str__(self):
+        return f"Unsupported avatar id: {self.avatar_id}"

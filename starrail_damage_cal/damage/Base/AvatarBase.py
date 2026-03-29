@@ -42,11 +42,13 @@ class BaseAvatarAttribute(Struct):
 class BaseAvatarBuff:
     @classmethod
     def create(cls, char: DamageInstanceAvatar, skills: List[MihomoAvatarSkill]):
-        cls.extra_ability_id: List[int] = []
+        del skills
+        buff = cls()
+        buff.extra_ability_id = []
         if char.extra_ability:
             for extra_ability in char.extra_ability:
-                cls.extra_ability_id.append(extra_ability.extraAbilityId)
-        return cls
+                buff.extra_ability_id.append(extra_ability.extraAbilityId)
+        return buff
 
     @abstractmethod
     async def Technique(self): ...
@@ -70,39 +72,10 @@ class BaseAvatarinfo:
         self.avatar_attribute = self.get_attribute()
 
     def get_attribute(self):
-        promotion = None
-
-        for avatar in AvatarPromotionConfig:
-            if avatar.AvatarID == self.avatar_id:
-                promotion = avatar
-                break
-        if not promotion:
-            msg = f"AvatarPromotionConfig not found: {self.avatar_id}"
-            raise ValueError(msg)
-
-        return BaseAvatarAttribute(
-            # 攻击力
-            attack=(
-                promotion.AttackBase.Value
-                + promotion.AttackAdd.Value * (self.avatar_level - 1)
-            ),
-            # 防御力
-            defence=(
-                promotion.DefenceBase.Value
-                + promotion.DefenceAdd.Value * (self.avatar_level - 1)
-            ),
-            # 血量
-            hp=(
-                promotion.HPBase.Value + promotion.HPAdd.Value * (self.avatar_level - 1)
-            ),
-            # 速度
-            speed=promotion.SpeedBase.Value,
-            # 暴击率
-            CriticalChanceBase=promotion.CriticalChance.Value,
-            # 暴击伤害
-            CriticalDamageBase=promotion.CriticalDamage.Value,
-            # 嘲讽
-            BaseAggro=promotion.BaseAggro.Value,
+        return build_base_avatar_attribute(
+            avatar_id=self.avatar_id,
+            avatar_promotion=self.avatar_promotion,
+            avatar_level=self.avatar_level,
         )
 
     def Ultra_Use(self):
@@ -124,39 +97,10 @@ class BaseAvatar:
         self.avatar_attribute = self.get_attribute()
 
     def get_attribute(self):
-        promotion = None
-
-        for avatar in AvatarPromotionConfig:
-            if avatar.AvatarID == self.avatar_id:
-                promotion = avatar
-                break
-        if not promotion:
-            msg = f"AvatarPromotionConfig not found: {self.avatar_id}"
-            raise ValueError(msg)
-
-        return BaseAvatarAttribute(
-            # 攻击力
-            attack=(
-                promotion.AttackBase.Value
-                + promotion.AttackAdd.Value * (self.avatar_level - 1)
-            ),
-            # 防御力
-            defence=(
-                promotion.DefenceBase.Value
-                + promotion.DefenceAdd.Value * (self.avatar_level - 1)
-            ),
-            # 血量
-            hp=(
-                promotion.HPBase.Value + promotion.HPAdd.Value * (self.avatar_level - 1)
-            ),
-            # 速度
-            speed=promotion.SpeedBase.Value,
-            # 暴击率
-            CriticalChanceBase=promotion.CriticalChance.Value,
-            # 暴击伤害
-            CriticalDamageBase=promotion.CriticalDamage.Value,
-            # 嘲讽
-            BaseAggro=promotion.BaseAggro.Value,
+        return build_base_avatar_attribute(
+            avatar_id=self.avatar_id,
+            avatar_promotion=self.avatar_promotion,
+            avatar_level=self.avatar_level,
         )
 
     def Skill_Info(self, skill_type: str):
@@ -175,3 +119,33 @@ class BaseAvatar:
             skill_level = self.Skill.Talent_.level - 1
         skill_info = skill_dict[str(self.avatar_id)][skill_type][skill_level]
         return msgspec.convert(skill_info, type=float)
+
+
+def get_avatar_promotion_config(avatar_id: int, avatar_promotion: int):
+    for avatar in AvatarPromotionConfig:
+        if avatar.AvatarID == avatar_id and (avatar.Promotion or 0) == avatar_promotion:
+            return avatar
+
+    msg = f"AvatarPromotionConfig not found: {avatar_id} promotion {avatar_promotion}"
+    raise ValueError(msg)
+
+
+def build_base_avatar_attribute(
+    avatar_id: int,
+    avatar_promotion: int,
+    avatar_level: int,
+) -> BaseAvatarAttribute:
+    promotion = get_avatar_promotion_config(avatar_id, avatar_promotion)
+
+    return BaseAvatarAttribute(
+        attack=promotion.AttackBase.Value + promotion.AttackAdd.Value * (avatar_level - 1),
+        defence=(
+            promotion.DefenceBase.Value
+            + promotion.DefenceAdd.Value * (avatar_level - 1)
+        ),
+        hp=promotion.HPBase.Value + promotion.HPAdd.Value * (avatar_level - 1),
+        speed=promotion.SpeedBase.Value,
+        CriticalChanceBase=promotion.CriticalChance.Value,
+        CriticalDamageBase=promotion.CriticalDamage.Value,
+        BaseAggro=promotion.BaseAggro.Value,
+    )

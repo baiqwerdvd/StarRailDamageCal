@@ -44,11 +44,13 @@ class DamageInstance:
             attribute_bonus=char.attribute_bonus,
             extra_ability=char.extra_ability,
         )
-        self.weapon = DamageInstanceWeapon(
-            id_=char.equipment.equipmentID,
-            level=char.equipment.equipmentLevel,
-            rank=char.equipment.equipmentRank,
-            promotion=char.equipment.equipmentPromotion,
-        )
+        self.weapon = None
+        if char.equipment.equipmentID:
+            self.weapon = DamageInstanceWeapon(
+                id_=char.equipment.equipmentID,
+                level=char.equipment.equipmentLevel,
+                rank=char.equipment.equipmentRank,
+                promotion=char.equipment.equipmentPromotion,
+            )
         self.relic = char.char_relic
         self.skill = char.char_skill

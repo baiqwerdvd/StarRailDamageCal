@@ -1,40 +1,35 @@
+# ruff: noqa: S101
+
 import json
 from pathlib import Path
-from typing import Dict
 
 import pytest
 
 from starrail_damage_cal import DamageCal
 
-with Path.open(Path("test/test.json"), encoding="utf-8") as f:
-    test_data = json.load(f)
+
+def load_test_data() -> dict:
+    return json.loads(Path("test/test.json").read_text(encoding="utf-8"))
 
 
-@pytest.mark.asyncio()
-async def test_get_damage_data_by_uid():
-    data = await DamageCal.get_damage_data_by_uid(uid="100086290", avatar_name="希儿")
-    if isinstance(data, Dict):
-        print(json.dumps(data, ensure_ascii=False, indent=4))
-
-
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_get_damage_data_by_mihomo_raw():
     data = await DamageCal.get_damage_data_by_mihomo_raw(
-        mihomo_raw=test_data, avatar_name="希儿"
+        mihomo_raw=load_test_data(),
+        avatar_name="镜流",
     )
-    if isinstance(data, Dict):
-        print(json.dumps(data, ensure_ascii=False, indent=4))
+
+    assert isinstance(data, list)
+    assert data
+    assert data[0]["name"] == "普攻"
+    assert data[0]["damagelist"]
 
 
-@pytest.mark.asyncio()
+@pytest.mark.asyncio
 async def test_get_all_damage_data_by_mihomo_raw():
-    data = await DamageCal.get_all_damage_data_by_mihomo_raw(mihomo_raw=test_data)
-    if isinstance(data, Dict):
-        print(json.dumps(data, ensure_ascii=False, indent=4))
+    data = await DamageCal.get_all_damage_data_by_mihomo_raw(mihomo_raw=load_test_data())
 
-
-@pytest.mark.asyncio()
-async def test_get_all_damage_data_by_uid():
-    data = await DamageCal.get_all_damage_data_by_uid(uid="100086290")
-    if isinstance(data, Dict):
-        print(json.dumps(data, ensure_ascii=False, indent=4))
+    assert isinstance(data, dict)
+    assert "1212" in data
+    assert isinstance(data["1212"], list)
+    assert data["1212"][0]["name"] == "普攻"
