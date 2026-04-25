@@ -98,6 +98,36 @@ async def api_to_dict(
     return (char_id_list, char_data_list)
 
 
+def _normalize_promotion(promotion: Any) -> int:
+    return int(promotion or 0)
+
+
+def _get_avatar_promotion_config(avatar_id: int, promotion: Any):
+    normalized_promotion = _normalize_promotion(promotion)
+    for avatar in AvatarPromotionConfig:
+        if (
+            avatar.AvatarID == avatar_id
+            and _normalize_promotion(avatar.Promotion) == normalized_promotion
+        ):
+            return avatar
+
+    msg = f"AvatarPromotionConfig not found: {avatar_id}"
+    raise ValueError(msg)
+
+
+def _get_equipment_promotion_config(equipment_id: int, promotion: Any):
+    normalized_promotion = _normalize_promotion(promotion)
+    for equipment in EquipmentPromotionConfig:
+        if (
+            equipment.EquipmentID == equipment_id
+            and _normalize_promotion(equipment.Promotion) == normalized_promotion
+        ):
+            return equipment
+
+    msg = f"EquipmentPromotionConfig not found: {equipment_id}"
+    raise ValueError(msg)
+
+
 async def get_data(
     char: Avatar, nick_name: str, uid: str, save_path: Union[Path, None] = None
 ) -> Tuple[MihomoCharacter, str]:
@@ -291,14 +321,10 @@ async def get_data(
         CriticalDamageBase=0,
         BaseAggro=0,
     )
-    avatar_promotion_base = None
-    for avatar in AvatarPromotionConfig:
-        if avatar.AvatarID == char.avatarId and avatar.Promotion == char.promotion:
-            avatar_promotion_base = avatar
-            break
-    if not avatar_promotion_base:
-        msg = f"AvatarPromotionConfig not found: {char.avatarId}"
-        raise ValueError(msg)
+    avatar_promotion_base = _get_avatar_promotion_config(
+        char.avatarId,
+        char.promotion,
+    )
 
     # 攻击力
     base_attributes.attack = (
@@ -349,17 +375,10 @@ async def get_data(
         equipment_info.equipmentRank = char.equipment.rank if char.equipment.rank else 0
         equipment_info.equipmentRarity = EquipmentID2Rarity[str(char.equipment.tid)]
 
-        equipment_promotion_base = None
-        for equipment in EquipmentPromotionConfig:
-            if (
-                equipment.EquipmentID == char.equipment.tid
-                and equipment.Promotion == char.equipment.promotion
-            ):
-                equipment_promotion_base = equipment
-                break
-        if not equipment_promotion_base:
-            msg = f"EquipmentPromotionConfig not found: {char.equipment.tid}"
-            raise ValueError(msg)
+        equipment_promotion_base = _get_equipment_promotion_config(
+            char.equipment.tid,
+            char.equipment.promotion,
+        )
 
         equipment_level = char.equipment.level if char.equipment.level else 1
         # 生命值
@@ -676,14 +695,7 @@ async def _get_mys_data(
 
     # 处理基础属性 (from AvatarPromotionConfig, NOT MYS properties)
     # MYS properties.base includes equipment base stats which would cause double-counting
-    avatar_promotion_base = None
-    for entry in AvatarPromotionConfig:
-        if entry.AvatarID == avatar_id and entry.Promotion == promotion:
-            avatar_promotion_base = entry
-            break
-    if not avatar_promotion_base:
-        msg = f"AvatarPromotionConfig not found: {avatar_id}"
-        raise ValueError(msg)
+    avatar_promotion_base = _get_avatar_promotion_config(avatar_id, promotion)
 
     char_data.baseAttributes = AvatarBaseAttributes(
         hp=(
@@ -729,17 +741,10 @@ async def _get_mys_data(
             str(equip_id), equip.rarity
         )
 
-        equipment_promotion_base = None
-        for equipment in EquipmentPromotionConfig:
-            if (
-                equipment.EquipmentID == equip_id
-                and equipment.Promotion == equip_promotion
-            ):
-                equipment_promotion_base = equipment
-                break
-        if not equipment_promotion_base:
-            msg = f"EquipmentPromotionConfig not found: {equip_id}"
-            raise ValueError(msg)
+        equipment_promotion_base = _get_equipment_promotion_config(
+            equip_id,
+            equip_promotion,
+        )
 
         equipment_info.baseAttributes.hp = (
             equipment_promotion_base.BaseHP.Value

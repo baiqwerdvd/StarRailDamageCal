@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 from msgspec import convert
@@ -20,7 +21,12 @@ from starrail_damage_cal.model import (
     MihomoCharacter,
 )
 from starrail_damage_cal.mono.Character import Character
-from starrail_damage_cal.to_data import get_data
+from starrail_damage_cal.to_data import (
+    _get_avatar_promotion_config,
+    _get_equipment_promotion_config,
+    _get_mys_data,
+    get_data,
+)
 
 
 def load_avatar_detail() -> dict:
@@ -36,6 +42,20 @@ def test_build_base_avatar_attribute_uses_requested_promotion():
     assert promotion_six.attack == 511.56
     assert promotion_six.hp == 1058.4
     assert promotion_six.attack > promotion_zero.attack
+
+
+def test_avatar_promotion_lookup_normalizes_zero_promotion():
+    promotion = _get_avatar_promotion_config(1302, 0)
+
+    assert promotion.AvatarID == 1302
+    assert promotion.MaxLevel == 20
+
+
+def test_equipment_promotion_lookup_normalizes_zero_promotion():
+    promotion = _get_equipment_promotion_config(20000, 0)
+
+    assert promotion.EquipmentID == 20000
+    assert promotion.MaxLevel == 20
 
 
 def test_base_skills_create_returns_independent_objects():
@@ -149,3 +169,47 @@ async def test_get_data_applies_rank_skill_bonus_without_relics():
 
     assert skill_levels[121203] == 12
     assert skill_levels[121204] == 12
+
+
+@pytest.mark.asyncio
+async def test_get_data_uses_zero_promotion_config():
+    avatar = SimpleNamespace(
+        avatarId=1001,
+        promotion=0,
+        level=20,
+        skillTreeList=[],
+        relicList=[],
+        rank=0,
+        equipment=None,
+        enhancedId=0,
+    )
+
+    char_data, _ = await get_data(avatar, "tester", "100000001")
+    expected = build_base_avatar_attribute(1001, 0, 20)
+
+    assert char_data.avatarPromotion == 0
+    assert char_data.baseAttributes.attack == expected.attack
+    assert char_data.baseAttributes.hp == expected.hp
+
+
+@pytest.mark.asyncio
+async def test_get_mys_data_uses_zero_promotion_config():
+    avatar = SimpleNamespace(
+        id=1302,
+        level=20,
+        promotion=0,
+        cur_enhanced_id=0,
+        skills=[],
+        relics=[],
+        ornaments=[],
+        ranks=[],
+        equip=None,
+    )
+
+    char_data, avatar_name = await _get_mys_data(avatar, "tester", "100000001")
+    expected = build_base_avatar_attribute(1302, 0, 20)
+
+    assert avatar_name == "银枝"
+    assert char_data.avatarPromotion == 0
+    assert char_data.baseAttributes.attack == expected.attack
+    assert char_data.baseAttributes.hp == expected.hp
