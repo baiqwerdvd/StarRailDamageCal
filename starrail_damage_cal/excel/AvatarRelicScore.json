@@ -1095,7 +1095,7 @@
         "SPRatio": 0.0,
         "StatusProbabilityBase": 1.0,
         "StatusResistanceBase": 0.0,
-        "AttributeAddedRatio": 1
+        "AttributeAddedRatio": 1		
     },
     {
 		"role": "Saber",

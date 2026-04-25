@@ -4964,5 +4964,131 @@
                 }
             }
         ]
+    },
+    "23058": {
+        "1": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.6
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.75
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.9
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 1.05
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 1.2
+                }
+            }
+        ]
+    },
+    "23057": {
+        "1": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.21
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.24
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.27
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "SpeedAddedRatio",
+                "Value": {
+                    "Value": 0.3
+                }
+            }
+        ]
+    },
+    "22007": {
+        "1": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.12
+                }
+            }
+        ],
+        "2": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.15
+                }
+            }
+        ],
+        "3": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.18
+                }
+            }
+        ],
+        "4": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.21
+                }
+            }
+        ],
+        "5": [
+            {
+                "PropertyType": "CriticalDamageBase",
+                "Value": {
+                    "Value": 0.24
+                }
+            }
+        ]
     }
 }

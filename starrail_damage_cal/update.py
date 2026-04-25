@@ -12,6 +12,9 @@ from .logger import logger
 
 VERSION_URL = "https://starrail.wget.es/version.json"
 SKIPPED_FILES = {"light_cone_ranks.json"}
+RETAINED_LOCAL_FILES = {
+    Path("map") / "data" / "MysPropertyType2Property_mapping.json",
+}
 
 
 def calc_sha256(file_path: Path) -> str:
@@ -87,6 +90,7 @@ def cleanup_stale_runtime_files(version_data: dict[str, Any]) -> None:
     expected_files = {
         relative_path for _, relative_path in iter_managed_files(version_data)
     }
+    expected_files.update(RETAINED_LOCAL_FILES)
 
     for relative_dir in (Path("excel"), Path("map") / "data"):
         runtime_dir = runtime_root / relative_dir
@@ -220,7 +224,7 @@ async def update_resource() -> str:
             logger.info(msg)
             return msg
 
-        updated_count = await download_files(session, remote_data, outdated_files)
+        updated_count = await download_all_files(session, remote_data)
         persist_version_data(remote_data)
 
         if same_generated_time:

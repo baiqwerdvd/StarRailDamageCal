@@ -1,0 +1,158 @@
+{
+  "version": "4.2.0",
+  "generated_at": "2026-04-25T15:32:26.778297Z",
+  "file_names": [
+    "avatarRankSkillUp_mapping.json",
+    "RelicId2SetId_mapping.json",
+    "EquipmentID2AbilityProperty_mapping.json",
+    "RelicSetSkill_mapping.json",
+    "ItemId2Name_mapping.json",
+    "RelicSubAffixConfig.json",
+    "skillId2Name_mapping.json",
+    "RelicId2Rarity_mapping.json",
+    "relic_scores.json",
+    "skillId2AttackType_mapping.json",
+    "avatarId2Rarity_mapping.json",
+    "skillId2Type_mapping.json",
+    "RelicMainAffixConfig.json",
+    "avatarId2DamageType_mapping.json",
+    "avatarId2Name_mapping.json",
+    "char_alias.json",
+    "Property2Name_mapping.json",
+    "SetId2Name_mapping.json",
+    "rankId2Name_mapping.json",
+    "light_cone_ranks.json",
+    "characterSkillTree_mapping.json",
+    "EquipmentID2Name_mapping.json",
+    "RelicId2MainAffixGroup_mapping.json",
+    "EquipmentID2Rarity_mapping.json",
+    "EquipmentID2EnName_mapping.json",
+    "avatarId2EnName_mapping.json",
+    "AvatarPromotionConfigLD.json",
+    "AvatarRelicScore.json",
+    "EquipmentPromotionConfig.json",
+    "AvatarPromotionConfig.json"
+  ],
+  "files": {
+    "avatarRankSkillUp_mapping.json": {
+      "sha256": "b2d1ce79466caef191be8a6e7c3d8f332899a42a136ce71726d47b1068ace664",
+      "size": 48619
+    },
+    "RelicId2SetId_mapping.json": {
+      "sha256": "79e3fddf78bf0674b4fa0db4b013f1f4398ed2001cd7b2f7f2f08491a273cae4",
+      "size": 12494
+    },
+    "EquipmentID2AbilityProperty_mapping.json": {
+      "sha256": "903c3765426bf29415e535b0a1740e3bec30c31522f3e918f0ccb2bf8a8f9c75",
+      "size": 113419
+    },
+    "RelicSetSkill_mapping.json": {
+      "sha256": "a8d6c894d06311f63ddde15fee36d573f33c04fed1d0327efbb1ee946aba6f7d",
+      "size": 6272
+    },
+    "ItemId2Name_mapping.json": {
+      "sha256": "9e9b21ce3c3fcb87336e5076a24d49b01d9cb4bd435292908aec67a24c186421",
+      "size": 27577
+    },
+    "RelicSubAffixConfig.json": {
+      "sha256": "52ec6eb167da9d2cd7bce76960d8031f799de25f4becd7f15f4d253a0f9489e7",
+      "size": 9631
+    },
+    "skillId2Name_mapping.json": {
+      "sha256": "cb51accd9cc5c792e6db6f461ebf0864d3f068a59f149e8b6741aed2e8f149b6",
+      "size": 22970
+    },
+    "RelicId2Rarity_mapping.json": {
+      "sha256": "32d6f5fe4b6a4ebe5838e602190cf638a02a4a776d45bbb99053271be02a7657",
+      "size": 11106
+    },
+    "relic_scores.json": {
+      "sha256": "3397a8849331bb06ce5634fa2741597980355b0a12274147f39818251c13627b",
+      "size": 165318
+    },
+    "skillId2AttackType_mapping.json": {
+      "sha256": "3ec0b4d0bdd2594d6dc5ae70b4720e320a215f06a6bc13bef87479dda799177a",
+      "size": 16126
+    },
+    "avatarId2Rarity_mapping.json": {
+      "sha256": "3a5868d4e6b9f71b6d7624171fbd782a5a582795f75bf3db8bc2646e80dfc6b1",
+      "size": 1549
+    },
+    "skillId2Type_mapping.json": {
+      "sha256": "73e7dcb1595774a0070ef08cfeacffd9785ad1ddc3ea3aac826089b0a699f4e3",
+      "size": 15726
+    },
+    "RelicMainAffixConfig.json": {
+      "sha256": "12d2b1a74ba7b4c72b08eaedabd4fe2804bf909356776a810b8bcb3c9cd6ec8b",
+      "size": 21016
+    },
+    "avatarId2DamageType_mapping.json": {
+      "sha256": "9c5107bf6e2e6fcf672b4b97a3647303aef6b119c01ff8694fc2a93231760648",
+      "size": 2010
+    },
+    "avatarId2Name_mapping.json": {
+      "sha256": "99d5dd6e4331241b9dce1161cb57f4501e7a52c7b47d61aef10c557506855ff9",
+      "size": 2157
+    },
+    "char_alias.json": {
+      "sha256": "25f97be1066258533badf7d003890c4c53de626771f796d91486e63025634766",
+      "size": 22378
+    },
+    "Property2Name_mapping.json": {
+      "sha256": "d7cbf6799749b5eaa16b213d25a4d5f4e60290ab9be7e91ec59f4b26ec68b840",
+      "size": 2355
+    },
+    "SetId2Name_mapping.json": {
+      "sha256": "438d386915f2c256b0df5f7cb6a6f8671cfe50bb03cdbcf508a21a7507a6c652",
+      "size": 2013
+    },
+    "rankId2Name_mapping.json": {
+      "sha256": "bea14dbf130f95f7c4f9b20320db8ad7eed27da9d3da38337e2bfe60b4c23a9a",
+      "size": 20049
+    },
+    "light_cone_ranks.json": {
+      "sha256": "44d2978ea0f4f4ad06859a9dc682ca5a1edca795214d64ff0831854259688b28",
+      "size": 137946
+    },
+    "characterSkillTree_mapping.json": {
+      "sha256": "608a49ad6723fdfdf4bde512300056ffee98d3af81960d1c9c94345527e6b9a3",
+      "size": 3983835
+    },
+    "EquipmentID2Name_mapping.json": {
+      "sha256": "a4270e666e77b6ea8ea7b5eac9c9c3f8c39ca10d5faa66e4ecf0becd9a7b2ffa",
+      "size": 5271
+    },
+    "RelicId2MainAffixGroup_mapping.json": {
+      "sha256": "6fd94bbeccceac8e2f2c575480b151fbc50606e9eaa359c528534650e2e3d0df",
+      "size": 11806
+    },
+    "EquipmentID2Rarity_mapping.json": {
+      "sha256": "1c41308f8d44fa4a1cee6ee90b0ad8937aa1949567bb8f0d471610ba493d1c38",
+      "size": 2578
+    },
+    "EquipmentID2EnName_mapping.json": {
+      "sha256": "428842939000e1cccb5e35cce9edfcb3584526ab45f7e88cc4b4862a92890d45",
+      "size": 5443
+    },
+    "avatarId2EnName_mapping.json": {
+      "sha256": "74a1c289e19b52ecb9cbda00d0130acc50a0a768ec6205215472228bd0c1c21c",
+      "size": 2128
+    },
+    "AvatarPromotionConfigLD.json": {
+      "sha256": "0b7151b1e6c2b30185b117774a52740653f19073f8c671a45ad2edfeaea71ae1",
+      "size": 10421
+    },
+    "AvatarRelicScore.json": {
+      "sha256": "dc34c38b3febf90c179a01c68d8fc163bfe4bc4207a27d1b4f8bec89e4cc1a1b",
+      "size": 34262
+    },
+    "EquipmentPromotionConfig.json": {
+      "sha256": "419738d21ccb6a47fe553d295a5a08d61a37a975cdd147170a4b119dec7cc59d",
+      "size": 645048
+    },
+    "AvatarPromotionConfig.json": {
+      "sha256": "fd051b87de2cb7a05fc88adfe3a1894682da90dbe66500e4485b1fc832fb6caf",
+      "size": 462819
+    }
+  }
+}

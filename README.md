@@ -71,7 +71,7 @@ asyncio.run(main())
 
 ## 更新资源文件
 
-项目内置了资源更新接口，会将新版本数据覆盖到运行时目录：
+项目内置了资源更新接口，会将新版本数据覆盖到库包所在目录：
 
 ```python
 import asyncio
@@ -86,7 +86,7 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-默认运行时目录是 `~/.starrail_damage_cal`，也可以通过环境变量 `STARRAIL_DAMAGE_CAL_DATA_DIR` 指定。
+资源文件目录由 `starrail_damage_cal` 库包位置决定，不读取环境变量。
 
 ## 测试
 
