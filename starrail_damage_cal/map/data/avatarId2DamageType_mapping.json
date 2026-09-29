@@ -75,9 +75,14 @@
     "1415": "Ice",
     "1501": "Fire",
     "1502": "Physical",
+    "1503": "Ice",
     "1504": "Thunder",
     "1505": "Physical",
     "1506": "Imaginary",
+    "1507": "Fire",
+    "1510": "Fire",
+    "1512": "Wind",
+    "1513": "Quantum",
     "8001": "Physical",
     "8002": "Physical",
     "8003": "Fire",
@@ -89,5 +94,7 @@
     "8009": "Thunder",
     "8010": "Thunder",
     "1014": "Wind",
-    "1015": "Quantum"
+    "1015": "Quantum",
+    "1508": "Quantum",
+    "1509": "Thunder"
 }

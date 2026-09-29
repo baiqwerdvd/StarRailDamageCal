@@ -320,5 +320,36 @@
             "Value": 0.08
         }
     },
-    "326": {}
+    "326": {},
+    "131": {
+        "2": {
+            "Property": "AttackAddedRatio",
+            "Value": 0.12
+        }
+    },
+    "132": {
+        "2": {
+            "Property": "HPAddedRatio",
+            "Value": 0.12
+        }
+    },
+    "327": {
+        "2": {
+            "Property": "CriticalChanceBase",
+            "Value": 0.08
+        }
+    },
+    "328": {},
+    "133": {
+        "2": {
+            "Property": "SpeedAddedRatio",
+            "Value": 0.06
+        }
+    },
+    "134": {
+        "2": {
+            "Property": "CriticalDamageBase",
+            "Value": 0.16
+        }
+    }
 }

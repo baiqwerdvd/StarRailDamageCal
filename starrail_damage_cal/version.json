@@ -1,6 +1,6 @@
 {
-  "version": "4.2.1",
-  "generated_at": "2026-04-25T15:32:26.778297Z",
+  "version": "4.6.0",
+  "generated_at": "2026-09-29T02:44:46.352944Z",
   "file_names": [
     "avatarRankSkillUp_mapping.json",
     "RelicId2SetId_mapping.json",
@@ -35,124 +35,124 @@
   ],
   "files": {
     "avatarRankSkillUp_mapping.json": {
-      "sha256": "b2d1ce79466caef191be8a6e7c3d8f332899a42a136ce71726d47b1068ace664",
-      "size": 48619
+      "sha256": "4630c97d7fadabfa7ad503a4579b1cffe2a81ffaefbd582a4100f36c0f97a34a",
+      "size": 53005
     },
     "RelicId2SetId_mapping.json": {
-      "sha256": "79e3fddf78bf0674b4fa0db4b013f1f4398ed2001cd7b2f7f2f08491a273cae4",
-      "size": 12494
+      "sha256": "e13e8b1ba321bf4d276da5976fc180ee8ec4ddc3f912837d9df5b90214771c4b",
+      "size": 13934
     },
     "EquipmentID2AbilityProperty_mapping.json": {
-      "sha256": "903c3765426bf29415e535b0a1740e3bec30c31522f3e918f0ccb2bf8a8f9c75",
-      "size": 113419
+      "sha256": "4d0e52d1f31b4dc7f58282a25e2cf2a53dc872a7473cdea7e029bb66325595af",
+      "size": 121901
     },
     "RelicSetSkill_mapping.json": {
-      "sha256": "a8d6c894d06311f63ddde15fee36d573f33c04fed1d0327efbb1ee946aba6f7d",
-      "size": 6272
+      "sha256": "61a442e1d913e530936b2bca15897d4dec1856627ca3190e2a0ddd307b5146a4",
+      "size": 6861
     },
     "ItemId2Name_mapping.json": {
-      "sha256": "9e9b21ce3c3fcb87336e5076a24d49b01d9cb4bd435292908aec67a24c186421",
-      "size": 27577
+      "sha256": "7f3a0e777efc61c8c5efb2c49e3a8bffc70f0dcb33754b603e9d66f470ab50d3",
+      "size": 30713
     },
     "RelicSubAffixConfig.json": {
       "sha256": "52ec6eb167da9d2cd7bce76960d8031f799de25f4becd7f15f4d253a0f9489e7",
       "size": 9631
     },
     "skillId2Name_mapping.json": {
-      "sha256": "cb51accd9cc5c792e6db6f461ebf0864d3f068a59f149e8b6741aed2e8f149b6",
-      "size": 22970
+      "sha256": "58484ceec2a5882818dc451df678014eb132f366ebcb794760fc413d9b2c5e91",
+      "size": 25122
     },
     "RelicId2Rarity_mapping.json": {
-      "sha256": "32d6f5fe4b6a4ebe5838e602190cf638a02a4a776d45bbb99053271be02a7657",
-      "size": 11106
+      "sha256": "051b66f056aadb0acddaf58235a0a36deb1f2a52a4ee78627b021dc692fc64fd",
+      "size": 12386
     },
     "relic_scores.json": {
-      "sha256": "3397a8849331bb06ce5634fa2741597980355b0a12274147f39818251c13627b",
-      "size": 165318
+      "sha256": "974c3e43eb149bb5e3d0b524c29d1f71f5e76ea5902a37666a5a7a1dfc2ff7ac",
+      "size": 172560
     },
     "skillId2AttackType_mapping.json": {
-      "sha256": "3ec0b4d0bdd2594d6dc5ae70b4720e320a215f06a6bc13bef87479dda799177a",
-      "size": 16126
+      "sha256": "d624e70bc5944295eee7183997ab10de51bc18dced8dec607a899282324ee3fe",
+      "size": 17474
     },
     "avatarId2Rarity_mapping.json": {
-      "sha256": "3a5868d4e6b9f71b6d7624171fbd782a5a582795f75bf3db8bc2646e80dfc6b1",
-      "size": 1549
+      "sha256": "1a5825befd2c448bf07e7662934f215e7f0c839660a81484fc74d141a6a20aee",
+      "size": 1668
     },
     "skillId2Type_mapping.json": {
-      "sha256": "73e7dcb1595774a0070ef08cfeacffd9785ad1ddc3ea3aac826089b0a699f4e3",
-      "size": 15726
+      "sha256": "bb9b999e18aa9bc99f9bd6abc5725eb6ba7631e3279bfb2353ef33d16b1015d1",
+      "size": 17040
     },
     "RelicMainAffixConfig.json": {
       "sha256": "12d2b1a74ba7b4c72b08eaedabd4fe2804bf909356776a810b8bcb3c9cd6ec8b",
       "size": 21016
     },
     "avatarId2DamageType_mapping.json": {
-      "sha256": "9c5107bf6e2e6fcf672b4b97a3647303aef6b119c01ff8694fc2a93231760648",
-      "size": 2010
+      "sha256": "02691989eca65470a203d89e59bd6aecba1244c2c0f568264471031821d605b4",
+      "size": 2158
     },
     "avatarId2Name_mapping.json": {
-      "sha256": "99d5dd6e4331241b9dce1161cb57f4501e7a52c7b47d61aef10c557506855ff9",
-      "size": 2157
+      "sha256": "62a31ff366a8cef1ec957c3a5bac411e76f8e65a2bb27f39c6360d22ebfea36d",
+      "size": 2359
     },
     "char_alias.json": {
-      "sha256": "25f97be1066258533badf7d003890c4c53de626771f796d91486e63025634766",
-      "size": 22378
+      "sha256": "7b83c04cfeca5503e3c8e959ba64406c72349746606ceb1b9121fb92aeb0de55",
+      "size": 22533
     },
     "Property2Name_mapping.json": {
       "sha256": "d7cbf6799749b5eaa16b213d25a4d5f4e60290ab9be7e91ec59f4b26ec68b840",
       "size": 2355
     },
     "SetId2Name_mapping.json": {
-      "sha256": "438d386915f2c256b0df5f7cb6a6f8671cfe50bb03cdbcf508a21a7507a6c652",
-      "size": 2013
+      "sha256": "4e76f2fd2d59a93c468b74794636e5cdb891275bba1b3551b6896d588b5b43b2",
+      "size": 2220
     },
     "rankId2Name_mapping.json": {
-      "sha256": "bea14dbf130f95f7c4f9b20320db8ad7eed27da9d3da38337e2bfe60b4c23a9a",
-      "size": 20049
+      "sha256": "2787eb15f82f5d2f4b939c3ea49cd01bbecf1a279cbebe5eb1dee80c41e1379b",
+      "size": 21834
     },
     "light_cone_ranks.json": {
-      "sha256": "44d2978ea0f4f4ad06859a9dc682ca5a1edca795214d64ff0831854259688b28",
-      "size": 137946
+      "sha256": "68ccfd7363ca15d3f04682a9fdce9841ff5db1252b1ea7c7c0926501bfa84415",
+      "size": 147644
     },
     "characterSkillTree_mapping.json": {
-      "sha256": "608a49ad6723fdfdf4bde512300056ffee98d3af81960d1c9c94345527e6b9a3",
-      "size": 3983835
+      "sha256": "d60af714f81543a819a34765d672fa4c8bb8c2899377853341a2630a212ea8e9",
+      "size": 4277871
     },
     "EquipmentID2Name_mapping.json": {
-      "sha256": "a4270e666e77b6ea8ea7b5eac9c9c3f8c39ca10d5faa66e4ecf0becd9a7b2ffa",
-      "size": 5271
+      "sha256": "9f5a6747fd10c1b2fd7ab654d6cb736cc8b452700db30d70b2ef1446abb30f03",
+      "size": 5595
     },
     "RelicId2MainAffixGroup_mapping.json": {
-      "sha256": "6fd94bbeccceac8e2f2c575480b151fbc50606e9eaa359c528534650e2e3d0df",
-      "size": 11806
+      "sha256": "0944cc834b607336893d02f6b8ee150eb041a0fe27fb2576d267b856ee9af006",
+      "size": 13166
     },
     "EquipmentID2Rarity_mapping.json": {
-      "sha256": "1c41308f8d44fa4a1cee6ee90b0ad8937aa1949567bb8f0d471610ba493d1c38",
-      "size": 2578
+      "sha256": "91d3fe87188bc1e553b1ed45239d16e5ffd45cffa9f735c5b1c1ab662da234b6",
+      "size": 2722
     },
     "EquipmentID2EnName_mapping.json": {
-      "sha256": "428842939000e1cccb5e35cce9edfcb3584526ab45f7e88cc4b4862a92890d45",
-      "size": 5443
+      "sha256": "2187552aea4da654b45ad95359901b9090f79a930ea13311b475065df09f6db8",
+      "size": 5742
     },
     "avatarId2EnName_mapping.json": {
-      "sha256": "74a1c289e19b52ecb9cbda00d0130acc50a0a768ec6205215472228bd0c1c21c",
-      "size": 2128
+      "sha256": "c4485e281014e0ddaa4890c3f7425d74ac92d638d245be2909325a99c7ff921d",
+      "size": 2330
     },
     "AvatarPromotionConfigLD.json": {
-      "sha256": "0b7151b1e6c2b30185b117774a52740653f19073f8c671a45ad2edfeaea71ae1",
-      "size": 10421
+      "sha256": "32d7ac2c590f6e65a86861da37bd36d977197cc9242ca45dc5daefd325bcdd21",
+      "size": 20869
     },
     "AvatarRelicScore.json": {
       "sha256": "dc34c38b3febf90c179a01c68d8fc163bfe4bc4207a27d1b4f8bec89e4cc1a1b",
       "size": 34262
     },
     "EquipmentPromotionConfig.json": {
-      "sha256": "419738d21ccb6a47fe553d295a5a08d61a37a975cdd147170a4b119dec7cc59d",
-      "size": 645048
+      "sha256": "4c39a581896a55558170fae5bd582ac4a656dd428ed2572c6be15d60eb4ac333",
+      "size": 681195
     },
     "AvatarPromotionConfig.json": {
-      "sha256": "fd051b87de2cb7a05fc88adfe3a1894682da90dbe66500e4485b1fc832fb6caf",
-      "size": 462819
+      "sha256": "7501192b3dc1dd32b43ec702d76b6f8462fa10760c9cad4aa6a78188a5dacd85",
+      "size": 488799
     }
   }
 }
