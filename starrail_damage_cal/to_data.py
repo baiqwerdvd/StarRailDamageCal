@@ -1,4 +1,6 @@
+from datetime import UTC, datetime
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 from typing import Any, Dict, List, Tuple, Union
 
 from msgspec import json as msgjson
@@ -48,6 +50,17 @@ from .model import (
 )
 
 
+def _write_cache(path: Path, content: bytes) -> None:
+    with NamedTemporaryFile(dir=path.parent, suffix=".tmp", delete=False) as file:
+        temporary = Path(file.name)
+        try:
+            file.write(content)
+            file.close()
+            temporary.replace(path)
+        finally:
+            temporary.unlink(missing_ok=True)
+
+
 async def api_to_dict(
     uid: Union[str, None] = None,
     mihomo_raw: Union[MihomoData, None] = None,
@@ -65,10 +78,8 @@ async def api_to_dict(
     if save_path and uid:
         path = save_path / uid
         path.mkdir(parents=True, exist_ok=True)
-        with Path.open(path / f"{uid!s}.json", "wb") as file:
-            _ = file.write(msgjson.format(msgjson.encode(PlayerDetailInfo), indent=4))
-        with Path.open(path / "rawData.json", "wb") as file:
-            _ = file.write(msgjson.format(msgjson.encode(sr_data), indent=4))
+        _write_cache(path / f"{uid!s}.json", msgjson.format(msgjson.encode(PlayerDetailInfo), indent=4))
+        _write_cache(path / "rawData.json", msgjson.format(msgjson.encode(sr_data), indent=4))
 
     player_uid = str(PlayerDetailInfo.uid)
 
@@ -167,6 +178,8 @@ async def get_data(
         rank=0,
         rankList=[],
         enhancedId=char.enhancedId if char.enhancedId else 0,
+        source="mihomo",
+        updated_at=datetime.now(UTC).isoformat(timespec="seconds"),
     )
     # 处理技能
     for behavior in char.skillTreeList:
@@ -402,8 +415,7 @@ async def get_data(
     if save_path:
         path = save_path / str(uid)
         path.mkdir(parents=True, exist_ok=True)
-        with Path.open(path / f"{char_data.avatarName}.json", "wb") as file:
-            _ = file.write(msgjson.encode(char_data))
+        _write_cache(path / f"{char_data.avatarName}.json", msgjson.encode(char_data))
 
     return char_data, char_data.avatarName
 
@@ -547,6 +559,8 @@ async def _get_mys_data(
         rank=0,
         rankList=[],
         enhancedId=enhanced_id,
+        source="mys",
+        updated_at=datetime.now(UTC).isoformat(timespec="seconds"),
     )
 
     # 处理技能
@@ -764,7 +778,6 @@ async def _get_mys_data(
     if save_path:
         path = save_path / str(uid)
         path.mkdir(parents=True, exist_ok=True)
-        with Path.open(path / f"{char_data.avatarName}.json", "wb") as file:
-            _ = file.write(msgjson.encode(char_data))
+        _write_cache(path / f"{char_data.avatarName}.json", msgjson.encode(char_data))
 
     return char_data, char_data.avatarName

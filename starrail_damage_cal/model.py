@@ -105,3 +105,5 @@ class MihomoCharacter(Struct):
     rank: int
     rankList: List[RankData]
     enhancedId: int
+    source: str = ""
+    updated_at: str = ""
